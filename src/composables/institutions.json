@@ -1,0 +1,93 @@
+{
+  "sectors": [
+    {
+      "sector": "Government",
+      "roles": [
+        "Forest Management/Park Management",
+        "Law Enforcement",
+        "Legislature/Parliament",
+        "Ministry/National Agency"
+      ]
+    },
+    {
+      "sector": "Donor Institution/Agency",
+      "roles": [
+        "Director/Executive",
+        "Project/Program Manager",
+        "Researcher",
+        "Monitoring/Evaluation",
+        "Field/Country Staff"
+      ]
+    },
+    {
+      "sector": "Local NGO (national or subnational)",
+      "roles": [
+        "Director/Executive",
+        "Project/Program Manager",
+        "Monitoring/Evaluation Specialist",
+        "GIS/Technical Specialist",
+        "Field Staff",
+        "Communications Specialist",
+        "Park/Forest Ranger"
+      ]
+    },
+    {
+      "sector": "International NGO",
+      "roles": [
+        "Director/Executive",
+        "Project/Program Manager",
+        "Monitoring/Evaluation Specialist",
+        "GIS/Technical Specialist",
+        "Field Staff",
+        "Communications Specialist",
+        "Park/Forest Ranger"
+      ]
+    },
+    {
+      "sector": "UN or International Organization",
+      "roles": [
+        "Director/Executive",
+        "Project/Program Manager",
+        "Monitoring/Evaluation Specialist",
+        "GIS/Technical Specialist",
+        "Field Staff",
+        "Communications Specialist",
+        "Park/Forest Ranger"
+      ]
+    },
+    {
+      "sector": "Academic/Research Organization",
+      "roles": []
+    },
+    {
+      "sector": "Journalist/Media Organization",
+      "roles": [
+        
+      ]
+    },
+    {
+      "sector": "Indigenous or Community-Based Organization",
+      "roles": [
+        "GIS/Technical Specialist",
+        "Communications Specialist",
+        "Community Leader",
+        "Forest Manager/Monitor"
+      ]
+    },
+    {
+      "sector": "Private Sector",
+      "roles": [
+        "GIS/Technical Specialist",
+        "Supply Chain Manager",
+        "Supply Chain Analyst",
+        "Procurement Staff",
+        "Retailer/Trader",
+        "Land or Concession Owner"
+      ]
+    },
+    {
+      "sector": "Individual/No Affiliation",
+      "roles": []
+    }
+  ]
+}

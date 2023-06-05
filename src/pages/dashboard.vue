@@ -1,0 +1,427 @@
+<template>
+  <!-- <q-layout view="hHh lpR fFf">
+    <q-page-container style="padding-bottom: 0px"> -->
+  <q-page class="row bg-grey-2" style="overflow:hidden;">
+    <!-- <div
+          class="col bg-grey-2 q-my-sm items-center web-view"
+          style="
+            max-width: fit-content;
+            max-height: inherit;
+            border-radius: 0 15px 0 0;
+          "
+        >
+          <selectionsTab />
+        </div> -->
+    <div
+      class="show-stats-btn-mobile q-pa-md"
+      style="position: absolute; left: 0%; top: 15%; z-index: 5000"
+    >
+      <q-btn
+        class="p-py-sm bg-primary"
+        icon="mdi-chevron-right"
+        color="grey-1"
+        round
+        flat
+        dense
+        @click="showAnalysisPanel = !showAnalysisPanel"
+      />
+    </div>
+
+    <!-- <div class="row items-center q-gutter-sm bg-white q-mx-sm q-px-md" style="position:absolute;bottom:1%;left:1%;z-index:6000;width:34vw;height:7vh;border-radius:20px">
+      <div class="column items-center">
+        <img
+            src="~/src/assets/rcmrdlogo.png" style="width:80%"
+          />
+      </div>
+      <div class="column items-center">
+        <img
+            src="~/src/assets/GMESlogo.png" style="width:80%"
+          />
+      </div>
+      <div class="column items-center">
+        <img
+            src="~/src/assets/AUlogo.png" style="width:80%"
+          />
+      </div>
+      <div class="column items-end">
+        <img
+            src="~/src/assets/EUlogo.png" style="width:80%"
+          />
+      </div>
+    </div> -->
+
+    <div class="" style="position:absolute;bottom:7%;left:45vw;z-index:6000;width:34vw;height:7vh;border-radius:20px">
+      <yearslider/>
+    </div>
+
+    <div
+      v-if="(matchMediaDesktop, showAnalysisPanel)"
+      class="stats-panel"
+      style="
+        position: absolute;
+        z-index: 5000;
+        height: 100%;
+        width: 40vw;
+        overflow: hidden;
+      "
+    >
+      <div
+        class="show-stats-btn-mobile q-pa-md"
+        style="position: absolute; right: 0%; top: 15%; z-index: 5000"
+      >
+        <q-btn
+          class="p-py-sm bg-primary"
+          icon="mdi-chevron-left"
+          color="grey-1"
+          round
+          flat
+          dense
+          @click="showAnalysisPanel = !showAnalysisPanel"
+        />
+      </div>
+      <areaselection />
+      <analysisPanel
+        class="col q-my-sm q-ml-md web-view"
+        style="
+          position: relative;
+          top: %;
+          max-width: fit-content;
+          max-height: inherit;
+          border-radius: 0 15px 0 0;
+        "
+      />
+    </div>
+
+    <div class="col">
+      <mappanel keep-alive />
+    </div>
+
+    <!-- <div v-if="matchMediaDesktop">
+          <analysisPanel
+            class="col q-my-sm web-view"
+            style="
+              max-width: fit-content;
+              max-height: inherit;
+              border-radius: 0 15px 0 0;
+            "
+          />
+        </div> -->
+    <!-- <div v-show="showAnalysismobile" class="analysis-panel-mobile bg-white">
+          <div class="row">
+            <h6 class="q-pa-md q-ma-none">Statistics</h6>
+            <q-space />
+            <div class="show-stats-btn-mobile q-pa-md" style="">
+              <q-btn
+                class="p-py-sm"
+                icon="expand_more"
+                flat
+                round
+                dense
+                @click="showAnalysismobile = !showAnalysismobile"
+              />
+            </div>
+          </div>
+          <div>
+            <analysisPanel class="" style="" />
+          </div>
+        </div> -->
+
+    <div
+      v-show="showLayerSelection"
+      style="position: absolute; bottom: 0%; min-height: 50vh; z-index: 5000"
+    >
+      <!-- <div style="position:absolute; bottom:0%;max-height: 50vh; width: 100vw">
+            <div class="row bg-white">
+              <h6 class="my-font q-pa-md q-ma-none">Layer Settings</h6>
+              <q-space />
+              <div class="show-stats-btn-mobile q-pa-md" style="">
+                <q-btn
+                  class="p-py-sm"
+                  icon="expand_more"
+                  flat
+                  round
+                  dense
+                  @click="showLayerSelection = !showLayerSelection"
+                />
+              </div>
+            </div>
+            <div clickable @click="showLayerSelection = !showLayerSelection" class="bg-white q-py-md" style="min-height: 25vh">
+              <selectionsTab />
+            </div>
+          </div> -->
+
+      <q-tab-panels
+        class="q-pa-none q-ma-none"
+        v-model="tab"
+        animated
+        keep-alive
+        style="
+          position: absolute;
+          bottom: 0vh;
+          border-radius: 15px 15px 0px 0px;
+        "
+      >
+        <q-tab-panel name="layers" class="q-pa-none q-ma-none">
+          <div class="row bg-white">
+            <h6 class="my-font q-pa-md q-ma-none">{{ $t("layerSettings") }}</h6>
+            <q-space />
+            <div class="show-stats-btn-mobile q-pa-md" style="">
+              <q-btn
+                class="p-py-sm"
+                icon="expand_more"
+                flat
+                round
+                dense
+                @click="showLayerSelection = !showLayerSelection"
+              />
+            </div>
+          </div>
+          <div
+            clickable
+            @click="showLayerSelection = !showLayerSelection"
+            class="bg-white q-py-md"
+            style="min-height: 25vh; min-width: 100vw"
+          >
+            <selectionsTab />
+          </div>
+        </q-tab-panel>
+
+        <q-tab-panel name="analysis" class="q-pa-none q-ma-none">
+          <div class="row bg-white">
+            <h6 class="my-font q-pa-md q-ma-none">{{ $t("statistics") }}</h6>
+            <q-space />
+            <div class="show-stats-btn-mobile q-pa-md" style="">
+              <q-btn
+                class="p-py-sm"
+                icon="expand_more"
+                flat
+                round
+                dense
+                @click="showLayerSelection = !showLayerSelection"
+              />
+            </div>
+          </div>
+          <div
+            class="bg-white q-py-none"
+            style="min-height: 25vh; min-width: 100vw"
+          >
+            <analysisPanel class="" style="" />
+          </div>
+        </q-tab-panel>
+
+        <q-tab-panel name="movies">
+          <div class="text-h6">Movies</div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </q-tab-panel>
+      </q-tab-panels>
+    </div>
+    <q-dialog v-model="confirm" persistent>
+      <q-card class="my-font q-pa-md" style="min-width: fit-content">
+        <q-card-section
+          class="row items-center q-pb-none"
+          style="min-width: 25vw"
+        >
+          <div class="text-h6" style="font-size: 1em; font-weight: bold">
+            {{ $t("welcome") }}
+          </div>
+          <q-space />
+          <q-btn
+            icon="close"
+            color="grey-7"
+            flat
+            round
+            dense
+            v-close-popup
+            size="sm"
+          />
+        </q-card-section>
+
+        <q-card-section class="row items-center">
+          <span class="q-ml-none">{{ $t("welcomeMsg") }}?</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn
+            outline
+            :label="$t('start_tour')"
+            color="primary"
+            @click="this.$tours['myTour'].start()"
+            v-close-popup
+          />
+          <q-btn flat :label="$t('skip_tour')" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </q-page>
+  <!-- </q-page-container> -->
+
+  <q-footer bordered class="mobile-veiw bg-white">
+    <q-toolbar>
+      <q-tabs
+        style="min-width: 100%"
+        v-model="tab"
+        dense
+        class="bg-wite text-grey-10"
+        align="justify"
+        narrow-indicator
+        @click="showLayerSelection = true"
+      >
+        <q-tab
+          class="layer-selection"
+          name="layers"
+          icon="mdi-map-plus"
+          :label="$t('layers')"
+        />
+        <q-tab
+          class="toggle-statistics"
+          name="analysis"
+          icon="mdi-poll"
+          :label="$t('analysis')"
+        />
+      </q-tabs>
+      <!-- <div class="row" style="min-width: 100%">
+          <div class="col">
+            <q-item>
+              <q-item-section class="items-center">
+                <q-item-label>
+                  <q-btn
+                    id="show-stats-btn"
+                    @click="showLayerSelection = !showLayerSelection"
+                    flat
+                    round
+                    color="grey-10"
+                    icon="mdi-layers"
+                    size="sm"
+                  />
+                </q-item-label>
+                <q-item-label class="text-grey-10" style="font-size: 0.75em"
+                  >LAYERS</q-item-label
+                >
+              </q-item-section>
+            </q-item>
+          </div>
+          <div class="col">
+            <q-item>
+              <q-item-section class="items-center">
+                <q-item-label>
+                  <q-btn
+                    id="show-stats-btn"
+                    @click="showAnalysismobile = !showAnalysismobile"
+                    flat
+                    round
+                    color="grey-10"
+                    icon="mdi-poll"
+                    size="sm"
+                  />
+                </q-item-label>
+                <q-item-label class="text-grey-10" style="font-size: 0.75em"
+                  >ANALYSIS</q-item-label
+                >
+              </q-item-section>
+            </q-item>
+          </div>
+        </div> -->
+    </q-toolbar>
+  </q-footer>
+
+  <!-- </q-layout> -->
+</template>
+
+<script>
+import { ref, onBeforeMount, onMounted } from "vue";
+import { useQuasar } from "quasar";
+export default {
+  name: "my-tour",
+  components: {
+    areaselection: require("components/Map/Modals/selectArea.vue").default,
+    mappanel: require("components/Map/Map.vue").default,
+    selectionsTab: require("components/composables/indicatorSelection.vue")
+      .default,
+    analysisPanel: require("../components/composables/analysisPanel.vue")
+      .default,
+    yearslider: require("components/composables/yearslider.vue").default,
+    tour: require("components/tour.vue"),
+  },
+  setup() {
+    const matchMediaDesktop = ref(false),
+      matchMediaMobile = ref(false),
+      confirm = ref(false);
+
+    onBeforeMount(() => {
+      matchMediaMobile.value = window.matchMedia("(max-width: 768px)").matches;
+      matchMediaDesktop.value = window.matchMedia("(min-width: 768px)").matches;
+      console.log(matchMediaDesktop.value, matchMediaMobile.value);
+    });
+
+    onMounted(() => {
+      confirm.value = false;
+    });
+    return {
+      drawer: ref(false),
+      miniState: ref(true),
+      seamless: ref(false),
+      showAnalysismobile: ref(false),
+      showLayerSelection: ref(false),
+      matchMediaDesktop,
+      matchMediaMobile,
+      tab: ref("layers"),
+      confirm,
+      showAnalysisPanel: ref(true),
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+// #pulse {
+//   animation-name: beat;
+//   animation-duration: 1.5s;
+//   animation-iteration-count: 5;
+// }
+
+// @keyframes beat {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+
+.q-dialog_top25 .q-dialog_inner-top {
+  top: 600px;
+}
+
+.analysis-panel-mobile {
+  position: absolute;
+  background-color: rgba(50, 121, 44, 0);
+  width: 100%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 5000;
+  max-height: 50vh;
+  border-radius: 15px 15px 0 0;
+}
+
+.stats-panel {
+  // background-color: #ffffff;
+  background-image: url("~/src/assets/panelbg.svg");
+  // background-size: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .web-view {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .analysis-panel-mobile {
+    display: none;
+  }
+}
+</style>
