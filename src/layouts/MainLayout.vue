@@ -162,7 +162,7 @@
           name="videos"
           icon="mdi-view-dashboard"
           :label="$t('dashboard')"
-          to="/dashboard"
+          to="apps/dashboard"
         />
         <q-btn-dropdown
           no-caps

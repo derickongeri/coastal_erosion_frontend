@@ -89,11 +89,13 @@
             <div>Role*</div>
             <div v-for="role in selectedSector.roles" :key="role">
               <q-radio
-                v-model="selectedRole"
+                v-model="form.role"
                 :label="role"
                 :val="role"
               ></q-radio>
             </div>
+            <q-radio v-model="form.role" val="Other" label="Other" />
+            <q-input v-if="form.role === 'Other'" rounded outlined dense v-model="form.otherRoles" label="Rounded outlined" />
           </div>
         </div>
         <div class="col text-primary q-gutter-xl q-py-xs q-px-md">
@@ -103,7 +105,7 @@
               rounded
               outlined
               dense
-              v-model="form.email"
+              v-model="form.organization"
               label="Company / Organization"
               lazy-rules
               :rules="[
@@ -217,7 +219,8 @@ export default defineComponent({
       email: "",
       sector: "",
       role: "",
-      institution: "",
+      otherRoles: "",
+      organization: "",
       password: "",
       // confirmedpassword: "",
     });
@@ -278,6 +281,7 @@ export default defineComponent({
       selectedSector,
       selectedRole,
       onSectorChange,
+      otherRole: ref(null)
     };
   },
 });
@@ -296,6 +300,5 @@ export default defineComponent({
   }
 }
 </style>
-
 
 

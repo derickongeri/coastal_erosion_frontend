@@ -29,6 +29,16 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: '/apps',
+    component: () => import('layouts/dashboardLayout.vue'),
+    children: [
+      { path: 'dashboard', name: 'dashboard', component: () => import('pages/dashboard.vue') },
+    ],
+    meta: {
+      requiresAuth: true
+    }
+  },
 
   // Always leave this as last one,
   // but you can also remove it

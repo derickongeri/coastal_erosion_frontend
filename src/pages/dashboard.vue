@@ -30,27 +30,27 @@
     <!-- <div class="row items-center q-gutter-sm bg-white q-mx-sm q-px-md" style="position:absolute;bottom:1%;left:1%;z-index:6000;width:34vw;height:7vh;border-radius:20px">
       <div class="column items-center">
         <img
-            src="~/src/assets/rcmrdlogo.png" style="width:80%"
+            src="~/src/assets/rcmrdlogo.png" style="width:50%"
           />
       </div>
       <div class="column items-center">
         <img
-            src="~/src/assets/GMESlogo.png" style="width:80%"
+            src="~/src/assets/GMESlogo.png" style="width:50%"
           />
       </div>
       <div class="column items-center">
         <img
-            src="~/src/assets/AUlogo.png" style="width:80%"
+            src="~/src/assets/AUlogo.png" style="width:50%"
           />
       </div>
       <div class="column items-end">
         <img
-            src="~/src/assets/EUlogo.png" style="width:80%"
+            src="~/src/assets/EUlogo.png" style="width:50%"
           />
       </div>
     </div> -->
 
-    <div class="" style="position:absolute;bottom:7%;left:45vw;z-index:6000;width:34vw;height:7vh;border-radius:20px">
+    <div class="" style="position:absolute;bottom:7%;left:40vw;z-index:6000;width:40vw;height:7vh;border-radius:20px">
       <yearslider/>
     </div>
 
@@ -79,17 +79,18 @@
           @click="showAnalysisPanel = !showAnalysisPanel"
         />
       </div>
-      <areaselection />
+      <areaselection style="position:relative; top: 7%;"/>
       <analysisPanel
         class="col q-my-sm q-ml-md web-view"
         style="
           position: relative;
-          top: %;
+          top: 7%;
           max-width: fit-content;
           max-height: inherit;
           border-radius: 0 15px 0 0;
         "
       />
+      <div class="row" style="position:relative; bottom:1%; width:100%; height:15vh;"></div>
     </div>
 
     <div class="col">

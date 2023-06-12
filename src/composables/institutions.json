@@ -48,21 +48,28 @@
       "roles": [
         "Director/Executive",
         "Project/Program Manager",
+        "Researcher",
+        "Field/Country Staff",
         "Monitoring/Evaluation Specialist",
         "GIS/Technical Specialist",
-        "Field Staff",
-        "Communications Specialist",
-        "Park/Forest Ranger"
+        "Communications Specialist"
       ]
     },
     {
       "sector": "Academic/Research Organization",
-      "roles": []
+      "roles": [
+        "Faculty (Primary/Secondary)",
+        "Faculty (University)",
+        "Student (Primary/Secondary)",
+        "Student (University/Graduate)",
+        "Researcher (Post-Doc, Fellow, etc.)"
+      ]
     },
     {
       "sector": "Journalist/Media Organization",
       "roles": [
-        
+        "Reporter",
+        "Editor"
       ]
     },
     {

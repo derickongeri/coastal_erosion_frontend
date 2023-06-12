@@ -24,13 +24,13 @@
             style="min-width: 15vw"
             class="q-pl-sm q-pr-sm q-py-xs"
             dense
-            standout="bg-grey-2 text-grey-1"
+            standout="bg-accent text-grey-9"
             bottom-slots
             hide-dropdown-icon
             clear-icon="mdi-close"
             color="grey-1"
             input-class="input-option"
-            options-selected-class="text-green-7"
+            options-selected-class="text-primary"
             popup-content-class="selection-options"
             v-model="selectedRegion"
             :options="filterOptions"
@@ -121,11 +121,28 @@
 
         <q-tab-panel class="items-center" name="three">
           <div class="text-center q-mx-lg">
+            <q-btn
+              class=""
+              no-caps
+              size="md"
+              outline
+              rounded
+              dense
+              color="grey-4"
+              label="Upload a GeoJSON or KML file"
+              icon="mdi-tray-arrow-up"
+              @click="toggleDrawingTools"/>
+          </div>
+          <div class="text-center q-mx-lg">
+            or
+          </div>
+          <div class="text-center q-mx-lg">
             Use the drawing tool
             <q-btn
               class="bg-white"
               size="sm"
               round
+              dense
               flat
               color="grey-7"
               icon="mdi-selection-drag"
@@ -133,21 +150,6 @@
               >
             </q-btn>
             in the map tools on the right to create areas
-          </div>
-          <div class="text-center q-mx-lg">
-            or
-          </div>
-          <div class="text-center q-mx-lg">
-            <q-btn
-              class=""
-              no-caps
-              size="md"
-              outline
-              rounded
-              color="grey-3"
-              label="Upload a GeoJSON or KML file"
-              icon="mdi-tray-arrow-up"
-              @click="toggleDrawingTools"/>
           </div>
         </q-tab-panel>
       </q-tab-panels>
