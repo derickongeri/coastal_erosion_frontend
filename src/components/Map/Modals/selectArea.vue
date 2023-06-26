@@ -205,7 +205,7 @@ export default defineComponent({
 
     onMounted(() => {
       store.fetchRegionNames();
-      store.setRegionSelected("Madagascar");
+      store.setRegionSelected("Mauritius");
     });
 
     const getselectedRegion = function (val) {

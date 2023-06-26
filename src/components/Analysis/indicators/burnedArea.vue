@@ -19,7 +19,7 @@
       style="max-width: inherit; border-radius: 20px"
     >
       <div class="col text-grey-9 q-my-none">
-        <strong> {{ $t("burnedAreaAnalysis") }}</strong>
+        <strong> {{ $t("Geomorphological classes") }}</strong>
       </div>
       <q-space />
       <div id="chart-btns">
@@ -141,7 +141,7 @@
       </div>
 
       <pieChart
-        :chartData="{labels:$t(piechartData.labels),datasets:piechartData.datasets}"
+        :chartData="piechartData"
         id="chart-canvas"
         ref="chartRef"
         v-if="chartType === 'pie'"

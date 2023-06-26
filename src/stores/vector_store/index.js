@@ -62,7 +62,7 @@ export const useVectorStore = defineStore({
   actions: {
     async fetchRegionNames() {
       const { data, error } = await axios.get(
-        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3AIO_Countries&maxFeatures=50&outputFormat=application%2Fjson"
+        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3Awio_countries&maxFeatures=50&outputFormat=application%2Fjson"
       );
 
       const countriesArray = data.features;

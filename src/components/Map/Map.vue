@@ -47,61 +47,78 @@
       </div> -->
 
       <div
-        class="q-pa-none"
-        id="maplegend"
-        style="
-          position: absolute;
-          z-index: 2000;
-          bottom: 5%;
-          right: 1%;
-          max-width: 40%;
-          max-height: 98%;
-          border-radius: 10px;
-          background-color: #ffffff;
-        "
-        @mouseover="map.dragging.disable(), map.smoothWheelZoom.disable()"
-        @mouseout="map.dragging.enable(), map.smoothWheelZoom.enable()"
-        @pointerover="map.dragging.disable(), map.smoothWheelZoom.disable()"
-        @pointerout="map.dragging.enable(), map.smoothWheelZoom.enable()"
+        class="map-tools q-gutter-xs"
+        style="width: fit-content"
+        id="mapcontrols"
       >
-        <div class="col q-pa-sm" style="border-radius: 15px">
-          <div class="row">
-            <span class="my-font q-px-xs q-ma-none" style="font-weight: bold">{{
-              $t("Benthic Classes")
-            }}</span>
-            <q-space />
-            <q-icon
-              clickable
-              name="mdi-circle-opacity"
-              size="16px"
-              class="cursor-pointer"
-              @click="opacityslider = !opacityslider"
-            />
-          </div>
-          <div class="row" v-show="opacityslider">
-            <div class="row items-center bg-grey-2" style="min-width: 100%">
-              <span class="my-font q-px-xs">{{ $t("opacity") }}</span>
-              <q-slider
-                dense
-                :min="1"
-                :max="10"
-                :step="1"
-                v-model="opacityValue"
-                color="primary"
-                track-size="2px"
-                thumb-size="10px"
-                class="col q-pa-sm"
-                @mouseenter="handle_opacity"
+        <div class="row q-gutter-sm q-mt-sm">
+          <q-space />
+          <div class="bg-white q-pa-none q-ma-none" style="border-radius: 20px">
+            <div>
+              <q-btn
+                class="bg-white"
+                size="sm"
+                round
+                flat
+                color="grey-7"
+                icon="add"
+                @click="zoom_in"
+              />
+            </div>
+
+            <q-separator />
+            <div>
+              <q-btn
+                class="bg-white"
+                size="sm"
+                round
+                flat
+                color="grey-7"
+                icon="mdi-refresh"
+                @click="resetZoomLevel"
+              />
+            </div>
+            <q-separator />
+
+            <div>
+              <q-btn
+                class="bg-white"
+                size="sm"
+                round
+                flat
+                color="grey-7"
+                icon="remove"
+                @click="zoom_out"
               />
             </div>
           </div>
         </div>
-        <Maplegend
-          @mouseover="map.dragging.disable()"
-          @mouseout="map.dragging.enable()"
-          @pointerover="map.dragging.disable()"
-          @pointerout="map.dragging.enable()"
-        />
+
+        <div class="row" id="printmap">
+          <q-space />
+          <q-btn
+            class="bg-white"
+            size="sm"
+            round
+            flat
+            color="grey-7"
+            icon="mdi-printer"
+            @click="printLayer"
+          />
+        </div>
+        <div class="row" id="printmap">
+          <q-space />
+          <q-btn
+            class="bg-white"
+            size="sm"
+            round
+            flat
+            color="grey-7"
+            icon="mdi-selection-drag"
+            @click="toggleDrawingTools"
+            ><q-tooltip class="bg-black">{{ $t("drawingTools") }}</q-tooltip>
+          </q-btn>
+        </div>
       </div>
 
       <div
@@ -109,7 +126,7 @@
         style="width: fit-content"
         id="mapcontrols"
       >
-        <div class="q-pa-none q-gutter-sm desktop-control">
+        <!-- <div class="q-pa-none q-gutter-sm desktop-control">
           <q-btn
             size="sm"
             flat
@@ -313,74 +330,123 @@
           >
             <a href="malito:derickongeri@gmail.com" />
           </q-btn>
-        </div>
+        </div> -->
 
-        <div class="row q-gutter-xs q-mt-sm">
+        <div class="row q-mt-sm">
           <q-space />
-          <div class="bg-white q-pa-none q-ma-none" style="border-radius: 20px">
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="add"
-                @click="zoom_in"
-              />
+          <div
+            class="q-pa-none"
+            id="maplegend"
+            style="border-radius: 10px; background-color: #ffffff"
+            @mouseover="map.dragging.disable(), map.smoothWheelZoom.disable()"
+            @mouseout="map.dragging.enable(), map.smoothWheelZoom.enable()"
+            @pointerover="map.dragging.disable(), map.smoothWheelZoom.disable()"
+            @pointerout="map.dragging.enable(), map.smoothWheelZoom.enable()"
+          >
+            <div class="col q-pa-sm" style="border-radius: 15px">
+              <!-- <div class="row">
+                <span
+                  class="my-font q-px-xs q-ma-none"
+                  style="font-weight: bold"
+                  >{{ $t("Benthic Classes") }}</span
+                >
+                <q-space />
+                <q-icon
+                  clickable
+                  name="mdi-circle-opacity"
+                  size="16px"
+                  class="cursor-pointer"
+                  @click="opacityslider = !opacityslider"
+                />
+              </div> -->
+              <div class="row" v-show="opacityslider">
+                <div class="row items-center bg-grey-2" style="min-width: 100%">
+                  <span class="my-font q-px-xs">{{ $t("opacity") }}</span>
+                  <q-slider
+                    dense
+                    :min="1"
+                    :max="10"
+                    :step="1"
+                    v-model="opacityValue"
+                    color="primary"
+                    track-size="2px"
+                    thumb-size="10px"
+                    class="col q-pa-sm"
+                    @mouseenter="handle_opacity"
+                  />
+                </div>
+              </div>
             </div>
-
-            <q-separator />
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="mdi-refresh"
-                @click="resetZoomLevel"
-              />
-            </div>
-            <q-separator />
-
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="remove"
-                @click="zoom_out"
-              />
-            </div>
+            <Maplegend
+              @mouseover="map.dragging.disable()"
+              @mouseout="map.dragging.enable()"
+              @pointerover="map.dragging.disable()"
+              @pointerout="map.dragging.enable()"
+            />
           </div>
         </div>
-        <div class="row" id="printmap">
-          <q-space />
-          <q-btn
-            class="bg-white"
-            size="sm"
-            round
-            flat
-            color="grey-7"
-            icon="mdi-printer"
-            @click="printLayer"
-          />
-        </div>
-        <div class="row" id="printmap">
-          <q-space />
-          <q-btn
-            class="bg-white"
-            size="sm"
-            round
-            flat
-            color="grey-7"
-            icon="mdi-selection-drag"
-            @click="toggleDrawingTools"
-            ><q-tooltip class="bg-black">{{ $t("drawingTools") }}</q-tooltip>
-          </q-btn>
+        <div class="row q-mt-sm justify-end">
+          <div
+            class="map-selection bg-white q-pa-xs"
+            style="border-radius: 10px; min-width: 100%"
+          >
+            <span
+              class="q-mx-sm"
+              style="font-size: 0.75em; font-color: #838c48"
+              >{{ $t("baseMap") }}</span
+            >
+            <q-list class="row" style="min-width: 100px">
+              <q-item
+                class="col q-px-none"
+                clickable
+                v-ripple
+                @click="change_base_map('OSM')"
+              >
+                <q-item-section class="row q-px-sm">
+                  <q-avatar rounded>
+                    <img
+                      src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png"
+                    />
+                  </q-avatar>
+                  <div class="row justify-center" style="font-size: 0.75em">
+                    Mapbox
+                  </div>
+                </q-item-section>
+              </q-item>
+              <q-item
+                class="col q-px-none"
+                clickable
+                @click="change_base_map('satellite')"
+              >
+                <q-item-section class="q-px-sm">
+                  <q-avatar rounded>
+                    <img
+                      src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099830/Screenshot_from_2022-04-04_22-14-04_tnx5m7.png"
+                    />
+                  </q-avatar>
+                  <div class="row justify-center" style="font-size: 0.75em">
+                    Satellite
+                  </div>
+                </q-item-section>
+              </q-item>
+              <q-item
+                class="col q-px-none"
+                clickable
+                @click="change_base_map('darkMap')"
+              >
+                <q-item-section class="q-px-sm">
+                  <q-avatar rounded>
+                    <img
+                      src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099827/Screenshot_from_2022-04-04_22-16-08_mu5dfk.png"
+                    />
+                  </q-avatar>
+                  <div class="row justify-center" style="font-size: 0.75em">
+                    dark
+                  </div>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
         </div>
 
         <div class="row q-my-sm mobile-map-control">
@@ -521,6 +587,7 @@ import {
   onBeforeMount,
 } from "vue";
 import { useVectorStore } from "../../stores/vector_store/index.js";
+import { useTileStore } from "../../stores/tile_store/index.js";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 // import "leaflet-draw";
@@ -533,14 +600,20 @@ import "./Modals/mask";
 import "./Modals/betterScale";
 import "./Modals/smoothWheelZoom";
 import "./WMTS";
+import "./Modals/leaflet-measure-ext/dist/leaflet-measure";
+//import "leaflet-mapbox-vector-tile/dist/Leaflet.MapboxVectorTile"
+import "leaflet.vectorgrid/dist/Leaflet.VectorGrid";
+//import "./Modals/leaflet-measure-ext/dist/leaflet-measure.css"
 import { Loading, QSpinnerOval, QSpinnerFacebook, QSpinnerGears } from "quasar";
 import baselayers from "./Modals/baselayers";
 
 import setSelectedVect from "./Modals/fetchVectors";
 import setSelectedRaster from "./Modals/fetchRaster";
+import laodVectorLayers from "./Modals/fetchVectortTiles";
 import html2canvas from "html2canvas";
 
 import { axios } from "src/boot/axios";
+import loadVectorLayers from "./Modals/fetchVectortTiles";
 
 export default defineComponent({
   components: {
@@ -556,8 +629,10 @@ export default defineComponent({
 
   setup() {
     const store = useVectorStore();
+    const tileStore = useTileStore();
     const { selectedVect } = setSelectedVect();
     const { getRasterLayer } = setSelectedRaster();
+    const { getVectorTiles } = loadVectorLayers();
 
     const rightDrawerOpen = ref(false);
     const map = ref(null),
@@ -609,19 +684,19 @@ export default defineComponent({
         smoothSenesitivity: 0.5,
         minZoom: 3,
         maxZoom: 17,
-        // layers: [satellite],
+        //layers: [darkMap],
         attributionControl: false,
       });
 
-      osmTiles.addTo(map.value);
+      //darkMap.addTo(map.value);
+      current_top_base_layer.value = darkMap;
+      current_top_base_layer.value.addTo(map.value);
 
       map.value.scrollWheelZoom = true;
 
       L.control.layers(baseMaps.value).addTo(map.value);
 
-      current_top_base_layer.value = "satellite";
-
-      // map.value.addLayer(baseMaps.value[1])
+      //baseMaps.value[1].addTo(map.value)
 
       // L.control
       //   .attribution({
@@ -634,6 +709,9 @@ export default defineComponent({
           metric: true,
         })
         .addTo(map.value);
+
+      var measureControl = new L.Control.Measure({ position: "topright" });
+      measureControl.addTo(map.value);
 
       // const scaleBarElement = document.getElementsByClassName(
       //   ".leaflet-control-better-scale"
@@ -702,15 +780,18 @@ export default defineComponent({
         scaleBar.value = document.querySelector(
           ".leaflet-control-better-scale"
         );
+        const overlayCanvas = document.querySelector(".leaflet-tile-loaded");
 
         // console.log(scaleBar.value, "div scalebar");
 
         targetDiv.appendChild(scaleBar.value);
+        targetDiv.appendChild(overlayCanvas);
 
         var options = {
           documentTitle: ``,
           closePopupsOnPrint: false,
           manualMode: false,
+          //printLayer: currentRasterLayer.value
         };
         var browserPrint = L.browserPrint(map.value, scaleBar.value, options);
         browserPrint.print(L.BrowserPrint.Mode.Landscape());
@@ -728,10 +809,17 @@ export default defineComponent({
     };
 
     //get the base map object of leaflet according to the selection clicked
-    const change_base_map = function (basemap) {
+    const change_base_map = async function (basemap) {
+      if (current_top_base_layer.value) {
+        map.value.removeLayer(current_top_base_layer.value);
+      }
+
       const selected_base_map = baseMaps.value[basemap];
-      map.value.addLayer(selected_base_map);
-      selected_base_map.bringToFront();
+      current_top_base_layer.value = selected_base_map;
+      map.value.addLayer(current_top_base_layer.value);
+      //selected_base_map.bringToFront();
+      currentRasterLayer.value[0].bringToFront();
+      currentRasterLayer.value[1].bringToFront();
     };
 
     const setUpGeoman = function () {
@@ -854,13 +942,13 @@ export default defineComponent({
             weight: 0,
             color: "#484c4d",
           },
-          onEachFeature: function (feature, layer) {
-            feature = layer.bindPopup(
-              "<br><strong>" +
-                feature.properties.NAME +
-                "</strong><br><br> <button id='pop-up-selector' class='pop-up-btn'>Analyze</button>"
-            );
-          },
+          // onEachFeature: function (feature, layer) {
+          //   feature = layer.bindPopup(
+          //     "<br><strong>" +
+          //       feature.properties.NAME +
+          //       "</strong><br><br> <button id='pop-up-selector' class='pop-up-btn'>Analyze</button>"
+          //   );
+          // },
         });
 
         currentVectLayer.value.addTo(map.value);
@@ -883,6 +971,10 @@ export default defineComponent({
       currentVectLayer.value.bringToFront();
     };
 
+    const setVISparam = function (val) {
+      val = properties.layer;
+    };
+
     const setRasterLayer = async function () {
       try {
         Loading.show({
@@ -898,16 +990,86 @@ export default defineComponent({
           map.value.removeLayer(currentRasterLayer.value);
         }
 
-        //let rasterLayers = [];
+        let vectorTiles = getVectorTiles(tileStore.layers);
 
-        let rasterLayers = await getRasterLayer(store.customGeojson);
+        currentRasterLayer.value = vectorTiles;
 
-        currentBaseLayer.value = rasterLayers[0];
-        currentRasterLayer.value = rasterLayers[1];
+        // var baseUrl = "http://45.76.143.229";
+        // var workspace = "rcmrd_coastal";
+        // var layerName = "Mauritius_Landuse_reprojected";
+        // var epsg = "900913";
 
-        currentRasterLayer.value.addTo(map.value);
+        // var format = "application/x-protobuf;type=mapbox-vector"; // application/vnd.mapbox-vector-tile
+        // var vectorLayerUrl =
+        //   baseUrl +
+        //   "/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS" +
+        //   "&VERSION=1.0.0&LAYER=" +
+        //   workspace +
+        //   ":" +
+        //   layerName +
+        //   "&STYLE=&TILEMATRIX=EPSG:900913:{z}" +
+        //   "&TILEMATRIXSET=EPSG:900913&FORMAT=" +
+        //   format +
+        //   "&TILECOL={x}&TILEROW={y}";
 
-        currentBaseLayer.value.addTo(map.value).on("load", () => {
+        // vectorLayerUrl =
+        //   baseUrl +
+        //   "/geoserver/gwc/service/tms/1.0.0/" +
+        //   workspace +
+        //   ":" +
+        //   layerName +
+        //   "@EPSG%3A" +
+        //   epsg +
+        //   "@pbf/{z}/{x}/{-y}.pbf";
+
+        // const LULC_pbf =
+        //   "http://45.76.143.229/geoserver/rcmrd_coastal/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=rcmrd_coastal:Mauritius_Landuse_reprojected&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=application/vnd.mapbox-vector-tile&TILECOL={x}&TILEROW={-y}";
+
+        // function getStyle(layerValue) {
+        //   // // Define your choropleth styling logic here
+        //   var fillColor = "#cf02a3"; // Default fill color
+        //   var fillOpacity = 1;
+        //   // Define your choropleth color scale based on the land cover classes
+        //   // Map user inputs to colors
+        //   var colorMap = tileStore.getColorMap;
+
+        //   // Check if the layerValue exists in the colorMap
+        //   if (layerValue in colorMap) {
+        //     fillColor = colorMap[layerValue][0];
+        //     fillOpacity = colorMap[layerValue][1];
+        //   }
+
+        //   return {
+        //     weight: 0,
+        //     fillColor: fillColor,
+        //     fillOpacity: fillOpacity,
+        //     fill: true,
+        //   };
+        // }
+
+        // currentRasterLayer.value = L.vectorGrid.protobuf(vectorLayerUrl, {
+        //   rendererFactory: L.canvas.tile,
+        //   interactive: true,
+        //   // minZoom must not be <= minNativeZoom otherwise library requests millions of tiles
+        //   // Leaflet bug: https://github.com/Leaflet/Leaflet/issues/6504
+        //   // minNativeZoom: 14,
+        //   maxNativeZoom: 17,
+        //   minZoom: 4,
+        //   vectorTileLayerStyles: {
+        //     Mauritius_Landuse_reprojected: (properties) => {
+        //       return getStyle(properties.layer);
+        //     },
+        //   },
+        //   // unique: function (feature) {
+        //   //   return feature.properties.ID;
+        //   // },
+        // });
+
+        currentRasterLayer.value[0].addTo(map.value).bringToFront();
+        currentRasterLayer.value[1].addTo(map.value).bringToFront();
+        //currentRasterLayer.value.addTo(map.value).bringToFront()
+
+        currentRasterLayer.value[1].on("load", () => {
           Loading.hide();
         });
         //Loading.hide();
@@ -959,9 +1121,50 @@ export default defineComponent({
       return store.getselectedRegion;
     });
 
+    const setMapColors = computed(() => {
+      return tileStore.getColorMap;
+    });
+
+    watch([tileStore.getColorMap, tileStore.getBenthicColorMap], () => {
+      // if(currentRasterLayer.value === null){
+      //   return;
+      // }
+      console.log("changing styles");
+      function getUpdatedStyle(layerValue) {
+        // // Define your choropleth styling logic here
+        var fillColor = "#cf02a3"; // Default fill color
+        var fillOpacity = 1;
+        // Define your choropleth color scale based on the land cover classes
+        // Map user inputs to colors
+        var colorMap = tileStore.getColorMap;
+
+        // Check if the layerValue exists in the colorMap
+        if (layerValue in colorMap) {
+          fillColor = colorMap[layerValue][0];
+          fillOpacity = colorMap[layerValue][1];
+        }
+
+        return {
+          weight: 0,
+          fillColor: fillColor,
+          fillOpacity: fillOpacity,
+          fill: true,
+        };
+      }
+      map.value.removeLayer(currentRasterLayer.value[0]);
+      currentRasterLayer.value[0].options.vectorTileLayerStyles = {
+        Mauritius_Landuse_reprojected: (properties) => {
+          return getUpdatedStyle(properties.layer);
+        },
+      };
+
+      // currentRasterLayer.value[0].addTo(map.value);
+
+    });
+
     watch(selecteVector, () => {
       setCurrentVector().then(() => {
-        //setRasterLayer();
+        setRasterLayer();
       });
     });
 
@@ -994,6 +1197,7 @@ export default defineComponent({
       setLeafletMap().then(() => {
         toggleDrawingTools();
         setCurrentVector();
+        setRasterLayer();
       });
     });
 
@@ -1095,7 +1299,18 @@ export default defineComponent({
   //width: 300px;
   // height: 20px;
   right: 1vw;
-  top: 2%;
+  bottom: 5%;
+  width: fit-content;
+}
+
+.map-tools {
+  position: absolute;
+  // background: rgb(153, 150, 150);
+  z-index: 2000;
+  //width: 300px;
+  // height: 20px;
+  right: 1vw;
+  top: 7vh;
   width: fit-content;
 }
 
@@ -1172,7 +1387,7 @@ export default defineComponent({
 }
 
 .leaflet-right {
-  margin-right: 1vw;
+  margin-right: 5px;
 }
 
 //

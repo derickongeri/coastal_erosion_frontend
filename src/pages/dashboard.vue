@@ -27,32 +27,55 @@
       />
     </div>
 
-    <!-- <div class="row items-center q-gutter-sm bg-white q-mx-sm q-px-md" style="position:absolute;bottom:1%;left:1%;z-index:6000;width:34vw;height:7vh;border-radius:20px">
-      <div class="column items-center">
-        <img
-            src="~/src/assets/rcmrdlogo.png" style="width:50%"
-          />
-      </div>
-      <div class="column items-center">
-        <img
-            src="~/src/assets/GMESlogo.png" style="width:50%"
-          />
-      </div>
-      <div class="column items-center">
-        <img
-            src="~/src/assets/AUlogo.png" style="width:50%"
-          />
-      </div>
-      <div class="column items-end">
-        <img
-            src="~/src/assets/EUlogo.png" style="width:50%"
-          />
-      </div>
+    <!-- <div class="row justify-center q-gutter-none text-h6 my-font q-pa-none q-ma-none" style="position:absolute;top:0%;left:1%;z-index:6000;max-width:35vw;color: white; font-size: 21px; font-weight: bold">
+      <div class="column items-start q-gutter-none" style="">
+            <q-list>
+              <q-item>
+                <q-item-section>
+                  <q-item-label style="font-size:28px">CoGeoS</q-item-label>
+                  <q-item-label
+                    class="col q-my-none q-py-none text-blue-2"
+                    style="font-size: 12px"
+                    caption
+                    lines="2"
+                    >Regional center for Mapping of Resources for Development Coastal Geomorphology<br/> and Shoreline Erossion and Accression Rates Monitoring Platform</q-item-label
+                  >
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
     </div> -->
+
+    <div class="row items-start q-gutter-md bg-white q-mx-sm" style="position:absolute;bottom:1%;left:1%;z-index:6000;max-width:33vw;border-radius:15px">
+      <div class="col items-center">
+        <img
+            src="~/src/assets/rcmrdlogo.png" style="width:100%"
+          />
+      </div>
+      <div class="col text-center">
+        <img
+            src="~/src/assets/GMESlogo.png" style="width:80%"
+          />
+      </div>
+      <div class="col text-center">
+        <img
+            src="~/src/assets/AUlogo.png" style="width:80%"
+          />
+      </div>
+      <div class="col- text-center">
+        <img
+            src="~/src/assets/EUlogo.png" style="width:70%"
+          />
+      </div>
+    </div>
+
+    
 
     <div class="" style="position:absolute;bottom:7%;left:40vw;z-index:6000;width:40vw;height:7vh;border-radius:20px">
       <yearslider/>
     </div>
+
+
 
     <div
       v-if="(matchMediaDesktop, showAnalysisPanel)"
@@ -67,15 +90,14 @@
     >
       <div
         class="show-stats-btn-mobile q-pa-md"
-        style="position: absolute; right: 0%; top: 15%; z-index: 5000"
+        style="position: absolute; right: 0%; top: 15%; z-index: 5000;"
       >
         <q-btn
-          class="p-py-sm bg-primary"
+          class="nav-btn2"
           icon="mdi-chevron-left"
           color="grey-1"
           round
           flat
-          dense
           @click="showAnalysisPanel = !showAnalysisPanel"
         />
       </div>
