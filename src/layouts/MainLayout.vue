@@ -148,7 +148,7 @@
       <q-tabs
         inline-label
         no-caps
-        class="bg-primary my-font text-grey-1"
+        class="bg-primary my-font text-grey-1 web-view"
         dense
         v-model="tab"
       >
@@ -189,8 +189,8 @@
       <q-toolbar class="q-ma-none mobile-view">
         <q-avatar square size="50px" class="q-ma-none">
           <img
-            src="~/src/assets/logo4.png"
-            style="position: relative; width: 80%; height: 80%; left: -1%"
+            src="~/src/assets/RCMRD_Logo_White.svg"
+            style="position: relative; width: 100%; height: 50px; left: -1%"
           />
         </q-avatar>
         <q-separator vertical inset />
@@ -198,12 +198,12 @@
           class="text-h6 my-font q-pa-none q-ma-none item-center"
           style="color: #3c4e3d; font-size: 1.2rem; font-weight: bold"
         >
-          <div
+          <!-- <div
             class="row items-end q-pl-xs q-ma-none q-gutter-none"
             style="max-height: 50px"
           >
             <img src="~/src/assets/logoname.svg" />
-          </div>
+          </div> -->
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -270,7 +270,7 @@
       >
         <q-btn
           color="grey-1"
-          text-color="lime-9"
+          text-color="primary"
           round
           unelevated
           icon="mdi-chevron-right"
@@ -285,7 +285,7 @@
         <div class="row" style="width: 100%">
           <q-list
             padding
-            class="rounded-borders text-lime-9 my-font"
+            class="rounded-borders text-primary my-font"
             style="width: 100%; font-size: 16px; font-weight: bold"
           >
             <q-item v-if="user" class="q-my-lg q-pt-lg">
@@ -341,7 +341,7 @@
               <q-item-section>{{ $t("home") }}</q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple to="dashboard">
+            <q-item clickable v-ripple to="apps/dashboard">
               <q-item-section avatar>
                 <q-icon size="xs" name="mdi-view-dashboard" />
               </q-item-section>
@@ -404,7 +404,7 @@
         <div class="row" v-if="user">
           <q-list
             padding
-            class="rounded-borders text-lime-9 my-font"
+            class="rounded-borders text-primary my-font"
             style="width: 100%; font-size: 16px; font-weight: bold"
           >
             <q-separator spaced />

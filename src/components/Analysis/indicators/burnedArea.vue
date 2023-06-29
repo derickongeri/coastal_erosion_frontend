@@ -4,7 +4,7 @@
       <div
         style="font-size: 16px"
         v-html="
-          $t('burnt_area_summary', {
+          $t('benthic_area_summary', {
             totalBurnedArea: `<b>${totalArea}</b>`,
             veryHighSeverity: `<b>${arealist[0]}</b>`,
             highSeverity: `<b>${arealist[1]}</b>`,
@@ -19,7 +19,7 @@
       style="max-width: inherit; border-radius: 20px"
     >
       <div class="col text-grey-9 q-my-none">
-        <strong> {{ $t("Geomorphological classes") }}</strong>
+        <strong> {{ $t("Benthic classes") }}</strong>
       </div>
       <q-space />
       <div id="chart-btns">
@@ -216,24 +216,24 @@ export default {
     const showSimulatedReturnData = ref(false);
     const barchartData = ref({
       labels: [
-        "Dense Coral",
-        "Reef/Back reef",
-        "Seabed sediments",
-        "Sparse coaral on sand",
-        "Deep water",
-        "Seagrass bed",
+      "Coral Reef",
+      "Deepwaters",
+      "Dense Coral",
+      "Seagrass/Seaweed",
+      "Sediment",
+      "Sparse Coral",
       ],
       datasets: [
         {
           backgroundColor: [
-            "#cf673b",
-            "#668438",
-            "#9bcc4f",
-            "#b19c3a",
-            "#ffffbe",
-            "#dadac7",
+          "#fbd376",
+          "#06306E",
+          "#DA8488",
+          "#97E86E",
+          "#EDE732",
+          "#FFD282",
           ],
-          data: [70, 60, 50, 30, 20, 10],
+          data: [225540, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
           barPercentage: 0.75,
           categoryPercentage: 0.75,
         },
@@ -241,34 +241,30 @@ export default {
     });
     const piechartData = ref({
       labels: [
-        "Regrowth, High",
-        "Regrowth, Low",
-        "Unburned",
-        "Low Severity",
-        "Moderate Severity",
-        "High Severity",
-        "Very High Severity",
-        "NA",
+      "Coral Reef",
+      "Deepwaters",
+      "Dense Coral",
+      "Seagrass/Seaweed",
+      "Sediment",
+      "Sparse Coral",
       ],
       datasets: [
         {
           backgroundColor: [
-            "#ffffff",
-            "#7a8737",
-            "#acbe4d",
-            "#0ae042",
-            "#fff70b",
-            "#ffaf38",
-            "#ff641b",
-            "#a41fd6",
+          "#fbd376",
+          "#06306E",
+          "#DA8488",
+          "#97E86E",
+          "#EDE732",
+          "#FFD282",
           ],
           borderColor: "rgba(0, 0, 0, 0)",
           borderRadius: 0,
           borderWidth: 0,
           spacing: 0,
-          cutout: "50",
+          cutout: "75",
           radius: "80%",
-          data: [0, 0, 0, 0, 0, 0, 0, 0],
+          data: [225540, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
         },
       ],
     });

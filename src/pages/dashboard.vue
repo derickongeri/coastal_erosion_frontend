@@ -69,11 +69,11 @@
       </div>
     </div>
 
-    
 
-    <div class="" style="position:absolute;bottom:7%;left:40vw;z-index:6000;width:40vw;height:7vh;border-radius:20px">
+
+    <!-- <div class="" style="position:absolute;bottom:7%;left:40vw;z-index:6000;width:40vw;height:7vh;border-radius:20px">
       <yearslider/>
-    </div>
+    </div> -->
 
 
 

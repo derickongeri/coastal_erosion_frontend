@@ -8,9 +8,9 @@ export default function loadVectorLayers() {
 
     layers.forEach(function (layer) {
       const baseUrl = "http://45.76.143.229";
-      const workspace = layer.workspace;
+      const workspace = "rcmrd_coastal";
       const layerName = layer.layerName;
-      const epsg = layer.epsg;
+      const epsg = "900913";
       const format = "application/x-protobuf;type=mapbox-vector";
 
       const vectorLayerUrl =
@@ -73,6 +73,42 @@ export default function loadVectorLayers() {
     });
 
     return vectorTiles;
+  };
+
+  const udateLayerStyles = function (layer) {
+    function getStyle(layerValue) {
+      var fillColor = "#cf02a3"; // Default fill color
+      var fillOpacity = 1;
+
+      let colorMap = {};
+
+      switch (layer.layerName) {
+        case "Mauritius_Benthic":
+          colorMap = tileStore.getBenthicColorMap;
+          break;
+        case "Mauritius_Landuse_reprojected":
+          colorMap = tileStore.getColorMap;
+          break;
+        default:
+          colorMap = tileStore.getColorMap;
+      }
+
+      //var colorMap = tileStore.getColorMap; // Map user inputs to colors
+
+      // Check if the layerValue exists in the colorMap
+
+      if (layerValue in colorMap) {
+        fillColor = colorMap[layerValue][0];
+        fillOpacity = colorMap[layerValue][1];
+      }
+
+      return {
+        weight: 0,
+        fillColor: fillColor,
+        fillOpacity: fillOpacity,
+        fill: true,
+      };
+    }
   };
 
   return {

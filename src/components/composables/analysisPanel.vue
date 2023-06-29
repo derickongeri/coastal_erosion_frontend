@@ -27,7 +27,7 @@
         >
           <q-card-section class="" style="">
             <div class="row items-center" style="font-weight: 400; font-size: 21px">
-              <div>Shoreline Erossion</div>
+              <div>Mauritius Benthic Classes</div>
               <q-space />
               <div>
                 <label class="switch">

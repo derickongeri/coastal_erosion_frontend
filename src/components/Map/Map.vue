@@ -653,7 +653,9 @@ export default defineComponent({
       scaleBar = ref(null),
       pngUrl = ref(null),
       targetDiv = ref(null),
-      opacityslider = ref(false);
+      opacityslider = ref(false),
+      benthicLayer = ref(null),
+      terrestrialLayer = ref(null);
 
     let drawingTools = ref(false);
     let layerControl = ref(null);
@@ -971,10 +973,6 @@ export default defineComponent({
       currentVectLayer.value.bringToFront();
     };
 
-    const setVISparam = function (val) {
-      val = properties.layer;
-    };
-
     const setRasterLayer = async function () {
       try {
         Loading.show({
@@ -983,96 +981,26 @@ export default defineComponent({
           message: "Fetching map data...",
         });
 
-        if (currentBaseLayer.value) {
-          map.value.removeLayer(currentBaseLayer.value);
+        if (benthicLayer.value) {
+          map.value.removeLayer(benthicLayer.value);
         }
-        if (currentRasterLayer.value) {
-          map.value.removeLayer(currentRasterLayer.value);
+        if (terrestrialLayer.value) {
+          map.value.removeLayer(terrestrialLayer.value);
         }
 
-        let vectorTiles = getVectorTiles(tileStore.layers);
+        currentRasterLayer.value = getVectorTiles(tileStore.layers);
 
-        currentRasterLayer.value = vectorTiles;
+        terrestrialLayer.value = currentRasterLayer.value[0];
+        benthicLayer.value = currentRasterLayer.value[1];
 
-        // var baseUrl = "http://45.76.143.229";
-        // var workspace = "rcmrd_coastal";
-        // var layerName = "Mauritius_Landuse_reprojected";
-        // var epsg = "900913";
+        // currentRasterLayer.value = L.layerGroup([currentRasterLayer.value[0], currentRasterLayer.value[1]])
+        terrestrialLayer.value.addTo(map.value).bringToFront();
+        benthicLayer.value.addTo(map.value).bringToFront();
 
-        // var format = "application/x-protobuf;type=mapbox-vector"; // application/vnd.mapbox-vector-tile
-        // var vectorLayerUrl =
-        //   baseUrl +
-        //   "/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS" +
-        //   "&VERSION=1.0.0&LAYER=" +
-        //   workspace +
-        //   ":" +
-        //   layerName +
-        //   "&STYLE=&TILEMATRIX=EPSG:900913:{z}" +
-        //   "&TILEMATRIXSET=EPSG:900913&FORMAT=" +
-        //   format +
-        //   "&TILECOL={x}&TILEROW={y}";
-
-        // vectorLayerUrl =
-        //   baseUrl +
-        //   "/geoserver/gwc/service/tms/1.0.0/" +
-        //   workspace +
-        //   ":" +
-        //   layerName +
-        //   "@EPSG%3A" +
-        //   epsg +
-        //   "@pbf/{z}/{x}/{-y}.pbf";
-
-        // const LULC_pbf =
-        //   "http://45.76.143.229/geoserver/rcmrd_coastal/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=rcmrd_coastal:Mauritius_Landuse_reprojected&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=application/vnd.mapbox-vector-tile&TILECOL={x}&TILEROW={-y}";
-
-        // function getStyle(layerValue) {
-        //   // // Define your choropleth styling logic here
-        //   var fillColor = "#cf02a3"; // Default fill color
-        //   var fillOpacity = 1;
-        //   // Define your choropleth color scale based on the land cover classes
-        //   // Map user inputs to colors
-        //   var colorMap = tileStore.getColorMap;
-
-        //   // Check if the layerValue exists in the colorMap
-        //   if (layerValue in colorMap) {
-        //     fillColor = colorMap[layerValue][0];
-        //     fillOpacity = colorMap[layerValue][1];
-        //   }
-
-        //   return {
-        //     weight: 0,
-        //     fillColor: fillColor,
-        //     fillOpacity: fillOpacity,
-        //     fill: true,
-        //   };
-        // }
-
-        // currentRasterLayer.value = L.vectorGrid.protobuf(vectorLayerUrl, {
-        //   rendererFactory: L.canvas.tile,
-        //   interactive: true,
-        //   // minZoom must not be <= minNativeZoom otherwise library requests millions of tiles
-        //   // Leaflet bug: https://github.com/Leaflet/Leaflet/issues/6504
-        //   // minNativeZoom: 14,
-        //   maxNativeZoom: 17,
-        //   minZoom: 4,
-        //   vectorTileLayerStyles: {
-        //     Mauritius_Landuse_reprojected: (properties) => {
-        //       return getStyle(properties.layer);
-        //     },
-        //   },
-        //   // unique: function (feature) {
-        //   //   return feature.properties.ID;
-        //   // },
-        // });
-
-        currentRasterLayer.value[0].addTo(map.value).bringToFront();
-        currentRasterLayer.value[1].addTo(map.value).bringToFront();
-        //currentRasterLayer.value.addTo(map.value).bringToFront()
-
-        currentRasterLayer.value[1].on("load", () => {
+        benthicLayer.value.on("load", () => {
           Loading.hide();
         });
-        //Loading.hide();
+        // Loading.hide();
 
         // getRasterStats();
       } catch (error) {
@@ -1125,15 +1053,17 @@ export default defineComponent({
       return tileStore.getColorMap;
     });
 
-    watch([tileStore.getColorMap, tileStore.getBenthicColorMap], () => {
-      // if(currentRasterLayer.value === null){
-      //   return;
-      // }
+    watch(tileStore.getColorMap, () => {
+      if (currentRasterLayer.value === null) {
+        return;
+      }
       console.log("changing styles");
+
       function getUpdatedStyle(layerValue) {
         // // Define your choropleth styling logic here
-        var fillColor = "#cf02a3"; // Default fill color
-        var fillOpacity = 1;
+        var fillColor = "#4a4248"; // Default fill color
+        var fillOpacity = 0;
+        var layerFill = true;
         // Define your choropleth color scale based on the land cover classes
         // Map user inputs to colors
         var colorMap = tileStore.getColorMap;
@@ -1142,24 +1072,83 @@ export default defineComponent({
         if (layerValue in colorMap) {
           fillColor = colorMap[layerValue][0];
           fillOpacity = colorMap[layerValue][1];
+          layerFill = colorMap[layerValue][3];
         }
 
         return {
           weight: 0,
           fillColor: fillColor,
           fillOpacity: fillOpacity,
-          fill: true,
+          fill: layerFill,
         };
       }
-      map.value.removeLayer(currentRasterLayer.value[0]);
-      currentRasterLayer.value[0].options.vectorTileLayerStyles = {
+
+      map.value.removeLayer(terrestrialLayer.value);
+      terrestrialLayer.value.options.vectorTileLayerStyles = {
         Mauritius_Landuse_reprojected: (properties) => {
           return getUpdatedStyle(properties.layer);
         },
       };
 
-      // currentRasterLayer.value[0].addTo(map.value);
+      terrestrialLayer.value.addTo(map.value);
+    });
 
+    watch(tileStore.getBenthicColorMap, () => {
+      if (currentRasterLayer.value === null) {
+        return;
+      }
+      console.log("changing styles");
+
+      function getUpdatedStyle(layerValue) {
+        // // Define your choropleth styling logic here
+        var fillColor = "#4a4248"; // Default fill color
+        var fillOpacity = 0;
+        var layerFill = true;
+        // Define your choropleth color scale based on the land cover classes
+        // Map user inputs to colors
+        var colorMap = tileStore.getBenthicColorMap;
+
+        // Check if the layerValue exists in the colorMap
+        if (layerValue in colorMap) {
+          fillColor = colorMap[layerValue][0];
+          fillOpacity = colorMap[layerValue][1];
+          layerFill = colorMap[layerValue][3];
+        }
+
+        return {
+          weight: 0,
+          fillColor: fillColor,
+          fillOpacity: fillOpacity,
+          fill: layerFill,
+        };
+      }
+
+      map.value.removeLayer(benthicLayer.value);
+      benthicLayer.value.options.vectorTileLayerStyles = {
+        Mauritius_Benthic: (properties) => {
+          return getUpdatedStyle(properties.layer);
+        },
+      };
+
+      benthicLayer.value.addTo(map.value);
+    });
+
+    watch(tileStore.getLayers, (val) => {
+      val = tileStore.getLayers[0].layerVisibility;
+      if (!val) {
+        map.value.removeLayer(terrestrialLayer.value);
+      } else {
+        map.value.addLayer(terrestrialLayer.value);
+      }
+    });
+
+    watch(tileStore.getLayers, (val) => {
+      val = tileStore.getLayers[1].layerVisibility;
+      if (!val) {
+        map.value.removeLayer(benthicLayer.value);
+      } else {
+        map.value.addLayer(benthicLayer.value);
+      }
     });
 
     watch(selecteVector, () => {

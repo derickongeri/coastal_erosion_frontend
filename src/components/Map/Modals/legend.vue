@@ -1,125 +1,145 @@
 <template>
-  <q-expansion-item
-    default-opened="true"
-    dense
-    dense-toggle
-    expand-separator
-    icon=""
-    :label="layerNames[0]"
-    header-class="bg-grey-1 my-font text-grey-9 header-text"
+  <q-scroll-area
+    :thumb-style="thumbStyle"
+    :bar-style="barStyle"
+    style="min-height: 25vh; height: 7vh; min-width: 250px"
   >
-    <div ref="draggableContainer" id="draggable-container" class="legend">
-      <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
-        <div
-          class="q-gutter-xs q-pa-xs"
-          v-for="(landcover, key) in legendDataBenthic"
-          :key="key"
-          style="min-width: 12vw"
-        >
+    <q-expansion-item
+      dense-toggle
+      dense=""
+      header-class="bg-grey-1 my-font text-grey-9 header-text"
+      default-opened
+    >
+      <template v-slot:header>
+        <q-checkbox
+          class="q-ma-none q-pa-xs"
+          size="sm"
+          color="primary"
+          dense
+          v-model="store.layers[1].layerVisibility"
+        />
+
+        <q-item-section class="header-text">
+          {{ layerNames[0] }}
+        </q-item-section>
+        <info/>
+      </template>
+      <div ref="draggableContainer" id="draggable-container" class="legend">
+        <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
           <div
-            class="my-font row justify-between q-px-sm q-my-none"
-            style="font-size: 0.75rem; font-weight: normal"
+            class="q-gutter-xs q-pa-xs"
+            v-for="(landcover, key) in legendDataBenthic"
+            :key="key"
+            style="min-width: 12vw"
           >
-            <div class="col">
-              <i
-                :style="
-                  `background:` + store.getBenthicColorMap[landcover.landcover][0]
-                "
-                class="q-px-sm q-my-xs q-mr-sm"
-                style="
-                  font-size: 0.75em;
-                  border: 0px outset black;
-                  border-radius: 12px;
-                "
-              >
-                <q-popup-proxy>
-                  <colorpicker
-                    :parent-color="landcover.color[0]"
-                    :color-name="landcover.landcover"
-                    :layer-name="layerNames[0]"
-                  />
-                </q-popup-proxy> </i
-              >{{ store.getBenthicColorMap[landcover.landcover][2] }}
+            <div
+              class="my-font row justify-between q-px-sm q-my-none"
+              style="font-size: 0.75rem; font-weight: normal"
+            >
+              <div class="col">
+                <i
+                  :style="
+                    `background:` +
+                    store.getBenthicColorMap[landcover.landcover][0]
+                  "
+                  class="q-px-sm q-my-xs q-mr-sm"
+                  style="
+                    font-size: 0.75em;
+                    border: 0px outset black;
+                    border-radius: 12px;
+                  "
+                >
+                  <q-popup-proxy>
+                    <colorpicker
+                      :parent-color="landcover.color[0]"
+                      :color-name="landcover.landcover"
+                      :layer-name="layerNames[0]"
+                    />
+                  </q-popup-proxy> </i
+                >{{ store.getBenthicColorMap[landcover.landcover][2] }}
+              </div>
+
+              <q-checkbox
+                class="q-ma-none q-pa-none"
+                size="24px"
+                color="grey-9"
+                dense
+                v-model="store.benthicColorMap[landcover.landcover][3]"
+              />
             </div>
-            <q-checkbox
-              class="q-ma-none q-pa-none"
-              size="24px"
-              color="grey-9"
-              dense
-              v-model="store.benthicColorMap[landcover.landcover][1]"
-              checked-icon="mdi-eye"
-              unchecked-icon="mdi-eye-off-outline"
-              :indeterminate-icon="
-                getIntermediateIcon(store.benthicColorMap[landcover.landcover][1])
-              "
-              :toggle-indeterminate="store.benthicColorMap[landcover.landcover][1]"
-              toggle-order="ft"
-            />
           </div>
         </div>
       </div>
-    </div>
-  </q-expansion-item>
-  <q-expansion-item
-    dense
-    dense-toggle
-    expand-separator
-    icon=""
-    :label="layerNames[1]"
-    header-class="bg-grey-1 my-font text-grey-9 header-text"
-  >
-    <div ref="draggableContainer" id="draggable-container" class="legend">
-      <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
-        <div
-          class="q-gutter-xs q-pa-xs"
-          v-for="(landcover, key) in legendData"
-          :key="key"
-          style="min-width: 12vw"
-        >
+    </q-expansion-item>
+    <q-expansion-item
+      dense
+      dense-toggle
+      expand-separator
+      default-opened
+      icon=""
+      :label="layerNames[1]"
+      header-class="bg-grey-1 my-font text-grey-9 header-text"
+    >
+      <template v-slot:header>
+        <q-checkbox
+          class="q-ma-none q-pa-xs"
+          size="sm"
+          color="primary"
+          dense
+          v-model="store.layers[0].layerVisibility"
+        />
+
+        <q-item-section class="header-text">
+          {{ layerNames[1] }}
+        </q-item-section>
+        <info/>
+      </template>
+      <div ref="draggableContainer" id="draggable-container" class="legend">
+        <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
           <div
-            class="my-font row justify-between q-px-sm q-my-none"
-            style="font-size: 0.75rem; font-weight: normal"
+            class="q-gutter-xs q-pa-xs"
+            v-for="(landcover, key) in legendData"
+            :key="key"
+            style="min-width: 12vw"
           >
-            <div class="col">
-              <i
-                :style="
-                  `background:` + store.getColorMap[landcover.landcover][0]
-                "
-                class="q-px-sm q-my-xs q-mr-sm"
-                style="
-                  font-size: 0.75em;
-                  border: 0px outset black;
-                  border-radius: 12px;
-                "
-              >
-                <q-popup-proxy>
-                  <colorpicker
-                    :parent-color="landcover.color[0]"
-                    :color-name="landcover.landcover"
-                    :layer-name="layerNames[1]"
-                  />
-                </q-popup-proxy> </i
-              >{{ landcover.landcover }}
+            <div
+              class="my-font row justify-between q-px-sm q-my-none"
+              style="font-size: 0.75rem; font-weight: normal"
+            >
+              <div class="col">
+                <i
+                  :style="
+                    `background:` + store.getColorMap[landcover.landcover][0]
+                  "
+                  class="q-px-sm q-my-xs q-mr-sm"
+                  style="
+                    font-size: 0.75em;
+                    border: 0px outset black;
+                    border-radius: 12px;
+                  "
+                >
+                  <q-popup-proxy>
+                    <colorpicker
+                      :parent-color="landcover.color[0]"
+                      :color-name="landcover.landcover"
+                      :layer-name="layerNames[1]"
+                    />
+                  </q-popup-proxy> </i
+                >{{ landcover.landcover }}
+              </div>
+              <q-checkbox
+                class="q-ma-none q-pa-none"
+                size="24px"
+                color="grey-9"
+                dense
+                v-model="store.colorMap[landcover.landcover][3]"
+              />
             </div>
-            <q-checkbox
-              class="q-ma-none q-pa-none"
-              size="24px"
-              color="grey-9"
-              dense
-              v-model="store.colorMap[landcover.landcover][1]"
-              checked-icon="mdi-eye"
-              unchecked-icon="mdi-eye-off-outline"
-              :indeterminate-icon="
-                getIntermediateIcon(store.colorMap[landcover.landcover][1])
-              "
-              :toggle-indeterminate="store.colorMap[landcover.landcover][1]"
-              toggle-order="ft"
-            />
           </div>
         </div>
       </div>
-    </div>
-  </q-expansion-item>
+    </q-expansion-item>
+  </q-scroll-area>
 </template>
 
 <script>
@@ -131,11 +151,12 @@ import { store } from "quasar/wrappers";
 export default defineComponent({
   components: {
     colorpicker: require("./colorpicker.vue").default,
+    info: require("../../composables/summaries.vue").default,
   },
   setup() {
     const store = useTileStore();
     const { setLegendColors } = createLegend();
-    const layerNames = ref(['Benthic Classes', 'Terrestrial Classes'])
+    const layerNames = ref(["Benthic Classes", "Terrestrial Classes"]);
     const legendData = ref([]);
     const legendDataBenthic = ref([]);
     const positions = ref({
@@ -155,9 +176,17 @@ export default defineComponent({
       }
     };
 
+    const setOpacity = function (val) {
+      if (val === 1) {
+        val = 0;
+      } else {
+        val = 1;
+      }
+    };
+
     const setLegendData = function () {
       legendData.value = setLegendColors("burnedArea");
-      legendDataBenthic.value = setLegendColors("benthicHabitat")
+      legendDataBenthic.value = setLegendColors("benthicHabitat");
     };
 
     onMounted(() => {
@@ -201,6 +230,24 @@ export default defineComponent({
       store,
       value,
       getIntermediateIcon,
+      setOpacity,
+      trueval: ref(1),
+      falseval: ref(0),
+      thumbStyle: {
+        right: "4px",
+        borderRadius: "5px",
+        backgroundColor: "#027be3",
+        width: "5px",
+        opacity: 0.75,
+      },
+
+      barStyle: {
+        right: "2px",
+        borderRadius: "9px",
+        backgroundColor: "#027be3",
+        width: "9px",
+        opacity: 0.2,
+      },
     };
   },
 });

@@ -148,8 +148,8 @@
       <q-toolbar class="q-ma-none mobile-view">
         <q-avatar square size="50px" class="q-ma-none">
           <img
-            src="~/src/assets/logo4.png"
-            style="position: relative; width: 80%; height: 80%; left: -1%"
+            src="~/src/assets/RCMRD_Logo_White.svg"
+            style="position: relative; width: 100%; height: 50px; left: -1%"
           />
         </q-avatar>
         <q-separator vertical inset />
@@ -157,12 +157,12 @@
           class="text-h6 my-font q-pa-none q-ma-none item-center"
           style="color: #3c4e3d; font-size: 1.2rem; font-weight: bold"
         >
-          <div
+          <!-- <div
             class="row items-end q-pl-xs q-ma-none q-gutter-none"
             style="max-height: 50px"
           >
             <img src="~/src/assets/logoname.svg" />
-          </div>
+          </div> -->
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />

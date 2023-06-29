@@ -20,7 +20,7 @@ export default {
   // burned area info
   burnt_area_info:
     "The burned area is calculated from pre and post-fire images to creates burn severity assessment maps. The classification of burn severity follows USGS proposed classification system for burn severity ranges.",
-  burnt_area_summary:
+  benthic_area_summary:
     "The coastal geomorphological area mapped was <b>{totalBurnedArea}Ha</b>, which corresponds to the sum of all geomorphological classes i.e. Dense coral <b>{veryHighSeverity}Ha</b>, Reef/Back reef <b>{highSeverity}Ha</b>, Sea bed <b>{moderateSeverity}Ha</b> and Sand <b>{lowSeverity}Ha</b>.",
 
   //login and sign up translations
