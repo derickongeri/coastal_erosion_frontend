@@ -19,8 +19,8 @@
           you around!
         </p>
         <p>Best regards,</p>
-        <p>The GreenPulse</p>
-        <p><a href="">  Proceed to Login <span><q-icon name="mdi-arrow-right"></q-icon></span></a></p>
+        <p>The RCMRD-CoGeoS team</p>
+        <p><a href=""> <span><q-icon name="mdi-arrow-left"></q-icon></span> Back to homepage </a></p>
       </div>
     </div>
   </q-page>

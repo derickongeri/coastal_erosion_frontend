@@ -38,7 +38,7 @@ export default function userAuthUser() {
         password: password,
         options: {
           data: meta,
-          emailRedirectTo: `http://derickongeri.com/greenpulse/#/confirm-signup`,
+          emailRedirectTo: `http://45.76.143.229/dashboard/#/confirm-signup`,
         },
       }
     );
@@ -54,7 +54,7 @@ export default function userAuthUser() {
 
   const sendPasswordRestEmail = async (email) => {
     const { user, error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://derickongeri.com/greenpulse/#/update-password",
+      redirectTo: "http://45.76.143.229/dashboard/#/update-password",
     });
     if (error) throw error;
     return user;
