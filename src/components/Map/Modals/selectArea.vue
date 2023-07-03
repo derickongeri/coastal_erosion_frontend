@@ -167,6 +167,7 @@ import {
   watch,
 } from "vue";
 import { useVectorStore } from "src/stores/vector_store/index.js";
+import { useTileStore } from "src/stores/tile_store/index.js";
 
 export default defineComponent({
   components: {
@@ -175,6 +176,7 @@ export default defineComponent({
   },
   setup() {
     const store = useVectorStore();
+    const tileStore = useTileStore();
 
     const selection = ref(true),
       filterOptions = ref([]),

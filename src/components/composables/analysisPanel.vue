@@ -20,23 +20,22 @@
         <q-card
           flat
           bordered
-          :class="{ expanded: cards[1].expanded }"
-          @click="toggleCard(cards[1])"
+          :class="{ expanded: cards[0].expanded }"
           class="card1 q-mx-md q-my-sm q-py-sm"
           style="border-radius: 20px"
         >
           <q-card-section class="" style="">
             <div class="row items-center" style="font-weight: 400; font-size: 21px">
-              <div>Mauritius Benthic Classes</div>
+              <div>{{ store.selectedRegion }} Benthic Classes</div>
               <q-space />
               <div>
                 <label class="switch">
-                  <input type="checkbox" />
+                  <input type="checkbox" v-model="tileStore.layers[1].layerVisibility"/>
                   <span class="slider round"></span>
                 </label>
               </div>
             </div>
-            <Analysis />
+            <benthicAnalysis />
           </q-card-section>
         </q-card>
 
@@ -45,7 +44,7 @@
           bordered
           class="card q-mx-md q-my-none"
           :class="{ expanded: cards[1].expanded }"
-          @click="toggleCard(cards[1])"
+          @click="toggleCard(cards[2])"
           style="border-radius: 20px"
         >
           <q-card-section class="" style="">
@@ -62,7 +61,7 @@
                 </label>
               </div>
             </div>
-            <Analysis />
+            <terrestrialAnalysis />
           </q-card-section>
         </q-card>
 
@@ -75,7 +74,7 @@
           style="border-radius: 20px"
         >
           <q-card-section class="card-content q-pa-md q-ma-sm" style="">
-            <Analysis />
+            <!-- <Analysis /> -->
           </q-card-section>
         </q-card>
       </q-scroll-area>
@@ -90,7 +89,7 @@
       >
         <q-card flat bordered class="q-ma-sm">
           <q-card-section>
-            <Analysis />
+            <!-- <Analysis /> -->
           </q-card-section>
         </q-card>
       </q-scroll-area>
@@ -111,14 +110,17 @@ import {
 } from "vue";
 
 import { useVectorStore } from "../../stores/vector_store/index.js";
+import { useTileStore } from "../../stores/tile_store/index.js"
 
 export default {
   components: {
-    Analysis: require("../Analysis/indicators/burnedArea.vue").default,
+    benthicAnalysis: require("../Analysis/indicators/benthicStats.vue").default,
+    terrestrialAnalysis: require("../Analysis/indicators/terrestrialStats.vue").default,
   },
 
   setup() {
     const store = useVectorStore();
+    const tileStore = useTileStore();
     const selectedArea = ref(store.getselectedRegion);
     const fireperiod = ref(store.getDatesSelected);
 
@@ -128,8 +130,8 @@ export default {
 
     const cards = ref([
       { content: "Card 1", expanded: false },
-      { content: "Card 2", expanded: true },
-      { content: "Card 3", expanded: true },
+      { content: "Card 2", expanded: false },
+      { content: "Card 3", expanded: false },
     ]);
 
     const hideAnalysismobile = function (val) {
@@ -150,6 +152,16 @@ export default {
       }
       card.expanded = !card.expanded;
     };
+
+    watch(store.selectedRegion, () => {
+      selectedArea.value = store.getselectedRegion
+    })
+
+
+
+    onMounted(()=>{
+      selectedArea.value = store.getselectedRegion
+    })
 
     return {
       thumbStyle: {
@@ -176,6 +188,8 @@ export default {
       cards,
       toggleCard,
       value: ref(true),
+      store,
+      tileStore
     };
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-justify my-font q-my-md">
-      <div
+      <!-- <div
         style="font-size: 16px"
         v-html="
           $t('benthic_area_summary', {
@@ -12,7 +12,7 @@
             lowSeverity: `<b>${arealist[3]}</b>`,
           })
         "
-      ></div>
+      ></div> -->
     </div>
     <div
       class="row items-center q-gutter-sm q-px-none q-mb-md"
@@ -233,7 +233,7 @@ export default {
           "#EDE732",
           "#FFD282",
           ],
-          data: [225540, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
+          data: [2263, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
           barPercentage: 0.75,
           categoryPercentage: 0.75,
         },
@@ -264,7 +264,7 @@ export default {
           spacing: 0,
           cutout: "75",
           radius: "80%",
-          data: [225540, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
+          data: [2263, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
         },
       ],
     });

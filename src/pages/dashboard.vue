@@ -17,7 +17,7 @@
       style="position: absolute; left: 0%; top: 15%; z-index: 5000"
     >
       <q-btn
-        class="p-py-sm bg-primary"
+        class="p-py-sm nav-btn"
         icon="mdi-chevron-right"
         color="grey-1"
         round
@@ -78,7 +78,8 @@
 
 
     <div
-      v-if="(matchMediaDesktop, showAnalysisPanel)"
+      v-if="matchMediaDesktop"
+      v-show="showAnalysisPanel"
       class="stats-panel"
       style="
         position: absolute;

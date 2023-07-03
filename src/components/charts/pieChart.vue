@@ -1,7 +1,7 @@
 <template>
   <div class="q-my-none q-mt-none " style="
-      max-width: 80%;
-      left: 10%;
+      max-width: 100%;
+      left: 1%;
       border: 0px solid rgb(160, 160, 160);
       border-radius: 20px;
       position: relative;

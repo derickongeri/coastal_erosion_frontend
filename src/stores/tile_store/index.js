@@ -1,6 +1,7 @@
-import { axios } from "boot/axios";
-import { Loading, QSpinnerOval } from "quasar";
 import { defineStore } from "pinia";
+import { useVectorStore } from "../vector_store/index.js";
+
+const vectStore = useVectorStore();
 
 export const useTileStore = defineStore({
   id: "tileStore",
@@ -8,10 +9,12 @@ export const useTileStore = defineStore({
     layers: [
       {
         layerName: "Mauritius_Landuse_reprojected",
+        layerCategory: "Landuse",
         layerVisibility: true
       },
       {
         layerName: "Mauritius_Benthic",
+        layerCategory: "Benthic",
         layerVisibility: true
       },
     ],
@@ -22,19 +25,19 @@ export const useTileStore = defineStore({
       Forest: ["#008a65", 1, 'Forest', true],
       GrasslandFinal: ["#afffb3", 1, 'Grassland', true],
       Mangroves: ["#007009", 1, "Mangroves", true],
-      RiverCreek: ["#9deaff", 1, "RverCreek", true],
+      RiverCreek: ["#9deaff", 1, "Rivers and Creeks", true],
       Road: ["#d61fcd", 1, "Road", true],
-      Settlement: ["#cf02a3", 1, "Settlement", true],
-      Stony: ["#000000", 1, "Stony", true],
+      Settlement: ["#cf02a3", 1, "Built-up Area", true],
+      Stony: ["#000000", 1, "Rocky Shore", true],
       Wetland: ["#43dac6", 1, "Wetland", true],
     },
     benthicColorMap: {
-      CoralReefFinal: ["#fbd376", 1, "Coral Reef", true],
-      DeepwatersFinal: ["#06306E", 1, "Deepwaters", true],
-      DenseCoralFinal: ["#DA8488", 1, "Dense Coral", true],
-      SandFinal: ["#FCE936", 1, "Sand", true],
-      SeagrassSeaweedFinal: ["#97E86E", 1, "Seagrass/Seaweed", true],
-      SedimentFinal: ["#EDE732", 1, "Sediment", true],
+      CoralReefFinal: ["#fbd376", 1, "Reef and Back reef", true],
+      DeepwatersFinal: ["#06306E", 1, "Deep sea", true],
+      DenseCoralFinal: ["#DA8488", 1, "Dense Coral and Algae", true],
+      //SandFinal: ["#FCE936", 1, "Sand", true],
+      SeagrassSeaweedFinal: ["#97E86E", 1, "Seagrass bed", true],
+      SedimentFinal: ["#EDE732", 1, "Seabed sediment", true],
       SparseCorSgSwFinal: ["#FFD282", 1, "Sparse Coral/Seagrass/seaweed", true],
     },
   }),
@@ -69,6 +72,18 @@ export const useTileStore = defineStore({
           colorMap[name][1] = opacity;
       }
     },
+    updateLayerNames() {
+      const array = this.layers
+      const prefix = vectStore.getselectedRegion
+      const updatedArray = array.map(item => {
+        const newName = item.layerName.replace(/^[^_]+/, prefix);
+        return { ...item, layerName: newName };
+      });
+
+      console.log(updatedArray.length)
+
+      this.layers = updatedArray;
+    }
   },
 });
 

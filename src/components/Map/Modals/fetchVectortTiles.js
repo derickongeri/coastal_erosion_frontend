@@ -29,11 +29,11 @@ export default function loadVectorLayers() {
 
         let colorMap = {};
 
-        switch (layer.layerName) {
-          case "Mauritius_Benthic":
+        switch (layer.layerCategory) {
+          case "Benthic":
             colorMap = tileStore.getBenthicColorMap;
             break;
-          case "Mauritius_Landuse_reprojected":
+          case "Landuse":
             colorMap = tileStore.getColorMap;
             break;
           default:

@@ -715,16 +715,6 @@ export default defineComponent({
       var measureControl = new L.Control.Measure({ position: "topright" });
       measureControl.addTo(map.value);
 
-      // const scaleBarElement = document.getElementsByClassName(
-      //   ".leaflet-control-better-scale"
-      // );
-
-      // L.control.browserPrint({
-      //   position: "bottomright",
-      //   title: `print map`,
-      //   documentTitle: "Map printed using leaflet.browser.print plugin",
-      // });
-      // ///////////////////hide layers control
       let layerControl = document.getElementsByClassName(
         "leaflet-control-layers"
       );
@@ -1026,6 +1016,22 @@ export default defineComponent({
       }
     };
 
+    watch(
+      () => tileStore.layers,
+      (val) => {
+        console.log("triger");
+        // val = tileStore.getLayers[0].layerVisibility;
+        !tileStore.getLayers[0].layerVisibility
+          ? map.value.removeLayer(terrestrialLayer.value)
+          : map.value.addLayer(terrestrialLayer.value);
+
+        !tileStore.getLayers[1].layerVisibility
+          ? map.value.removeLayer(benthicLayer.value)
+          : map.value.addLayer(benthicLayer.value);
+      },
+      { deep: true }
+    );
+
     watch(setLabels, () => {
       addLabels(setLabels.value);
     });
@@ -1049,15 +1055,10 @@ export default defineComponent({
       return store.getselectedRegion;
     });
 
-    const setMapColors = computed(() => {
-      return tileStore.getColorMap;
-    });
-
     watch(tileStore.getColorMap, () => {
       if (currentRasterLayer.value === null) {
         return;
       }
-      console.log("changing styles");
 
       function getUpdatedStyle(layerValue) {
         // // Define your choropleth styling logic here
@@ -1085,7 +1086,7 @@ export default defineComponent({
 
       map.value.removeLayer(terrestrialLayer.value);
       terrestrialLayer.value.options.vectorTileLayerStyles = {
-        Mauritius_Landuse_reprojected: (properties) => {
+        [tileStore.layers[0].layerName]: (properties) => {
           return getUpdatedStyle(properties.layer);
         },
       };
@@ -1097,7 +1098,6 @@ export default defineComponent({
       if (currentRasterLayer.value === null) {
         return;
       }
-      console.log("changing styles");
 
       function getUpdatedStyle(layerValue) {
         // // Define your choropleth styling logic here
@@ -1125,7 +1125,7 @@ export default defineComponent({
 
       map.value.removeLayer(benthicLayer.value);
       benthicLayer.value.options.vectorTileLayerStyles = {
-        Mauritius_Benthic: (properties) => {
+        [tileStore.layers[1].layerName]: (properties) => {
           return getUpdatedStyle(properties.layer);
         },
       };
@@ -1133,26 +1133,9 @@ export default defineComponent({
       benthicLayer.value.addTo(map.value);
     });
 
-    watch(tileStore.getLayers, (val) => {
-      val = tileStore.getLayers[0].layerVisibility;
-      if (!val) {
-        map.value.removeLayer(terrestrialLayer.value);
-      } else {
-        map.value.addLayer(terrestrialLayer.value);
-      }
-    });
-
-    watch(tileStore.getLayers, (val) => {
-      val = tileStore.getLayers[1].layerVisibility;
-      if (!val) {
-        map.value.removeLayer(benthicLayer.value);
-      } else {
-        map.value.addLayer(benthicLayer.value);
-      }
-    });
-
     watch(selecteVector, () => {
       setCurrentVector().then(() => {
+        tileStore.updateLayerNames();
         setRasterLayer();
       });
     });
@@ -1168,6 +1151,7 @@ export default defineComponent({
 
     watch(customGeometry.value, () => {
       () => {
+        console.log(customGeometry.value);
         map.value.removeLayer(currentVectLayer.value);
         setRasterLayer();
       };
@@ -1299,7 +1283,7 @@ export default defineComponent({
   //width: 300px;
   // height: 20px;
   right: 1vw;
-  top: 7vh;
+  top: 8vh;
   width: fit-content;
 }
 

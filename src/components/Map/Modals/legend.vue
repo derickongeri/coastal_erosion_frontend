@@ -2,7 +2,7 @@
   <q-scroll-area
     :thumb-style="thumbStyle"
     :bar-style="barStyle"
-    style="min-height: 25vh; height: 7vh; min-width: 250px"
+    style="min-height: 25vh; height: 15vh; min-width: 250px"
   >
     <q-expansion-item
       dense-toggle
@@ -22,7 +22,19 @@
         <q-item-section class="header-text">
           {{ layerNames[0] }}
         </q-item-section>
-        <info/>
+        <q-btn
+          class="q-ma-none q-my-sm q-pa-sm"
+          round
+          dense
+          outline
+          size="8px"
+          color="primary"
+          icon="mdi-information-variant"
+          @click="toolbarBenthic=true"
+        />
+        <q-dialog v-model="toolbarBenthic" flat>
+          <info summary-text="Benthic" />
+        </q-dialog>
       </template>
       <div ref="draggableContainer" id="draggable-container" class="legend">
         <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
@@ -92,7 +104,19 @@
         <q-item-section class="header-text">
           {{ layerNames[1] }}
         </q-item-section>
-        <info/>
+        <q-btn
+          class="q-ma-none q-my-sm q-pa-sm"
+          round
+          dense
+          outline
+          size="8px"
+          color="primary"
+          icon="mdi-information-variant"
+          @click="toolbarTerrestrial=true"
+        />
+        <q-dialog v-model="toolbarTerrestrial" flat>
+          <info summary-text="Terrestrial" />
+        </q-dialog>
       </template>
       <div ref="draggableContainer" id="draggable-container" class="legend">
         <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
@@ -125,7 +149,7 @@
                       :layer-name="layerNames[1]"
                     />
                   </q-popup-proxy> </i
-                >{{ landcover.landcover }}
+                >{{ store.getColorMap[landcover.landcover][2] }}
               </div>
               <q-checkbox
                 class="q-ma-none q-pa-none"
@@ -233,6 +257,8 @@ export default defineComponent({
       setOpacity,
       trueval: ref(1),
       falseval: ref(0),
+      toolbarBenthic: ref(false),
+      toolbarTerrestrial: ref(false),
       thumbStyle: {
         right: "4px",
         borderRadius: "5px",

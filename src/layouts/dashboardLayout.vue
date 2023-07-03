@@ -73,7 +73,7 @@
         class="row items-start q-gutter-md"
         style="
           position: absolute;
-          top: 1%;
+          top: 5px;
           left: 1%;
           z-index: 6000;
           max-width: 33vw;
@@ -85,9 +85,12 @@
         </div>
       </div>
       <div
-        class="row q-gutter-xs"
-        style="position: absolute; z-index: 5000; top: 0%; right: 1%"
+        class="row q-gutter-xs q-py-none"
+        style="position: absolute; z-index: 5000; top: 1px; right: 1%"
       >
+      <div class="column q-py-md nav-btn">
+          <q-btn round flat color="white" icon="mdi-home" to="/home"/>
+        </div>
         <div class="column q-py-md dash-nav3">
           <q-btn-dropdown
           no-caps
@@ -177,9 +180,9 @@
           </div>
         </div>
 
-        <div class="column q-py-md nav-btn2">
+        <!-- <div class="column q-py-md nav-btn2">
           <q-btn round flat color="white" icon="mdi-email" to="/home"/>
-        </div>
+        </div> -->
         <div class="column q-py-md nav-btn">
           <q-btn round flat color="white" icon="mdi-dots-vertical" />
         </div>
