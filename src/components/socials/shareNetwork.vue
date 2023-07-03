@@ -142,7 +142,7 @@ export default {
   data() {
     return {
       showDialog: false,
-      message: `Use Earth Observation data to monitor and track environmental changes, helping you stay informed about our planet's health`,
+      message: `Interactive platform for Coastal Geomorphology and Shoreline erosion monitoring for island counrties of Comoros, Madagascar and Mauritius.`,
       url: "http://45.76.143.229/dashboard/#/",
       resolve: null,
       reject: null,
