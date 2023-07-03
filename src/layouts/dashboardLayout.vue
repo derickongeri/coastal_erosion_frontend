@@ -1,74 +1,111 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <!-- <q-drawer
-      class="q-ma-none text-grey-1"
-      style="background-color: #030c6a"
-      v-model="drawer"
-      show-if-above
-      @click.capture="drawerClick"
-      width="70"
-
-    >
-      <q-tabs
-        inline-label
-        vertical
-        no-caps
-        class="my-font text-grey-1"
-        dense
-        v-model="tab"
-        switch-indicator
-        indicator-color="primary"
-      >
-      <q-avatar
-          square
-          size="70px"
-          class="q-mb-xl"
-          color="white"
-        >
-          <img src="~/src/assets/rcmrd.png" style="height:90%">
-        </q-avatar>
-        <q-route-tab
-          style="height:70px"
-          name="images"
-          icon="mdi-home"
-          to="/home"
-        />
-        <q-route-tab
-          style="height:70px"
-          name="videos"
-          icon="mdi-view-dashboard"
-          to="./dashboard"
-        />
-        <q-route-tab
-          style="height:70px"
-          name="book"
-          icon="mdi-bookmark-box-multiple"
-          to="/home"
-        />
-        <q-btn-dropdown
-          no-caps
-          auto-close
-          stretch
-          flat
-          icon="mdi-more"
-        >
-          <q-list>
-            <q-item clickable @click="tab = 'movies'">
-              <q-item-section>Mapographics</q-item-section>
-            </q-item>
-
-            <q-item clickable @click="tab = 'photos'">
-              <q-item-section>Qgis Plugin</q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
-        <q-route-tab icon="mdi-newspaper-variant" name="article" label="Mapographics" />
-        <q-route-tab icon="mdi-tools" name="article" label="Qgis Toolbox" />
-        <q-route-tab icon="mdi-lifebuoy" name="articles" style="height:70px"/>
-      </q-tabs>
-
-    </q-drawer> -->
     <q-page-container style="padding-bottom: 0px" class="my-font">
+      <div
+        v-show="drawer"
+        class="bg-primary"
+        style="
+          position: absolute;
+          right: 0%;
+          z-index: 6500;
+          height: 100%;
+          width: 25vw;
+          overflow: hidden;
+        "
+      >
+        <div class="row q-px-md">
+          <q-space />
+          <div class="column q-py-md nav-btn2">
+            <q-btn
+              round
+              flat
+              color="white"
+              icon="mdi-close"
+              @click="drawer = !drawer"
+            />
+          </div>
+        </div>
+        <div class="q-pa-md" style="max-width: 25vw">
+          <q-list>
+            <q-expansion-item
+              group="somegroup"
+              label="About RCMRD GMES & Africa"
+              default-opened
+              header-class="text-white my-font drawer-text-headers"
+              expand-icon-class="text-white"
+            >
+              <q-card>
+                <q-card-section class="bg-none text-justify">
+                  <p>
+                    The Global Monitoring for Environment and Security and
+                    Africa (GMES & Africa) Support Programme is the result of
+                    the longstanding cooperation between Africa and Europe in
+                    the area of space science & technology, which is one of the
+                    key priorities of the long-term EU-Africa Joint Strategy.
+                    GMES & Africa Support Programme is administered by the
+                    African Union Commission through the Human Resource, Science
+                    and Technology (HRST) Commission and supported by a
+                    technical assistance team lead by GAF AG.
+                  </p>
+                  <p>
+                    The programme aims at improving African policy-makers’,
+                    planners’, scientists’, business and private sector and
+                    citizens’ capacities to design, implement, and monitor
+                    national, regional and continental policies and to promote
+                    sustainable management of natural resources through the use
+                    of Earth Observation data and derived information.
+                  </p>
+                  <p>
+                    RCMRD is among 13 successful consortia of institutions that
+                    were selected by the African Union Commission (AUC) to serve
+                    as Regional Implementing Centres for the Global Monitoring
+                    for Environment and Security and Africa (GMES and Africa)
+                    Support Programme.
+                  </p>
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+
+            <q-separator color="grey-4" />
+
+            <q-expansion-item
+              group="somegroup"
+              label="How it works"
+              header-class="text-white my-font drawer-text-headers"
+              expand-icon-class="text-white"
+            >
+              <q-card>
+                <q-card-section>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Quidem, eius reprehenderit eos corrupti commodi magni quaerat
+                  ex numquam, dolorum officiis modi facere maiores architecto
+                  suscipit iste eveniet doloribus ullam aliquid.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+
+            <q-separator color="grey-4" />
+
+            <q-expansion-item
+              group="somegroup"
+              label="Frequently Asked Questions"
+              header-class="text-white my-font drawer-text-headers"
+              expand-icon-class="text-white"
+            >
+              <q-card>
+                <q-card-section>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Quidem, eius reprehenderit eos corrupti commodi magni quaerat
+                  ex numquam, dolorum officiis modi facere maiores architecto
+                  suscipit iste eveniet doloribus ullam aliquid.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+
+            <q-separator color="grey-4" />
+          </q-list>
+        </div>
+      </div>
       <div
         class="row items-start q-gutter-md"
         style="
@@ -88,29 +125,29 @@
         class="row q-gutter-xs q-py-none"
         style="position: absolute; z-index: 5000; top: 1px; right: 1%"
       >
-      <div class="column q-py-md nav-btn">
-          <q-btn round flat color="white" icon="mdi-home" to="/home"/>
+        <div class="column q-py-md nav-btn">
+          <q-btn round flat color="white" icon="mdi-home" to="/home" />
         </div>
         <div class="column q-py-md dash-nav3">
           <q-btn-dropdown
-          no-caps
-          auto-close
-          stretch
-          flat
-          color="white"
-          icon="mdi-more"
-          label="Products"
-        >
-          <q-list>
-            <q-item clickable @click="tab = 'movies'">
-              <q-item-section>Mapographics</q-item-section>
-            </q-item>
+            no-caps
+            auto-close
+            stretch
+            flat
+            color="white"
+            icon="mdi-more"
+            label="Products"
+          >
+            <q-list>
+              <q-item clickable @click="tab = 'movies'">
+                <q-item-section>Mapographics</q-item-section>
+              </q-item>
 
-            <q-item clickable @click="tab = 'photos'">
-              <q-item-section>Qgis Plugin</q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
+              <q-item clickable @click="tab = 'photos'">
+                <q-item-section>Qgis Plugin</q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
         </div>
         <div class="column q-py-md q dash-nav2">
           <div class="row">
@@ -184,7 +221,13 @@
           <q-btn round flat color="white" icon="mdi-email" to="/home"/>
         </div> -->
         <div class="column q-py-md nav-btn">
-          <q-btn round flat color="white" icon="mdi-dots-vertical" />
+          <q-btn
+            round
+            flat
+            color="white"
+            icon="mdi-dots-vertical"
+            @click="drawer = !drawer"
+          />
         </div>
       </div>
 
@@ -261,6 +304,11 @@ export default defineComponent({
 .my-menu-link {
   color: white;
   background: #f2c037;
+}
+
+.drawer-text-headers {
+  font-weight: 700;
+  font-size: 21px;
 }
 
 .dash-nav {
