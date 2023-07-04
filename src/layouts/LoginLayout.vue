@@ -127,7 +127,7 @@
           name="videos"
           icon="mdi-view-dashboard"
           :label="$t('dashboard')"
-          to="/dashboard"
+          to="apps/dashboard"
         />
         <q-btn-dropdown no-caps auto-close stretch flat icon="mdi-more" label="Products">
           <q-list>

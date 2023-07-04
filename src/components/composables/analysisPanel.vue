@@ -26,8 +26,8 @@
         >
           <q-card-section class="" style="">
             <div class="row items-center" style="font-weight: 400; font-size: 21px">
-              <div>{{ store.selectedRegion }} Benthic Classes</div>
-              <q-space />
+              <div @click="toggleCard(cards[1])">{{ store.selectedRegion }} Benthic Classes</div>
+              <q-space/>
               <div>
                 <label class="switch">
                   <input type="checkbox" v-model="tileStore.layers[1].layerVisibility"/>
@@ -52,11 +52,11 @@
               class="row items-center"
               style="font-weight: 400; font-size: 21px"
             >
-              <div>Geomorphology</div>
+              <div>{{ store.selectedRegion }} Terrestrial Classes</div>
               <q-space />
               <div>
                 <label class="switch">
-                  <input type="checkbox" />
+                  <input type="checkbox" v-model="tileStore.layers[0].layerVisibility"/>
                   <span class="slider round"></span>
                 </label>
               </div>

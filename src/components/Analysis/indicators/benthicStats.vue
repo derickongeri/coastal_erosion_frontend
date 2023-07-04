@@ -203,7 +203,7 @@ export default {
     const { stackBarChart } = setChartMethods();
     const { getRasterStats } = setLayerStats();
 
-    const chartType = ref("bar");
+    const chartType = ref("pie");
     const totalArea = ref(0);
     const arealist = ref([0, 0, 0, 0]);
     const tsChartType = ref("bar-stacked");
@@ -217,7 +217,7 @@ export default {
     const barchartData = ref({
       labels: [
       "Coral Reef",
-      "Deepwaters",
+      // "Deepwaters",
       "Dense Coral",
       "Seagrass/Seaweed",
       "Sediment",
@@ -227,13 +227,13 @@ export default {
         {
           backgroundColor: [
           "#fbd376",
-          "#06306E",
+          // "#06306E",
           "#DA8488",
           "#97E86E",
           "#EDE732",
           "#FFD282",
           ],
-          data: [2263, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
+          data: [2263,/* 87230.967381,*/ 1758.564009, 5465.657205, 7271.940447, 6904.860894],
           barPercentage: 0.75,
           categoryPercentage: 0.75,
         },
@@ -242,7 +242,7 @@ export default {
     const piechartData = ref({
       labels: [
       "Coral Reef",
-      "Deepwaters",
+      // "Deepwaters",
       "Dense Coral",
       "Seagrass/Seaweed",
       "Sediment",
@@ -252,7 +252,7 @@ export default {
         {
           backgroundColor: [
           "#fbd376",
-          "#06306E",
+          // "#06306E",
           "#DA8488",
           "#97E86E",
           "#EDE732",
@@ -264,7 +264,7 @@ export default {
           spacing: 0,
           cutout: "75",
           radius: "80%",
-          data: [2263, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
+          data: [2263, /*87230.967381,*/ 1758.564009, 5465.657205, 7271.940447, 6904.860894],
         },
       ],
     });
