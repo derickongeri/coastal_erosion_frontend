@@ -25,10 +25,10 @@
           style="border-radius: 20px"
         >
           <q-card-section class="" style="">
-            <div class="row items-center" style="font-weight: 400; font-size: 21px">
-              <div @click="toggleCard(cards[1])">{{ store.selectedRegion }} Benthic Classes</div>
+            <div class="row items-center" style="font-weight: 400; font-size: 21px" @click="toggleCard(cards[1])">
+              <div >{{ store.selectedRegion }} Benthic Classes</div>
               <q-space/>
-              <div>
+              <div @mousedown.stop>
                 <label class="switch">
                   <input type="checkbox" v-model="tileStore.layers[1].layerVisibility"/>
                   <span class="slider round"></span>
@@ -44,18 +44,18 @@
           bordered
           class="card q-mx-md q-my-none"
           :class="{ expanded: cards[1].expanded }"
-          @click="toggleCard(cards[2])"
           style="border-radius: 20px"
         >
           <q-card-section class="" style="">
             <div
               class="row items-center"
               style="font-weight: 400; font-size: 21px"
+              @click="toggleCard(cards[2])"
             >
               <div>{{ store.selectedRegion }} Terrestrial Classes</div>
               <q-space />
               <div>
-                <label class="switch">
+                <label @mousedown.stop="" class="switch">
                   <input type="checkbox" v-model="tileStore.layers[0].layerVisibility"/>
                   <span class="slider round"></span>
                 </label>
