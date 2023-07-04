@@ -18,7 +18,7 @@
           you around!
         </p>
         <p>Best regards,</p>
-        <p>The GreenPulse</p>
+        <p>The RCMRD-CoGeoS team</p>
         <p><q-btn
               style="font-size: 16px; font-weight: 700px"
               class="q-px-xs"
