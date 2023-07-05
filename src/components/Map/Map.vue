@@ -337,7 +337,7 @@
           <div
             class="q-pa-none"
             id="maplegend"
-            style="border-radius: 10px; background-color: #ffffff"
+            style="border-radius: 10px; background-color: #ffffff; overflow: hidden;"
             @mouseover="map.dragging.disable(), map.smoothWheelZoom.disable()"
             @mouseout="map.dragging.enable(), map.smoothWheelZoom.enable()"
             @pointerover="map.dragging.disable(), map.smoothWheelZoom.disable()"

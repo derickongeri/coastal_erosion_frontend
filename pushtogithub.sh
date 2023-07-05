@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# This script automatically stages, commits and pushes code to a remote repository on Github.
+# This script automatically builds the quasar projec, stages, commits and pushes code to a remote repository on Github.
+quasar build
 
 # Define the remote repository URL
 REPO_URL="https://github.com/derickongeri/coastal_erosion_frontend.git"
