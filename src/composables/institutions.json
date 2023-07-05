@@ -3,7 +3,8 @@
     {
       "sector": "Government",
       "roles": [
-        "Forest Management/Park Management",
+        "Maritime Authority",
+        "Marine Protection/Park Management",
         "Law Enforcement",
         "Legislature/Parliament",
         "Ministry/National Agency"
@@ -16,6 +17,7 @@
         "Project/Program Manager",
         "Researcher",
         "Monitoring/Evaluation",
+        "GIS/Technical Specialist",
         "Field/Country Staff"
       ]
     },

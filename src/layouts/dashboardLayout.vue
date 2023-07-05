@@ -3,8 +3,8 @@
     <q-page-container style="padding-bottom: 0px" class="my-font">
       <div
         v-show="drawer"
-        class="bg-primary"
         style="
+          background:transparent linear-gradient(207deg, #28537d 0%, #5088c6 25%, #46bbd4 100%) 0% 0% no-repeat padding-box;
           position: absolute;
           right: 0%;
           z-index: 6500;
@@ -34,8 +34,8 @@
               header-class="text-white my-font drawer-text-headers"
               expand-icon-class="text-white"
             >
-              <q-card>
-                <q-card-section class="bg-none text-justify">
+              <q-card style="background: #00000000;">
+                <q-card-section class="bg-none text-justify text-white">
                   <p>
                     The Global Monitoring for Environment and Security and
                     Africa (GMES & Africa) Support Programme is the result of
@@ -74,8 +74,8 @@
               header-class="text-white my-font drawer-text-headers"
               expand-icon-class="text-white"
             >
-              <q-card>
-                <q-card-section>
+              <q-card style="background: #00000000;">
+                <q-card-section class="bg-none text-justify text-white">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Quidem, eius reprehenderit eos corrupti commodi magni quaerat
                   ex numquam, dolorum officiis modi facere maiores architecto
@@ -92,8 +92,8 @@
               header-class="text-white my-font drawer-text-headers"
               expand-icon-class="text-white"
             >
-              <q-card>
-                <q-card-section>
+              <q-card style="background: #00000000;">
+                <q-card-section class="bg-none text-justify text-white">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Quidem, eius reprehenderit eos corrupti commodi magni quaerat
                   ex numquam, dolorum officiis modi facere maiores architecto
