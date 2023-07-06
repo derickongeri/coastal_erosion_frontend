@@ -47,7 +47,7 @@
       </div> -->
 
       <div
-        class="map-tools q-gutter-xs"
+        class="map-tools q-gutter-xs web-view"
         style="width: fit-content"
         id="mapcontrols"
       >
@@ -332,7 +332,7 @@
           </q-btn>
         </div> -->
 
-        <div class="row q-mt-sm">
+        <div class="row q-mt-sm web-view">
           <q-space />
           <div
             class="q-pa-none"
@@ -385,7 +385,7 @@
             />
           </div>
         </div>
-        <div class="row q-mt-sm justify-end">
+        <div class="row q-mt-sm justify-end web-view">
           <div
             class="map-selection bg-white q-pa-xs"
             style="border-radius: 10px; min-width: 100%"
@@ -446,6 +446,49 @@
                 </q-item-section>
               </q-item>
             </q-list>
+          </div>
+        </div>
+
+        <div class="row q-gutter-sm q-mt-sm mobile-map-control">
+          <q-space />
+          <div class="bg-white q-pa-none q-ma-none" style="border-radius: 20px">
+            <div>
+              <q-btn
+                class="bg-white"
+                size="sm"
+                round
+                flat
+                color="grey-7"
+                icon="add"
+                @click="zoom_in"
+              />
+            </div>
+
+            <q-separator />
+            <div>
+              <q-btn
+                class="bg-white"
+                size="sm"
+                round
+                flat
+                color="grey-7"
+                icon="mdi-refresh"
+                @click="resetZoomLevel"
+              />
+            </div>
+            <q-separator />
+
+            <div>
+              <q-btn
+                class="bg-white"
+                size="sm"
+                round
+                flat
+                color="grey-7"
+                icon="remove"
+                @click="zoom_out"
+              />
+            </div>
           </div>
         </div>
 
@@ -1436,7 +1479,7 @@ leaflet-browser-print-content {
     //width: 300px;
     // height: 20px;
     right: 2vw;
-    top: 7vh;
+    top: 5vh;
     width: fit-content;
   }
 

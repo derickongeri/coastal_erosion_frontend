@@ -30,7 +30,7 @@
           size="8px"
           color="primary"
           icon="mdi-information-variant"
-          @click="toolbarBenthic=true"
+          @click.stop="toolbarBenthic=true"
         />
         <q-dialog v-model="toolbarBenthic" flat>
           <info summary-text="Benthic" />
@@ -112,7 +112,7 @@
           size="8px"
           color="primary"
           icon="mdi-information-variant"
-          @click="toolbarTerrestrial=true"
+          @click.stop="toolbarTerrestrial=true"
         />
         <q-dialog v-model="toolbarTerrestrial" flat>
           <info summary-text="Terrestrial" />

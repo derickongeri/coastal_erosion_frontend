@@ -13,7 +13,7 @@
           <selectionsTab />
         </div> -->
     <div
-      class="show-stats-btn-mobile q-pa-md"
+      class="show-stats-btn-mobile q-pa-md web-view"
       style="position: absolute; left: 0%; top: 15%; z-index: 5000"
     >
       <q-btn
@@ -46,7 +46,7 @@
           </div>
     </div> -->
 
-    <div class="row items-start q-gutter-md bg-white q-mx-sm" style="position:absolute;bottom:1%;left:1%;z-index:6000;max-width:33vw;border-radius:15px">
+    <div class="row items-start q-gutter-md bg-white q-mx-sm web-veiw" style="position:absolute;bottom:1%;left:1%;z-index:6000;max-width:33vw;border-radius:15px">
       <div class="col items-center">
         <img
             src="~/src/assets/rcmrdlogo.png" style="width:100%"
@@ -65,6 +65,29 @@
       <div class="col- text-center">
         <img
             src="~/src/assets/EUlogo.png" style="width:70%"
+          />
+      </div>
+    </div>
+
+    <div class="row items-start q-gutter-xs bg-white q-mx-sm" style="position:absolute;bottom:0%;left:0%;z-index:6000;max-width:60%;border-radius:5px">
+      <div class="col items-center">
+        <img
+            src="~/src/assets/rcmrdlogo.png" style="width:100%"
+          />
+      </div>
+      <div class="col text-center">
+        <img
+            src="~/src/assets/GMESlogo.png" style="width:90%"
+          />
+      </div>
+      <div class="col text-center">
+        <img
+            src="~/src/assets/AUlogo.png" style="width:90%"
+          />
+      </div>
+      <div class="col text-center">
+        <img
+            src="~/src/assets/EUlogo.png" style="width:50%"
           />
       </div>
     </div>

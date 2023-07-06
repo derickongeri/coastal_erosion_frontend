@@ -122,7 +122,7 @@
         </div>
       </div>
       <div
-        class="row q-gutter-xs q-py-none"
+        class="row q-gutter-xs q-py-none web-view"
         style="position: absolute; z-index: 5000; top: 1px; right: 1%"
       >
         <div class="column q-py-md nav-btn">

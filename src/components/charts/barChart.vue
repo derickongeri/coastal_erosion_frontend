@@ -150,7 +150,7 @@ export default {
           },
           title: {
             display: true,
-            text: "Land Area",
+            text: "Area Ha",
             position: "bottom",
             color: "#9e9d24",
           },
@@ -171,7 +171,7 @@ export default {
             ticks: {
               callback: function (value) {
                 value = value.toFixed() / 1000;
-                return `${value}`;
+                return `${value}K`;
               },
               color: "#424242",
             },

@@ -58,7 +58,7 @@ export default function loadVectorLayers() {
       }
 
       const vectorLayer = L.vectorGrid.protobuf(vectorLayerUrl, {
-        rendererFactory: L.canvas.tile,
+        rendererFactory: L.svg.tile,
         interactive: true,
         maxNativeZoom: 17,
         minZoom: 4,
