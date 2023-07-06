@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div class="row items-start q-gutter-xs bg-white q-mx-sm" style="position:absolute;bottom:0%;left:0%;z-index:6000;max-width:60%;border-radius:5px">
+    <div class="row items-start q-gutter-xs bg-white q-mx-sm mobile-veiw" style="position:absolute;bottom:0%;left:0%;z-index:6000;max-width:60%;border-radius:5px">
       <div class="col items-center">
         <img
             src="~/src/assets/rcmrdlogo.png" style="width:100%"
