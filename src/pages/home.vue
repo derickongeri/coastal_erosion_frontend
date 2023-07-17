@@ -1,11 +1,11 @@
 <template>
-  <q-page padding class="row items-center page-tint" id="hero">
-    <div class="absolute-center jumbotron" style="min-height: 50%">
+  <q-page padding class="" >
+    <div class="absolute-center jumbotron page-tint" id="hero" style="min-height: 50%;min-width: 100%;">
       <div class="column justify-around" style="min-height: 70%">
         <div class="row justify-center">
           <div
             class="head-text my-font text-center text-white q-pa-md q-pt-xl"
-            style="font-weight: 700; background: none"
+            style="font-weight: 700; background: none; max-width: 60%;"
           >
             {{$t("tagline")}}
           </div>
@@ -13,10 +13,12 @@
         <div class="row justify-center">
           <!-- <div class="row justify-center text-white" style="font-weight:700; font-size:21px;width:100%">Choose an Application to Launch</div> -->
           <div class="text-center q-pa-md q-gutter-md" style="min-width: 400px">
-            <q-btn rounded size="lg"  color="blue" :label="$t('forest')" to="/dashboard"/>
+            <q-btn rounded size="lg"  color="blue" :label="$t('forest')" to="apps/dashboard"/>
           </div>
         </div>
       </div>
+    </div>
+    <div style="min-width: 100%; min-height: 50vh;">
     </div>
   </q-page>
 </template>
