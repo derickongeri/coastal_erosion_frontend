@@ -1,6 +1,6 @@
 <template>
-  <q-page padding class="" >
-    <div class="absolute-center jumbotron page-tint" id="hero" style="min-height: 50%;min-width: 100%;">
+  <q-page padding class="q-pa-none scrollbar-hidden" style="overflow:hidden">
+    <div class="row jumbotron page-tint" id="hero" style="min-height: 90vh;min-width: 100%;">
       <div class="column justify-around" style="min-height: 70%">
         <div class="row justify-center">
           <div
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div style="min-width: 100%; min-height: 50vh;">
+    <div style="min-width: 10vw; min-height: 100vh;">
     </div>
   </q-page>
 </template>
@@ -44,6 +44,17 @@ export default {
   box-sizing: border-box;
   outline: 3px solid limegreen !important;
 } */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge add Firefox */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
 
 .page-tint{
   background-color: rgba(107, 107, 107, 0.89);
