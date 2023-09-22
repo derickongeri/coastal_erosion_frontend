@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf" style="overflow: hidden">
     <q-header class="q-ma-none text-grey-1" style="background-color: #030c6a">
       <q-toolbar class="q-ma-none web-view">
         <div class="column q-pl-md">
@@ -148,7 +148,8 @@
       <q-tabs
         inline-label
         no-caps
-        class="bg-primary my-font text-grey-1 web-view"
+        class="my-font text-grey-1 web-view"
+        style="background-color: #036a61;"
         dense
         v-model="tab"
       >

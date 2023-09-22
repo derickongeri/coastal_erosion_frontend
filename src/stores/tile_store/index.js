@@ -10,20 +10,20 @@ export const useTileStore = defineStore({
       {
         layerName: "Mauritius_Landuse_reprojected",
         layerCategory: "Landuse",
-        layerVisibility: true
+        layerVisibility: false,
       },
       {
         layerName: "Mauritius_Benthic",
         layerCategory: "Benthic",
-        layerVisibility: true
+        layerVisibility: true,
       },
     ],
     colorMap: {
       Barren: ["#b35d0d", 1, "Barren", true],
       Beach: ["#e0e326", 1, "Beach", true],
-      Cropland: ["#3bff29", 1, 'Cropland', true],
-      Forest: ["#008a65", 1, 'Forest', true],
-      GrasslandFinal: ["#afffb3", 1, 'Grassland', true],
+      Cropland: ["#3bff29", 1, "Cropland", true],
+      Forest: ["#008a65", 1, "Forest", true],
+      GrasslandFinal: ["#afffb3", 1, "Grassland", true],
       Mangroves: ["#007009", 1, "Mangroves", true],
       RiverCreek: ["#9deaff", 1, "Rivers and Creeks", true],
       Road: ["#d61fcd", 1, "Road", true],
@@ -44,7 +44,7 @@ export const useTileStore = defineStore({
   getters: {
     getColorMap: (state) => state.colorMap,
     getBenthicColorMap: (state) => state.benthicColorMap,
-    getLayers: (state) => state.layers
+    getLayers: (state) => state.layers,
   },
   actions: {
     updateSettlementColor(newColor, opacity, name, layer) {
@@ -73,17 +73,17 @@ export const useTileStore = defineStore({
       }
     },
     updateLayerNames() {
-      const array = this.layers
-      const prefix = vectStore.getselectedRegion
-      const updatedArray = array.map(item => {
+      const array = this.layers;
+      const prefix = vectStore.getselectedRegion;
+      const updatedArray = array.map((item) => {
         const newName = item.layerName.replace(/^[^_]+/, prefix);
         return { ...item, layerName: newName };
       });
 
-      console.log(updatedArray.length)
+      console.log(updatedArray.length);
 
       this.layers = updatedArray;
-    }
+    },
   },
 });
 

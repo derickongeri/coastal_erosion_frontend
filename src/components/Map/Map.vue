@@ -1,14 +1,15 @@
 <template>
-  <div
-    class="q-pa-none bg-grey-2 box"
-    style="position: relative; min-height: 100%; min-width: 100%"
-  >
-    <div>
-      <burnedAreaLayout />
-    </div>
+  <keep-alive>
+    <div
+      class="q-pa-none bg-grey-2 box"
+      style="position: relative; min-height: 100%; min-width: 100%"
+    >
+      <div>
+        <burnedAreaLayout />
+      </div>
 
-    <div class="col bg-none q-ma-none map-content" id="mapid" style="">
-      <!-- <div
+      <div class="col bg-none q-ma-none map-content" id="mapid" style="">
+        <!-- <div
         class="stats-pannel"
         style="
           position: absolute;
@@ -18,7 +19,7 @@
           background-color: #386396;
         "
       ></div> -->
-      <!-- <div
+        <!-- <div
         class="row area-selection"
         style="background-color: #38639600"
         @mouseover="map.dragging.disable(), map.smoothWheelZoom.disable()"
@@ -46,87 +47,90 @@
         </div>
       </div> -->
 
-      <div
-        class="map-tools q-gutter-xs web-view"
-        style="width: fit-content"
-        id="mapcontrols"
-      >
-        <div class="row q-gutter-sm q-mt-sm">
-          <q-space />
-          <div class="bg-white q-pa-none q-ma-none" style="border-radius: 20px">
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="add"
-                @click="zoom_in"
-              />
-            </div>
+        <div
+          class="map-tools q-gutter-xs web-view"
+          style="width: fit-content"
+          id="mapcontrols"
+        >
+          <div class="row q-gutter-sm q-mt-sm">
+            <q-space />
+            <div
+              class="bg-white q-pa-none q-ma-none"
+              style="border-radius: 20px"
+            >
+              <div>
+                <q-btn
+                  class="bg-white"
+                  size="sm"
+                  round
+                  flat
+                  color="grey-7"
+                  icon="add"
+                  @click="zoom_in"
+                />
+              </div>
 
-            <q-separator />
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="mdi-refresh"
-                @click="resetZoomLevel"
-              />
-            </div>
-            <q-separator />
+              <q-separator />
+              <div>
+                <q-btn
+                  class="bg-white"
+                  size="sm"
+                  round
+                  flat
+                  color="grey-7"
+                  icon="mdi-refresh"
+                  @click="resetZoomLevel"
+                />
+              </div>
+              <q-separator />
 
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="remove"
-                @click="zoom_out"
-              />
+              <div>
+                <q-btn
+                  class="bg-white"
+                  size="sm"
+                  round
+                  flat
+                  color="grey-7"
+                  icon="remove"
+                  @click="zoom_out"
+                />
+              </div>
             </div>
+          </div>
+
+          <div class="row" id="printmap">
+            <q-space />
+            <q-btn
+              class="bg-white"
+              size="sm"
+              round
+              flat
+              color="grey-7"
+              icon="mdi-printer"
+              @click="printLayer"
+            />
+          </div>
+          <div class="row" id="printmap">
+            <q-space />
+            <q-btn
+              class="bg-white"
+              size="sm"
+              round
+              flat
+              color="grey-7"
+              icon="mdi-selection-drag"
+              @click="toggleDrawingTools"
+              ><q-tooltip class="bg-black">{{ $t("drawingTools") }}</q-tooltip>
+            </q-btn>
           </div>
         </div>
 
-        <div class="row" id="printmap">
-          <q-space />
-          <q-btn
-            class="bg-white"
-            size="sm"
-            round
-            flat
-            color="grey-7"
-            icon="mdi-printer"
-            @click="printLayer"
-          />
-        </div>
-        <div class="row" id="printmap">
-          <q-space />
-          <q-btn
-            class="bg-white"
-            size="sm"
-            round
-            flat
-            color="grey-7"
-            icon="mdi-selection-drag"
-            @click="toggleDrawingTools"
-            ><q-tooltip class="bg-black">{{ $t("drawingTools") }}</q-tooltip>
-          </q-btn>
-        </div>
-      </div>
-
-      <div
-        class="zoom-controls q-gutter-xs"
-        style="width: fit-content"
-        id="mapcontrols"
-      >
-        <!-- <div class="q-pa-none q-gutter-sm desktop-control">
+        <div
+          class="zoom-controls q-gutter-xs"
+          style="width: fit-content"
+          id="mapcontrols"
+        >
+          <!-- <div class="q-pa-none q-gutter-sm desktop-control">
           <q-btn
             size="sm"
             flat
@@ -332,19 +336,25 @@
           </q-btn>
         </div> -->
 
-        <div class="row q-mt-sm web-view">
-          <q-space />
-          <div
-            class="q-pa-none"
-            id="maplegend"
-            style="border-radius: 10px; background-color: #ffffff; overflow: hidden;"
-            @mouseover="map.dragging.disable(), map.smoothWheelZoom.disable()"
-            @mouseout="map.dragging.enable(), map.smoothWheelZoom.enable()"
-            @pointerover="map.dragging.disable(), map.smoothWheelZoom.disable()"
-            @pointerout="map.dragging.enable(), map.smoothWheelZoom.enable()"
-          >
-            <div class="col q-pa-sm" style="border-radius: 15px">
-              <!-- <div class="row">
+          <div class="row q-mt-sm web-view">
+            <q-space />
+            <div
+              class="q-pa-none"
+              id="maplegend"
+              style="
+                border-radius: 10px;
+                background-color: #ffffff;
+                overflow: hidden;
+              "
+              @mouseover="map.dragging.disable(), map.smoothWheelZoom.disable()"
+              @mouseout="map.dragging.enable(), map.smoothWheelZoom.enable()"
+              @pointerover="
+                map.dragging.disable(), map.smoothWheelZoom.disable()
+              "
+              @pointerout="map.dragging.enable(), map.smoothWheelZoom.enable()"
+            >
+              <div class="col q-pa-sm" style="border-radius: 15px">
+                <!-- <div class="row">
                 <span
                   class="my-font q-px-xs q-ma-none"
                   style="font-weight: bold"
@@ -359,262 +369,274 @@
                   @click="opacityslider = !opacityslider"
                 />
               </div> -->
-              <div class="row" v-show="opacityslider">
-                <div class="row items-center bg-grey-2" style="min-width: 100%">
-                  <span class="my-font q-px-xs">{{ $t("opacity") }}</span>
-                  <q-slider
-                    dense
-                    :min="1"
-                    :max="10"
-                    :step="1"
-                    v-model="opacityValue"
-                    color="primary"
-                    track-size="2px"
-                    thumb-size="10px"
-                    class="col q-pa-sm"
-                    @mouseenter="handle_opacity"
-                  />
+                <div class="row" v-show="opacityslider">
+                  <div
+                    class="row items-center bg-grey-2"
+                    style="min-width: 100%"
+                  >
+                    <span class="my-font q-px-xs">{{ $t("opacity") }}</span>
+                    <q-slider
+                      dense
+                      :min="1"
+                      :max="10"
+                      :step="1"
+                      v-model="opacityValue"
+                      color="primary"
+                      track-size="2px"
+                      thumb-size="10px"
+                      class="col q-pa-sm"
+                      @mouseenter="handle_opacity"
+                    />
+                  </div>
                 </div>
               </div>
+              <Maplegend
+                @mouseover="map.dragging.disable()"
+                @mouseout="map.dragging.enable()"
+                @pointerover="map.dragging.disable()"
+                @pointerout="map.dragging.enable()"
+              />
             </div>
-            <Maplegend
-              @mouseover="map.dragging.disable()"
-              @mouseout="map.dragging.enable()"
-              @pointerover="map.dragging.disable()"
-              @pointerout="map.dragging.enable()"
-            />
           </div>
-        </div>
-        <div class="row q-mt-sm justify-end web-view">
-          <div
-            class="map-selection bg-white q-pa-xs"
-            style="border-radius: 10px; min-width: 100%"
-          >
-            <span
-              class="q-mx-sm"
-              style="font-size: 0.75em; font-color: #838c48"
-              >{{ $t("baseMap") }}</span
+          <div class="row q-mt-sm justify-end web-view">
+            <div
+              class="map-selection bg-white q-pa-xs"
+              style="border-radius: 10px; min-width: 100%"
             >
-            <q-list class="row" style="min-width: 100px">
-              <q-item
-                class="col q-px-none"
-                clickable
-                v-ripple
-                @click="change_base_map('OSM')"
+              <span
+                class="q-mx-sm"
+                style="font-size: 0.75em; font-color: #838c48"
+                >{{ $t("baseMap") }}</span
               >
-                <q-item-section class="row q-px-sm">
-                  <q-avatar rounded>
-                    <img
-                      src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png"
-                    />
-                  </q-avatar>
-                  <div class="row justify-center" style="font-size: 0.75em">
-                    Mapbox
-                  </div>
-                </q-item-section>
-              </q-item>
-              <q-item
-                class="col q-px-none"
-                clickable
-                @click="change_base_map('satellite')"
-              >
-                <q-item-section class="q-px-sm">
-                  <q-avatar rounded>
-                    <img
-                      src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099830/Screenshot_from_2022-04-04_22-14-04_tnx5m7.png"
-                    />
-                  </q-avatar>
-                  <div class="row justify-center" style="font-size: 0.75em">
-                    Satellite
-                  </div>
-                </q-item-section>
-              </q-item>
-              <q-item
-                class="col q-px-none"
-                clickable
-                @click="change_base_map('darkMap')"
-              >
-                <q-item-section class="q-px-sm">
-                  <q-avatar rounded>
-                    <img
-                      src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099827/Screenshot_from_2022-04-04_22-16-08_mu5dfk.png"
-                    />
-                  </q-avatar>
-                  <div class="row justify-center" style="font-size: 0.75em">
-                    dark
-                  </div>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </div>
-        </div>
-
-        <div class="row q-gutter-sm q-mt-sm mobile-map-control">
-          <q-space />
-          <div class="bg-white q-pa-none q-ma-none" style="border-radius: 20px">
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="add"
-                @click="zoom_in"
-              />
-            </div>
-
-            <q-separator />
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="mdi-refresh"
-                @click="resetZoomLevel"
-              />
-            </div>
-            <q-separator />
-
-            <div>
-              <q-btn
-                class="bg-white"
-                size="sm"
-                round
-                flat
-                color="grey-7"
-                icon="remove"
-                @click="zoom_out"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="row q-my-sm mobile-map-control">
-          <q-space />
-          <q-btn
-            class="bg-white"
-            size="sm"
-            round
-            flat
-            color="primary"
-            icon="mdi-layers"
-            @click="openCloseStats"
-            ><q-menu
-              flat
-              auto-close
-              class="q-pa-sm menu-card"
-              anchor="center left"
-              self="center right"
-              :offset="[0, 0]"
-            >
-              <div class="row">
-                <div
-                  class="menu-content bg-grey-2 q-pa-sm q-ma-sm"
-                  style="border-radius: 5px"
+              <q-list class="row" style="min-width: 100px">
+                <q-item
+                  class="col q-px-none"
+                  clickable
+                  v-ripple
+                  @click="change_base_map('OSM')"
                 >
-                  <span
-                    class="q-mx-sm"
-                    style="font-size: 0.75em; font-color: #838c48"
-                    >{{ $t("baseMap") }}</span
+                  <q-item-section class="row q-px-sm">
+                    <q-avatar rounded>
+                      <img
+                        src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png"
+                      />
+                    </q-avatar>
+                    <div class="row justify-center" style="font-size: 0.75em">
+                      Mapbox
+                    </div>
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  class="col q-px-none"
+                  clickable
+                  @click="change_base_map('satellite')"
+                >
+                  <q-item-section class="q-px-sm">
+                    <q-avatar rounded>
+                      <img
+                        src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099830/Screenshot_from_2022-04-04_22-14-04_tnx5m7.png"
+                      />
+                    </q-avatar>
+                    <div class="row justify-center" style="font-size: 0.75em">
+                      Satellite
+                    </div>
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  class="col q-px-none"
+                  clickable
+                  @click="change_base_map('darkMap')"
+                >
+                  <q-item-section class="q-px-sm">
+                    <q-avatar rounded>
+                      <img
+                        src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099827/Screenshot_from_2022-04-04_22-16-08_mu5dfk.png"
+                      />
+                    </q-avatar>
+                    <div class="row justify-center" style="font-size: 0.75em">
+                      dark
+                    </div>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </div>
+          </div>
+
+          <div class="row q-gutter-sm q-mt-sm mobile-map-control">
+            <q-space />
+            <div
+              class="bg-white q-pa-none q-ma-none"
+              style="border-radius: 20px"
+            >
+              <div>
+                <q-btn
+                  class="bg-white"
+                  size="sm"
+                  round
+                  flat
+                  color="grey-7"
+                  icon="add"
+                  @click="zoom_in"
+                />
+              </div>
+
+              <q-separator />
+              <div>
+                <q-btn
+                  class="bg-white"
+                  size="sm"
+                  round
+                  flat
+                  color="grey-7"
+                  icon="mdi-refresh"
+                  @click="resetZoomLevel"
+                />
+              </div>
+              <q-separator />
+
+              <div>
+                <q-btn
+                  class="bg-white"
+                  size="sm"
+                  round
+                  flat
+                  color="grey-7"
+                  icon="remove"
+                  @click="zoom_out"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row q-my-sm mobile-map-control">
+            <q-space />
+            <q-btn
+              class="bg-white"
+              size="sm"
+              round
+              flat
+              color="primary"
+              icon="mdi-layers"
+              @click="openCloseStats"
+              ><q-menu
+                flat
+                auto-close
+                class="q-pa-sm menu-card"
+                anchor="center left"
+                self="center right"
+                :offset="[0, 0]"
+              >
+                <div class="row">
+                  <div
+                    class="menu-content bg-grey-2 q-pa-sm q-ma-sm"
+                    style="border-radius: 5px"
                   >
-                  <q-separator />
-                  <div class="q-my-sm q-mx-sm" style="min-width: 150px">
-                    <div class="map-selection q-pa-xs" style="">
-                      <q-list class="row" style="min-width: 100px">
-                        <q-item
-                          class="col q-px-none"
-                          clickable
-                          v-ripple
-                          @click="change_base_map('OSM')"
-                        >
-                          <q-item-section class="row q-px-sm">
-                            <q-avatar rounded>
-                              <img
-                                src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png"
-                              />
-                            </q-avatar>
-                            <div
-                              class="row justify-center"
-                              style="font-size: 0.75em"
-                            >
-                              Mapbox
-                            </div>
-                          </q-item-section>
-                        </q-item>
-                        <q-item
-                          class="col q-px-none"
-                          clickable
-                          @click="change_base_map('satellite')"
-                        >
-                          <q-item-section class="q-px-sm">
-                            <q-avatar rounded>
-                              <img
-                                src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099830/Screenshot_from_2022-04-04_22-14-04_tnx5m7.png"
-                              />
-                            </q-avatar>
-                            <div
-                              class="row justify-center"
-                              style="font-size: 0.75em"
-                            >
-                              Satellite
-                            </div>
-                          </q-item-section>
-                        </q-item>
-                        <q-item
-                          class="col q-px-none"
-                          clickable
-                          @click="change_base_map('darkMap')"
-                        >
-                          <q-item-section class="q-px-sm">
-                            <q-avatar rounded>
-                              <img
-                                src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099827/Screenshot_from_2022-04-04_22-16-08_mu5dfk.png"
-                              />
-                            </q-avatar>
-                            <div
-                              class="row justify-center"
-                              style="font-size: 0.75em"
-                            >
-                              dark
-                            </div>
-                          </q-item-section>
-                        </q-item>
-                      </q-list>
+                    <span
+                      class="q-mx-sm"
+                      style="font-size: 0.75em; font-color: #838c48"
+                      >{{ $t("baseMap") }}</span
+                    >
+                    <q-separator />
+                    <div class="q-my-sm q-mx-sm" style="min-width: 150px">
+                      <div class="map-selection q-pa-xs" style="">
+                        <q-list class="row" style="min-width: 100px">
+                          <q-item
+                            class="col q-px-none"
+                            clickable
+                            v-ripple
+                            @click="change_base_map('OSM')"
+                          >
+                            <q-item-section class="row q-px-sm">
+                              <q-avatar rounded>
+                                <img
+                                  src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png"
+                                />
+                              </q-avatar>
+                              <div
+                                class="row justify-center"
+                                style="font-size: 0.75em"
+                              >
+                                Mapbox
+                              </div>
+                            </q-item-section>
+                          </q-item>
+                          <q-item
+                            class="col q-px-none"
+                            clickable
+                            @click="change_base_map('satellite')"
+                          >
+                            <q-item-section class="q-px-sm">
+                              <q-avatar rounded>
+                                <img
+                                  src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099830/Screenshot_from_2022-04-04_22-14-04_tnx5m7.png"
+                                />
+                              </q-avatar>
+                              <div
+                                class="row justify-center"
+                                style="font-size: 0.75em"
+                              >
+                                Satellite
+                              </div>
+                            </q-item-section>
+                          </q-item>
+                          <q-item
+                            class="col q-px-none"
+                            clickable
+                            @click="change_base_map('darkMap')"
+                          >
+                            <q-item-section class="q-px-sm">
+                              <q-avatar rounded>
+                                <img
+                                  src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099827/Screenshot_from_2022-04-04_22-16-08_mu5dfk.png"
+                                />
+                              </q-avatar>
+                              <div
+                                class="row justify-center"
+                                style="font-size: 0.75em"
+                              >
+                                dark
+                              </div>
+                            </q-item-section>
+                          </q-item>
+                        </q-list>
+                      </div>
+                    </div>
+                    <q-separator />
+                    <span
+                      class="text-grey-9 q-mx-sm"
+                      style="font-size: 0.75em"
+                      >{{ $t("maplabels") }}</span
+                    >
+                    <div class="q-my-sm q-mx-sm" style="min-width: 150px">
+                      <q-toggle
+                        dense
+                        size="sm"
+                        v-model="setLabels"
+                        color="primary"
+                        :label="$t('maplabelsToggle')"
+                        left-label
+                      />
                     </div>
                   </div>
-                  <q-separator />
-                  <span class="text-grey-9 q-mx-sm" style="font-size: 0.75em">{{
-                    $t("maplabels")
-                  }}</span>
-                  <div class="q-my-sm q-mx-sm" style="min-width: 150px">
-                    <q-toggle
-                      dense
-                      size="sm"
-                      v-model="setLabels"
-                      color="primary"
-                      :label="$t('maplabelsToggle')"
-                      left-label
-                    />
-                  </div>
-                </div>
-                <div class="arrow-up q-ma-xs" style="left: 89%; top: 50%"></div>
-              </div> </q-menu
-          ></q-btn>
+                  <div
+                    class="arrow-up q-ma-xs"
+                    style="left: 89%; top: 50%"
+                  ></div>
+                </div> </q-menu
+            ></q-btn>
+          </div>
+        </div>
+        <div
+          class="q-my-sm mobile-map-control"
+          style="position: absolute; z-index: 2000; bottom: 5%; right: 2%"
+        >
+          <socials />
         </div>
       </div>
-      <div
-        class="q-my-sm mobile-map-control"
-        style="position: absolute; z-index: 2000; bottom: 5%; right: 2%"
-      >
-        <socials />
-      </div>
-    </div>
 
-    <tour />
-  </div>
+      <tour />
+    </div>
+  </keep-alive>
 </template>
 
 <script>
@@ -652,10 +674,8 @@ import baselayers from "./Modals/baselayers";
 
 import setSelectedVect from "./Modals/fetchVectors";
 import setSelectedRaster from "./Modals/fetchRaster";
-import laodVectorLayers from "./Modals/fetchVectortTiles";
 import html2canvas from "html2canvas";
 
-import { axios } from "src/boot/axios";
 import loadVectorLayers from "./Modals/fetchVectortTiles";
 
 export default defineComponent({
@@ -710,6 +730,21 @@ export default defineComponent({
     const setLeafletMap = async function () {
       const { osmTiles, darkMap, satellite, USGS_Imagery } = baselayers;
 
+      let darkMap2 = L.tileLayer(
+        "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        {
+          attribution:
+            'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+          // maxZoom: 18,
+          id: "mapbox/dark-v11",
+          accessToken:
+            "pk.eyJ1IjoiY2hyaXNiYXJ0IiwiYSI6ImNrZTFtb3Z2bDAweTMyem1zcmthMGY0ejQifQ.3PzoCgSiG-1-sV1qJvO9Og",
+
+          avatar:
+            "https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png",
+        }
+      );
+
       baseMaps.value = {
         OSM: osmTiles,
         satellite: satellite,
@@ -729,7 +764,7 @@ export default defineComponent({
         smoothSenesitivity: 0.5,
         minZoom: 3,
         maxZoom: 17,
-        //layers: [darkMap],
+        layers: [darkMap2],
         attributionControl: false,
       });
 
@@ -741,7 +776,7 @@ export default defineComponent({
 
       L.control.layers(baseMaps.value).addTo(map.value);
 
-      //baseMaps.value[1].addTo(map.value)
+      // baseMaps.value[1].addTo(map.value)
 
       // L.control
       //   .attribution({
@@ -1027,7 +1062,7 @@ export default defineComponent({
         benthicLayer.value = currentRasterLayer.value[1];
 
         // currentRasterLayer.value = L.layerGroup([currentRasterLayer.value[0], currentRasterLayer.value[1]])
-        terrestrialLayer.value.addTo(map.value).bringToFront();
+        // terrestrialLayer.value.addTo(map.value).bringToFront();
         benthicLayer.value.addTo(map.value).bringToFront();
 
         benthicLayer.value.on("load", () => {
@@ -1066,7 +1101,7 @@ export default defineComponent({
         // val = tileStore.getLayers[0].layerVisibility;
         !tileStore.getLayers[0].layerVisibility
           ? map.value.removeLayer(terrestrialLayer.value)
-          : map.value.addLayer(terrestrialLayer.value);
+          : terrestrialLayer.value.addTo(map.value).bringToFront();
 
         !tileStore.getLayers[1].layerVisibility
           ? map.value.removeLayer(benthicLayer.value)

@@ -74,18 +74,18 @@
             style="min-width: 15vw"
             class="q-pl-sm q-pr-sm q-py-xs"
             dense
-            standout="bg-grey-2 text-grey-1"
+            standout="bg-accent text-grey-9"
             bottom-slots
             hide-dropdown-icon
             clear-icon="mdi-close"
             color="grey-1"
             input-class="input-option"
-            options-selected-class="text-green-7"
+            options-selected-class="text-primary"
             popup-content-class="selection-options"
             v-model="selectedRegion"
-            :options="filterOptions"
-            @filter="filterFn1"
-            @update:model-value="getselectedRegion"
+            :options="filterOptions2"
+            @filter="filterFn2"
+            @update:model-value="getselectedProtectedArea"
           >
             <template v-slot:prepend>
               <q-icon
@@ -99,12 +99,12 @@
               <q-icon color="grey-1" name="arrow_drop_down" @click.stop />
             </template>
             <template v-slot:selected>
-              <template v-if="selectedRegion">
+              <template v-if="selectedProtecteArea">
                 <div
                   style="font-size: 1em"
                   class="selection-content q-px-none text-grey-1"
                 >
-                  {{ selectedRegion }}
+                  {{ selectedProtecteArea }}
                 </div>
               </template>
               <template v-else>
@@ -180,7 +180,9 @@ export default defineComponent({
 
     const selection = ref(true),
       filterOptions = ref([]),
-      selectedRegion = ref(store.getselectedRegion);
+      filterOptions2 = ref([]),
+      selectedRegion = ref(store.getselectedRegion),
+      selectedProtecteArea = ref(store.getselectedProtectedArea);
 
     const regionNameOptions = computed(() => {
       let regionList = [];
@@ -191,6 +193,15 @@ export default defineComponent({
       });
       return regionList.sort();
     });
+
+    const protectedAreasOptions = computed(() => {
+      let protectedAreasList = [];
+      let protectedAreaName = store.protectedAreaNames;
+
+      protectedAreaName.map((d) => {
+        protectedAreasList.push(d)
+      })
+    })
 
     const filterFn1 = function (val, update) {
       update(() => {
@@ -205,8 +216,22 @@ export default defineComponent({
       });
     };
 
+    const filterFn2 = function (val, update) {
+      update(() => {
+        if (val === "") {
+          filterOptions2.value = protectedAreasOptions.value;
+        } else {
+          const needle = val.toLowerCase();
+          filterOptions2.value = protectedAreasOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        }
+      });
+    };
+
     onMounted(() => {
       store.fetchRegionNames();
+      store.fetchProtectedAreas();
       store.setRegionSelected("Mauritius");
     });
 
@@ -214,6 +239,11 @@ export default defineComponent({
       val = selectedRegion.value;
       store.setRegionSelected(val);
     };
+
+    const getselectedProtectedArea = function (val) {
+      val = selectedProtecteArea.value;
+      store.setSelectedProtectedArea(val)
+    }
 
     const fillSelection = computed(() => {
       return store.getselectedRegion;
@@ -227,8 +257,12 @@ export default defineComponent({
       selection,
       filterOptions,
       filterFn1,
+      filterOptions2,
+      filterFn2,
       selectedRegion,
+      selectedProtecteArea,
       getselectedRegion,
+      getselectedProtectedArea,
       tab: ref("one"),
     };
   },
