@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf" style="overflow: hidden">
+  <q-layout view="hHh lpR fFf">
     <q-header class="q-ma-none text-grey-1" style="background-color: #030c6a">
       <q-toolbar class="q-ma-none web-view">
         <div class="column q-pl-md">
@@ -30,7 +30,7 @@
         <div class="column q-pl-md">
           <img
             src="~/src/assets/EUlogo.png"
-            style="position: relative; width: 80%;left: -1%"
+            style="position: relative; width: 80%; left: -1%"
           />
         </div>
 
@@ -49,13 +49,16 @@
             <q-list>
               <q-item>
                 <q-item-section>
-                  <q-item-label style="font-size:28px">CoGeoS</q-item-label>
+                  <q-item-label style="font-size: 28px">CoGeoS</q-item-label>
                   <q-item-label
                     class="col q-my-none q-py-none text-blue-2"
                     style="font-size: 12px"
                     caption
                     lines="2"
-                    >Regional center for Mapping of Resources for Development Coastal Geomorphology<br/> and Shoreline Erossion and Accression Rates Monitoring Platform</q-item-label
+                    >Regional center for Mapping of Resources for Development
+                    Coastal Geomorphology<br />
+                    and Shoreline Erossion and Accression Rates Monitoring
+                    Platform</q-item-label
                   >
                 </q-item-section>
               </q-item>
@@ -149,7 +152,7 @@
         inline-label
         no-caps
         class="my-font text-grey-1 web-view"
-        style="background-color: #036a61;"
+        style="background-color: #77B8B2"
         dense
         v-model="tab"
       >
@@ -185,7 +188,13 @@
         </q-btn-dropdown>
         <!-- <q-route-tab icon="mdi-newspaper-variant" name="article" label="Mapographics" />
         <q-route-tab icon="mdi-tools" name="article" label="Qgis Toolbox" /> -->
-        <q-route-tab icon="mdi-lifebuoy" name="articles" label="info/help" />
+        <q-route-tab icon="mdi-lifebuoy" name="help" label="info/help" />
+        <q-route-tab
+          icon="mdi-newspaper-variant"
+          name="articles"
+          label="blog"
+          to="blog_posts"
+        />
       </q-tabs>
       <q-toolbar class="q-ma-none mobile-view">
         <q-avatar square size="50px" class="q-ma-none">
