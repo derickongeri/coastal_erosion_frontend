@@ -311,55 +311,7 @@ export default defineComponent({
   font-size: 21px;
 }
 
-.dash-nav {
-  // background-color: #ffffff;
-  background-image: url("~/src/assets/bgcurve.svg");
-  // background-size: 100%;
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
 
-.dash-nav2 {
-  // background-color: #ffffff;
-  background-image: url("~/src/assets/bgcurve2.svg");
-  // background-size: 100%;
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.dash-nav3 {
-  // background-color: #ffffff;
-  background-image: url("~/src/assets/bgcurve3.svg");
-  // background-size: 100%;
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.nav-btn {
-  // background-color: #ffffff;
-  background-image: url("~/src/assets/btnbg1.svg");
-  // background-size: 100%;
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.nav-btn2 {
-  // background-color: #ffffff;
-  background-image: url("~/src/assets/btnbg2.svg");
-  // background-size: 100%;
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
 
 @media screen and (max-width: 768px) {
   .web-view {

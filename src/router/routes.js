@@ -99,22 +99,22 @@ const routes = [
       requiresAuth: true,
     },
   },
-  // {
-  //   path: "/blog",
-  //   component: () => import("layouts/MainLayout.vue"),
-  //   children: [
-  //     {
-  //       path: "blog_posts",
-  //       name: "blog_posts",
-  //       component: () => import("pages/blogposts.vue"),
-  //     },
-  //     {
-  //       path: "/post/:id",
-  //       name: "blogpost",
-  //       component: () => import("pages/blogpost.vue"),
-  //     },
-  //   ],
-  // },
+  {
+    path: "/blog",
+    component: () => import("layouts/blogLayout.vue"),
+    children: [
+      {
+        path: "blog_posts",
+        name: "blog_posts",
+        component: () => import("pages/blogposts.vue"),
+      },
+      {
+        path: "/post/:id",
+        name: "post",
+        component: () => import("pages/blogpost.vue"),
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

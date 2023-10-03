@@ -1,51 +1,126 @@
 <template>
   <q-page padding class="q-pa-none scrollbar-hidden" style="overflow: hidden">
     <div
-      class="row justify-center jumbotron page-tint"
+      class="row items-center jumbotron page-tint"
       id="hero"
-      style="min-height: 75vh; min-width: 100%"
+      style="min-height: 100vh; max-width: 90%; margin: auto"
     >
-      <div class="column justify-around" style="min-height: 70%">
-        <div class="row justify-center">
-          <div
-            class="head-text my-font text-center text-white q-pa-md q-pt-xl"
-            style="font-weight: 700; background: none; max-width: 60%"
-          >
-            {{ $t("tagline") }}
+      <div
+        class="column items-left"
+        style="min-height: 70%; border-radius: 20px; max-width: 45%"
+      >
+        <div
+          class="blurred-section"
+          style="border-radius: 20px; background-color: #03213534"
+        >
+          <div class="column">
+            <div class="col justify-left">
+              <div
+                class="my-font-2 text-left text-grey-1 q-pa-none"
+                style="
+                  font-weight: bold;
+                  font-size: xxx-large;
+                  line-height: 1.5;
+                "
+              >
+                Monitoring Coastal Geomorphology and Shoreline Change
+              </div>
+            </div>
+            <div class="row justify-left">
+              <div
+                class="my-font-2 text-left text-grey-1 q-px-none q-pb-md"
+                style="font-weight: 400; font-size: 21px"
+              >
+                Geospatail data platform automates the anlaysis of settellite
+                image through ML models to to streamline the measurement and
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row justify-center">
+
+        <div class="row justify-left">
           <!-- <div class="row justify-center text-white" style="font-weight:700; font-size:21px;width:100%">Choose an Application to Launch</div> -->
-          <div class="text-center q-pa-md q-gutter-md" style="min-width: 400px">
+          <div
+            class="text-left q-py-md q-pl-md my-font-2"
+            style="min-width: 60%"
+          >
             <q-btn
+              class="my-font-2 text-bold"
               rounded
               size="lg"
-              text-color="white"
-              style="background-color: #77b8b2"
+              icon-right="mdi-arrow-right"
+              text-color="blue-9"
+              style="background-color: #ffffff"
               :label="$t('forest')"
               to="apps/dashboard"
             />
           </div>
         </div>
       </div>
+      <div class="col items-center" style="min-height: 100%; min-width: 40%">
+        <div
+          class="column justify-center items-center"
+          style="min-height: 100%"
+        >
+          <div class="" style="height: 100%; width: 90%">
+            <div class="row">
+              <q-img
+                class="col"
+                src="~/src/assets/benthic.png"
+                style="
+                  position: relative;
+                  border-radius: 20px;
+                  min-height: 100%;
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div
-      style="min-width: 100%; background-color: #ffffff"
-      class="row justify-center q-pa-none q-ma-none"
+    <!-- <div
+      style="min-width: 10vw; min-height: 85vh"
+      class="row justify-center q-pa-none q-ma-none page-tint"
+      id="about-section"
     >
       <div
         class="col justify-around q-pa-none q-ma-none"
-        style="min-height: 70%; max-width: 90%"
+        style="min-height: 50%; max-width: 66%"
       >
         <div
-          class="my-font text-justify q-px-md q-pt-xl"
+          class="my-font-2 text-center q-px-md q-pt-xl"
+          style="font-weight: 700; font-size: 30px; color: #25408f"
+        >
+          About the Project
+        </div>
+        <div class="row q-py-lg q-mb-lg">
+          <div class="col q-ma-xl" style="border-radius: 20px">
+            <q-video
+              src="https://www.youtube.com/embed/g-gz1ZiPXkI?si=5grVleFNA5xb6gr9"
+              :ratio="16 / 9"
+            />
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div
+      style="min-width: 100%; min-height: 100vh; background-color: #ffffff"
+      class="row justify-center q-pa-none q-ma-none"
+    >
+      <div
+        class="col justify-around q-pa-none q-my-xl"
+        style="min-height: 100%; max-width: 90%"
+      >
+        <div
+          class="my-font-2 text-justify q-px-md q-pt-xl"
           style="font-weight: 700; font-size: 30px; color: #25408f"
         >
           Discover Geomorphic and Shoreline Data Products
         </div>
         <div
-          class="my-font text text-grey-9 q-px-md q-pt-xs"
+          class="my-font-2 text text-grey-9 q-px-md q-pt-xs"
           style="font-weight: 400; font-size: 18px"
         >
           <p>
@@ -56,19 +131,24 @@
         </div>
         <div class="row q-py-lg q-mb-lg">
           <div class="col q-ma-md">
-            <q-card class="my-card" flat>
-              <q-img src="~/src/assets/benthic.png">
-                <!-- <div class="absolute-bottom text-h6">Title</div> -->
-              </q-img>
+            <q-card class="my-card my-font-2" flat>
+              <div class="column" style="border-radius: 20px">
+                <q-img
+                  src="~/src/assets/benthic.png"
+                  style="border-radius: 20px"
+                >
+                  <!-- <div class="absolute-bottom text-h6">Title</div> -->
+                </q-img>
+              </div>
 
               <q-card-section class="q-px-none">
-                <div style="font-weight: 700; font-size: 30px; color: #25408f">
+                <div style="font-weight: 400; font-size: 30px; color: #25408f">
                   Benthic Habitats
                 </div>
               </q-card-section>
 
               <q-card-section
-                class="text-grey-9 q-ma-none q-px-none"
+                class="text-grey-9 text-justify q-ma-none q-px-none"
                 style="background-color: #77b8b200"
               >
                 With global habitat maps, a bleaching monitoring system,
@@ -79,8 +159,11 @@
             </q-card>
           </div>
           <div class="col q-ma-md">
-            <q-card class="my-card" flat>
-              <q-img src="~/src/assets/terrestrial.png">
+            <q-card class="my-card my-font-2" flat>
+              <q-img
+                src="~/src/assets/terrestrial.png"
+                style="border-radius: 20px"
+              >
                 <!-- <div class="absolute-bottom text-h6">Title</div> -->
               </q-img>
               <q-card-section class="q-px-none">
@@ -100,8 +183,11 @@
             </q-card>
           </div>
           <div class="col q-ma-md">
-            <q-card class="my-card" flat>
-              <q-img src="~/src/assets/shoreline.png">
+            <q-card class="my-card my-font-2" flat>
+              <q-img
+                src="~/src/assets/shoreline.png"
+                style="border-radius: 20px"
+              >
                 <!-- <div class="absolute-bottom text-h6">Title</div> -->
               </q-img>
 
@@ -135,22 +221,16 @@
         style="min-height: 70%; max-width: 90%"
       >
         <div
-          class="my-font text-center q-px-md q-pt-xl"
+          class="my-font-2 text-center q-px-md q-pt-xl"
           style="font-weight: 700; font-size: 30px; color: #25408f"
         >
           About the Project
         </div>
         <div class="row q-py-lg q-mb-lg">
-          <div class="col q-ma-xl" style="border-radius: 15px">
-            <q-video
-              src="https://www.youtube.com/embed/g-gz1ZiPXkI?si=5grVleFNA5xb6gr9"
-              :ratio="16 / 9"
-            />
-          </div>
           <div class="col q-ma-xl">
             <q-card
               flat
-              class="my-card text-grey-9 text-justify"
+              class="my-card text-grey-9 my-font-2 text-justify"
               style="background-color: #0f1b24a00; border-radius: 15px"
             >
               <q-card-section style="font-weight: 400; font-size: 18px">
@@ -177,183 +257,14 @@
               </q-card-section>
             </q-card>
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      style="min-width: 10vw; min-height: 70vh"
-      class="row justify-center q-pa-none q-ma-none"
-
-    >
-      <div
-        class="col justify-around q-pa-none q-ma-none"
-        style="min-height: 70%; max-width: 90%"
-      >
-        <div
-          class="my-font text-left q-px-md q-pt-xl"
-          style="font-weight: 700; font-size: 30px; color:#25408f"
-        >
-          CoGEOS Coverage
-        </div>
-        <div class="row q-py-lg q-mb-lg">
-
-          <div class="col q-ma-xl">
-            <q-card
-              flat
-              class="my-card text-grey-9 text-justify"
-              style="background-color: #0f1b2400; border-radius: 15px"
-            >
-              <q-card-section style="font-weight: 400; font-size: 18px">
-                <P>
-                  The Global Monitoring for Environment and Security and Africa
-                  (GMES & Africa) Support Programme is the result of the
-                  longstanding cooperation between Africa and Europe in the area
-                  of space science & technology, which is one of the key
-                  priorities of the long-term EU-Africa Joint Strategy. GMES &
-                  Africa Support Programme is administered by the African Union
-                  Commission through the Human Resource, Science and Technology
-                  (HRST) Commission and supported by a technical assistance team
-                  lead by GAF AG.</P
-                >
-
-                <P
-                  >The programme aims at improving African policy-makers’,
-                  planners’, scientists’, business and private sector and
-                  citizens’ capacities to design, implement, and monitor
-                  national, regional and continental policies and to promote
-                  sustainable management of natural resources through the use of
-                  Earth Observation data and derived information.</P
-                >
-              </q-card-section>
-            </q-card>
+          <div class="col q-ma-xl" style="border-radius: 15px">
+            <q-video
+              src="https://www.youtube.com/embed/g-gz1ZiPXkI?si=5grVleFNA5xb6gr9"
+              :ratio="16 / 9"
+            />
           </div>
         </div>
       </div>
-      <div
-        class="col justify-around q-pa-none q-ma-none page-tint"
-        style="min-height: 70%; max-width: 90%"
-        id="about"
-      >
-
-      </div>
-
-    </div>
-    <div
-      style="min-width: 10vw; min-height: 70vh"
-      class="row justify-center q-pa-none q-ma-none"
-
-    >
-    <div
-        class="col justify-around q-pa-none q-ma-none page-tint"
-        style="min-height: 70%; max-width: 90%"
-        id="about"
-      >
-
-      </div>
-      <div
-        class="col justify-around q-pa-none q-ma-none"
-        style="min-height: 70%; max-width: 90%"
-      >
-        <div
-          class="my-font text-left q-px-md q-pt-xl"
-          style="font-weight: 700; font-size: 30px; color:#25408f"
-        >
-          CoGEOS Coverage
-        </div>
-        <div class="row q-py-lg q-mb-lg">
-
-          <div class="col q-ma-xl">
-            <q-card
-              flat
-              class="my-card text-grey-9 text-justify"
-              style="background-color: #0f1b2400; border-radius: 15px"
-            >
-              <q-card-section style="font-weight: 400; font-size: 18px">
-                <P>
-                  The Global Monitoring for Environment and Security and Africa
-                  (GMES & Africa) Support Programme is the result of the
-                  longstanding cooperation between Africa and Europe in the area
-                  of space science & technology, which is one of the key
-                  priorities of the long-term EU-Africa Joint Strategy. GMES &
-                  Africa Support Programme is administered by the African Union
-                  Commission through the Human Resource, Science and Technology
-                  (HRST) Commission and supported by a technical assistance team
-                  lead by GAF AG.</P
-                >
-
-                <P
-                  >The programme aims at improving African policy-makers’,
-                  planners’, scientists’, business and private sector and
-                  citizens’ capacities to design, implement, and monitor
-                  national, regional and continental policies and to promote
-                  sustainable management of natural resources through the use of
-                  Earth Observation data and derived information.</P
-                >
-              </q-card-section>
-            </q-card>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-    <div
-      style="min-width: 10vw; min-height: 70vh"
-      class="row justify-center q-pa-none q-ma-none"
-
-    >
-      <div
-        class="col justify-around q-pa-none q-ma-none"
-        style="min-height: 70%; max-width: 90%"
-      >
-        <div
-          class="my-font text-left q-px-md q-pt-xl"
-          style="font-weight: 700; font-size: 30px; color:#25408f"
-        >
-          CoGEOS Coverage
-        </div>
-        <div class="row q-py-lg q-mb-lg">
-
-          <div class="col q-ma-xl">
-            <q-card
-              flat
-              class="my-card text-grey-9 text-justify"
-              style="background-color: #0f1b2400; border-radius: 15px"
-            >
-              <q-card-section style="font-weight: 400; font-size: 18px">
-                <P>
-                  The Global Monitoring for Environment and Security and Africa
-                  (GMES & Africa) Support Programme is the result of the
-                  longstanding cooperation between Africa and Europe in the area
-                  of space science & technology, which is one of the key
-                  priorities of the long-term EU-Africa Joint Strategy. GMES &
-                  Africa Support Programme is administered by the African Union
-                  Commission through the Human Resource, Science and Technology
-                  (HRST) Commission and supported by a technical assistance team
-                  lead by GAF AG.</P
-                >
-
-                <P
-                  >The programme aims at improving African policy-makers’,
-                  planners’, scientists’, business and private sector and
-                  citizens’ capacities to design, implement, and monitor
-                  national, regional and continental policies and to promote
-                  sustainable management of natural resources through the use of
-                  Earth Observation data and derived information.</P
-                >
-              </q-card-section>
-            </q-card>
-          </div>
-        </div>
-      </div>
-      <div
-        class="col justify-around q-pa-none q-ma-none page-tint"
-        style="min-height: 70%; max-width: 90%"
-        id="plugin"
-      >
-
-      </div>
-
     </div>
     <div
       style="min-width: 100%; min-height: 45vh; background-color: #032135"
@@ -526,7 +437,6 @@
                     color="grey-3"
                     size="lg"
                     icon="mdi-facebook"
-
                   />
                   <q-btn
                     round
@@ -534,7 +444,6 @@
                     color="grey-3"
                     size="lg"
                     icon="mdi-linkedin"
-
                   />
                   <q-btn
                     round
@@ -542,7 +451,6 @@
                     color="grey-3"
                     size="lg"
                     icon="mdi-twitter"
-
                   />
                   <q-btn
                     round
@@ -550,7 +458,6 @@
                     color="grey-3"
                     size="lg"
                     icon="mdi-content-copy"
-
                   />
                 </div>
               </div>
@@ -582,22 +489,30 @@
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
     sitenav: require("components/Website/navigation.vue").default,
   },
   setup() {
+    const router = { useRouter };
+
     return {
       slide: ref(1),
       autoplay: ref(true),
       tab: ref("mails"),
+      navigateTodashboard: () => {
+        // Navigate to the individual post by pushing the route to the router
+        router.push(`/apps/dashboard`);
+      },
     };
   },
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap");
 /* *{
   box-sizing: border-box;
   outline: 3px solid limegreen !important;
@@ -634,7 +549,7 @@ export default {
 }
 
 .page-tint {
-  background-color: rgba(107, 107, 107, 0.699);
+  background-color: rgba(52, 64, 87, 0.753);
   background-blend-mode: multiply;
 }
 
@@ -738,7 +653,7 @@ export default {
 
 @media screen and (min-width: 768px) {
   .head-text {
-    font-size: 35px;
+    font-size: 48px;
   }
 }
 </style>

@@ -18,6 +18,7 @@
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "core-js": "^3.6.5",
+    "dayjs": "^1.11.10",
     "fracturedjsonjs": "^3.0.2",
     "fs": "^0.0.1-security",
     "geoserver-node-client": "^1.2.2",

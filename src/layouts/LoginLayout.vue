@@ -1,173 +1,144 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header class="q-ma-none text-grey-1" style="background-color: #030c6a">
-      <q-toolbar class="q-ma-none web-view">
-        <div class="column q-pr-md">
-          <img
-            src="~/src/assets/RCMRD_Logo_White.svg"
-            style="position: relative; width: 100%; height: 50px; left: -1%"
-          />
-        </div>
-        <!-- <div class="column bg-white q-pr-md" style="position: relative; z-index:-1; width: 35px; height: 50px; left: -1%; transform:skew(30deg)">
-          <img
-            src=""
-
-          />
-        </div> -->
-        <div class="column q-pl-md">
-          <img
-            src="~/src/assets/rcmrd_gmes.png"
-            style="position: relative; width: 121px; height: 39.77px; left: -1%"
-          />
-        </div>
-
-        <q-separator vertical inset />
-        <!-- <div square class="q-ma-none" style="max-width: 100px">
-          <img
-            src="~/src/assets/logo4.png"
-            style="position: relative; width: 100%; height: 100%; left: -1%"
-          />
-        </div> -->
-        <q-toolbar-title
-          class="row justify-center q-gutter-none text-h6 my-font q-pa-none q-ma-none"
-          style="color: white; font-size: 21px; font-weight: bold"
-        >
-          <div class="column items-start q-gutter-none" style="">
-            <q-list>
-              <q-item>
-                <q-item-section>
-                  <q-item-label style="font-size:28px">CoGeoS</q-item-label>
-                  <q-item-label
-                    class="col q-my-none q-py-none text-blue-2"
-                    style="font-size: 12px"
-                    caption
-                    lines="2"
-                    >Regional center for Mapping of Resources for Development Coastal Geomorphology<br/> and Shoreline Erossion and Accression Rates Monitoring Platform</q-item-label
-                  >
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </div>
-        </q-toolbar-title>
-        <q-btn
-          v-if="user"
-          class="my-font q-mr-md"
-          style="font-weight: 700; font-size: 16px"
-          flat
-          no-caps
-          color="grey-1"
-          icon="mdi-account"
-          icon-right="mdi-menu-down"
-          :label="user.user_metadata.firstName"
-        >
-          <q-menu fit>
-            <q-list>
-              <q-item clickable v-close-popup to="/me">
-                <q-item-section>
-                  <q-item-label>{{ $t("profile") }}</q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-close-popup @click="handleLogout">
-                <q-item-section>
-                  <q-item-label>{{ $t("logout") }}</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-        <q-btn
-          v-else
-          class="my-font q-mr-lg"
-          style="font-weight: 700; font-size: 16px"
-          flat
-          no-caps
-          color="grey-1"
-          icon="mdi-account"
-          :label="$t('login')"
-          to="/login"
-        />
-        <div class="my-font q-mr-sm" style="font-weight: 700">
-          <q-select
-            dark
-            label-color="grey-1"
-            v-model="locale"
-            :options="localeOptions"
-            :label="$t('select_language')"
-            dense
-            borderless
-            emit-value
-            map-options
-            style="
-              min-width: 150px;
-              font-weight: 700;
-              font-size: 16px;
-              font-color: white;
-            "
-          >
-            <template v-slot:prepend
-              ><q-icon color="grey-1" size="xs" name="mdi-web"
-            /></template>
-          </q-select>
-        </div>
-      </q-toolbar>
-      <q-tabs
-        inline-label
-        no-caps
-        class="bg-primary my-font text-grey-1"
-        dense
-        v-model="tab"
+    <q-header
+        class="text-white q-py-lg navigation-background-color"
+        height-hint="98"
       >
-        <q-route-tab
-          name="images"
-          icon="mdi-home"
-          :label="$t(`home`)"
-          to="/home"
-        />
-        <q-route-tab
-          name="videos"
-          icon="mdi-view-dashboard"
-          :label="$t('dashboard')"
-          to="apps/dashboard"
-        />
-        <q-btn-dropdown no-caps auto-close stretch flat icon="mdi-more" label="Products">
-          <q-list>
-            <q-item clickable @click="tab = 'movies'">
-              <q-item-section>Mapographics</q-item-section>
-            </q-item>
+        <q-toolbar>
+          <q-toolbar-title style="">
+            <div class="row">
+              <div class="column">
+                <img
+                  src="~/src/assets/rcmrd_logo.jpg"
+                  style="position: relative; width: 100%; height: 35px"
+                />
+              </div>
+              <div class="column q-pl-md">
+                <img
+                  src="~/src/assets/GMESlogo.png"
+                  style="
+                    position: relative;
+                    width: 100%;
+                    height: 35px;
+                    left: -1%;
+                  "
+                />
+              </div>
 
-            <q-item clickable @click="tab = 'photos'">
-              <q-item-section>Qgis Plugin</q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
-        <!-- <q-route-tab icon="mdi-newspaper-variant" name="article" label="Mapographics" />
-        <q-route-tab icon="mdi-tools" name="article" label="Qgis Toolbox" /> -->
-        <q-route-tab icon="mdi-lifebuoy" name="articles" label="info/help" />
-
-      </q-tabs>
-      <q-toolbar class="q-ma-none mobile-view">
-        <q-avatar square size="50px" class="q-ma-none">
-          <img
-            src="~/src/assets/RCMRD_Logo_White.svg"
-            style="position: relative; width: 100%; height: 50px; left: -1%"
-          />
-        </q-avatar>
-        <q-separator vertical inset />
-        <q-toolbar-title
-          class="text-h6 my-font q-pa-none q-ma-none item-center"
-          style="color: #3c4e3d; font-size: 1.2rem; font-weight: bold"
-        >
-          <!-- <div
-            class="row items-end q-pl-xs q-ma-none q-gutter-none"
-            style="max-height: 50px"
+              <div class="column q-pl-md">
+                <img
+                  src="~/src/assets/AUlogo.png"
+                  style="
+                    position: relative;
+                    width: 100%;
+                    height: 33px;
+                    left: -1%;
+                  "
+                />
+              </div>
+              <div class="column q-pl-md">
+                <img
+                  src="~/src/assets/EUlogo.png"
+                  style="
+                    position: relative;
+                    width: 100%;
+                    height: 33px;
+                    left: -1%;
+                  "
+                />
+              </div>
+            </div>
+          </q-toolbar-title>
+          <q-tabs
+            align="left"
+            no-caps
+            dense
+            inline-label
+            class="text-black"
+            style="margin-right: 10%"
           >
-            <img src="~/src/assets/logoname.svg" />
-          </div> -->
-        </q-toolbar-title>
+            <q-route-tab name="images" :label="$t(`home`)" to="/home" />
+            <q-route-tab
+              ripple="false"
+              name="videos"
+              :label="$t('dashboard')"
+              to="/apps/dashboard"
+            />
+            <q-btn-dropdown no-caps auto-close stretch flat label="Products">
+              <q-list>
+                <q-item clickable @click="tab = 'movies'">
+                  <q-item-section>Mapographics</q-item-section>
+                </q-item>
 
-        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
-      </q-toolbar>
-    </q-header>
+                <q-item clickable @click="tab = 'photos'">
+                  <q-item-section>Qgis Plugin</q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+            <!-- <q-route-tab icon="mdi-newspaper-variant" name="article" label="Mapographics" />
+        <q-route-tab icon="mdi-tools" name="article" label="Qgis Toolbox" /> -->
+            <!-- <q-route-tab icon="mdi-lifebuoy" name="help" label="info/help" /> -->
+            <q-route-tab name="articles" label="blog" to="/blog/blog_posts" />
+          </q-tabs>
+          <q-btn
+            v-if="user"
+            class="my-font q-mr-md"
+            style="font-weight: 400"
+            flat
+            no-caps
+            color="grey-9"
+            icon="mdi-account"
+            icon-right="mdi-menu-down"
+            :label="user.user_metadata.firstName"
+          >
+            <q-menu fit>
+              <q-list>
+                <q-item clickable v-close-popup to="/me">
+                  <q-item-section>
+                    <q-item-label>{{ $t("profile") }}</q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable v-close-popup @click="handleLogout">
+                  <q-item-section>
+                    <q-item-label>{{ $t("logout") }}</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+          <q-btn
+            v-else
+            class="my-font q-mr-lg"
+            style="font-weight: 700"
+            flat
+            no-caps
+            color="grey-1"
+            icon="mdi-account"
+            :label="$t('login')"
+            to="/login"
+          />
+          <div class="my-font q-mr-sm" style="font-weight: 700">
+            <q-select
+              label-color="grey-9"
+              v-model="locale"
+              :options="localeOptions"
+              dense
+              borderless
+              emit-value
+              map-options
+              style="
+                font-weight: 700;
+                font-size: 12px;
+                font-color: rgb(41, 41, 41);
+              "
+            >
+              <!-- <template v-slot:prepend
+              ><q-icon color="grey-9" size="xs" name="mdi-web"
+            /></template> -->
+            </q-select>
+          </div>
+        </q-toolbar>
+      </q-header>
     <!-- <q-header bordered class="bg-white q-ma-none text-grey-10 mobile-view">
       <q-toolbar class="q-ma-none">
         <q-avatar square size="50px" class="q-ma-none">
