@@ -294,10 +294,10 @@
             <q-btn
               v-else
               class="my-font-2 q-mr-lg"
-              style="font-weight: 700"
+              style="font-weight: 400"
               flat
               no-caps
-              color="grey-1"
+              color="grey-9"
               icon="mdi-account"
               :label="$t('login')"
               to="/login"

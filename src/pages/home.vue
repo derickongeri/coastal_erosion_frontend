@@ -212,27 +212,33 @@
       </div>
     </div>
     <div
-      style="min-width: 10vw; min-height: 85vh"
-      class="row justify-center q-pa-none q-ma-none page-tint"
+      style="min-width: 10vw; min-height: 100vh"
+      class="row items-center justify-center q-pa-none q-ma-none page-tint"
       id="about-section"
     >
       <div
-        class="col justify-around q-pa-none q-ma-none"
+        class="col q-pa-none q-ma-none"
         style="min-height: 70%; max-width: 90%"
       >
-        <div
-          class="my-font-2 text-center q-px-md q-pt-xl"
-          style="font-weight: 700; font-size: 30px; color: #25408f"
-        >
-          About the Project
-        </div>
         <div class="row q-py-lg q-mb-lg">
+          <div class="col q-ma-xl" style="border-radius: 15px">
+            <q-video
+              src="https://www.youtube.com/embed/g-gz1ZiPXkI?si=5grVleFNA5xb6gr9"
+              :ratio="16 / 9"
+            />
+          </div>
           <div class="col q-ma-xl">
             <q-card
               flat
               class="my-card text-grey-9 my-font-2 text-justify"
               style="background-color: #0f1b24a00; border-radius: 15px"
             >
+              <div
+                class="my-font-2 text-center q-px-md q-py-md"
+                style="font-weight: 700; font-size: 30px; color: #25408f"
+              >
+                About the Project
+              </div>
               <q-card-section style="font-weight: 400; font-size: 18px">
                 <P>
                   The Global Monitoring for Environment and Security and Africa
@@ -257,15 +263,201 @@
               </q-card-section>
             </q-card>
           </div>
-          <div class="col q-ma-xl" style="border-radius: 15px">
-            <q-video
-              src="https://www.youtube.com/embed/g-gz1ZiPXkI?si=5grVleFNA5xb6gr9"
-              :ratio="16 / 9"
+        </div>
+      </div>
+    </div>
+    <div
+      class="column justify-around q-py-xl justify-around"
+      style="min-width: 100vw;"
+      id="products-section"
+    >
+      <div class="row justify-between q-my-xl q-mx-auto " style="min-width: 90%">
+        <div class="col-4 q-pa-md">
+          <div class="column justify-center">
+            <div class="col justify-left">
+              <div
+                class="my-font-2 text-left text-grey-1 q-pa-none"
+                style="
+                  font-weight: bold;
+                  font-size: xxx-large;
+                  line-height: 1.5;
+                "
+              >
+              CoGeoS Dashboard for Interactive Maps & Statistics
+              </div>
+            </div>
+            <div class="row justify-left">
+              <div
+                class="my-font-2 text-left text-grey-1 q-px-none q-pb-md"
+                style="font-weight: 400; font-size: 21px"
+              >
+                Geospatail data platform automates the anlaysis of settellite
+                image through ML models to to streamline the measurement and
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div
+            class="column justify-center items-center"
+            style="min-height: 100%"
+          >
+            <div class="" style="height: 100%; width: 90%">
+              <div class="row">
+                <q-img
+                  class="col"
+                  src="~/src/assets/dashboard.png"
+                  style="
+                    position: relative;
+                    border-radius: 20px;
+                    min-height: 100%;
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-between q-my-xl q-mx-auto" style="min-width: 90%">
+        <div class="col-6">
+          <div
+            class="column justify-center items-center"
+            style="min-height: 100%"
+          >
+            <div class="" style="height: 100%; width: 90%">
+              <div class="row">
+                <q-img
+                  class="col"
+                  src="~/src/assets/dashboard.png"
+                  style="
+                    position: relative;
+                    border-radius: 20px;
+                    min-height: 100%;
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 q-pa-md">
+          <div class="column justify-center">
+            <div class="col justify-left">
+              <div
+                class="my-font-2 text- text-grey-1 q-pa-none"
+                style="
+                  font-weight: bold;
+                  font-size: xxx-large;
+                  line-height: 1.5;
+                "
+              >
+              QGIS Plugin for Automatic Shoreline Extraction
+              </div>
+            </div>
+            <div class="row justify-left">
+              <div
+                class="my-font-2 text-left text-grey-1 q-px-none q-pb-md"
+                style="font-weight: 400; font-size: 21px"
+              >
+                Geospatail data platform automates the anlaysis of settellite
+                image through ML models to to streamline the measurement and
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-between q-my-xl q-mx-auto " style="min-width: 90%">
+        <div class="col-4 q-pa-md">
+          <div class="column justify-center">
+            <div class="col justify-left">
+              <div
+                class="my-font-2 text-left text-grey-1 q-pa-none"
+                style="
+                  font-weight: bold;
+                  font-size: xxx-large;
+                  line-height: 1.5;
+                "
+              >
+                CoGeos Mapographics
+              </div>
+            </div>
+            <div class="row justify-left">
+              <div
+                class="my-font-2 text-left text-grey-1 q-px-none q-pb-md"
+                style="font-weight: 400; font-size: 21px"
+              >
+                Geospatail data platform automates the anlaysis of settellite
+                image through ML models to to streamline the measurement and
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div
+            class="column justify-center items-center"
+            style="min-height: 100%"
+          >
+            <div class="" style="height: 100%; width: 90%">
+              <div class="row">
+                <q-img
+                  class="col"
+                  src="~/src/assets/mapographics.png"
+                  style="
+                    position: relative;
+                    border-radius: 20px;
+                    min-height: 100%;
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      style="min-width: 100%; min-height: 45vh; background-color: #ffffff"
+      class="row items-center justify-center q-pa-none q-ma-none"
+    >
+      <div
+        class="column justify-center q-pa-none q-ma-none"
+        style="min-height: 70%; max-width: 90%"
+      >
+        <div
+          class="my-font-2 text-center q-px-md q-py-md"
+          style="font-weight: 700; font-size: 30px; color: #25408f"
+        >
+          A Collaborative Partnership
+        </div>
+        <div class="row q-gutter-x-lg">
+          <div class="column">
+            <img
+              src="~/src/assets/rcmrd_logo.jpg"
+              style="position: relative; width: 100%; height: 70px"
+            />
+          </div>
+          <div class="column q-pl-md">
+            <img
+              src="~/src/assets/GMESlogo.png"
+              style="position: relative; width: 100%; height: 70px; left: -1%"
+            />
+          </div>
+
+          <div class="column q-pl-md">
+            <img
+              src="~/src/assets/AUlogo.png"
+              style="position: relative; width: 100%; height: 70px; left: -1%"
+            />
+          </div>
+          <div class="column q-pl-md">
+            <img
+              src="~/src/assets/EUlogo.png"
+              style="position: relative; width: 100%; height: 70px; left: -1%"
             />
           </div>
         </div>
       </div>
     </div>
+
     <div
       style="min-width: 100%; min-height: 45vh; background-color: #032135"
       class="row justify-center q-pa-none q-ma-none"
@@ -295,6 +487,7 @@
         </div>
       </div>
     </div>
+
 
     <div
       style="min-width: 10vw; min-height: 45vh"
@@ -567,10 +760,24 @@ export default {
 }
 
 #about-section {
-  background-color: #ffffff;
-  background-image: url("~/src/assets/panelbg.svg");
-  /* background-attachment: fixed; */
-  background-size: 35%;
+  background-color: rgba(52, 64, 87, 0.753);
+  background-blend-mode: multiply;
+  background-image: url("~/src/assets/bg_image.jpg");
+  background-attachment: fixed;
+  background-size: 100%;
+  /* Center and scale the image nicely */
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: fit;
+}
+
+#products-section {
+  /* background-color: rgba(52, 64, 87, 0.753); */
+  background-image: url("~/src/assets/bg_vector.svg");
+  background-color: #032135;
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  background-size: 100%;
   /* Center and scale the image nicely */
   background-position: left;
   background-repeat: no-repeat;
