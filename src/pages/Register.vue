@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="q-pa-md login-card absolute-center" style="max-width: 100%">
+    <div class="q-pa-md login-card bg-white absolute-center" style="max-width: 100%;border-radius: 20px;">
       <q-form @submit.prevent="">
         <!-- <div class="text-primary row">
         <div style="width: 450px"></div>

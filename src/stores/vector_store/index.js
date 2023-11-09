@@ -65,7 +65,7 @@ export const useVectorStore = defineStore({
   actions: {
     async fetchRegionNames() {
       const { data, error } = await axios.get(
-        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3Awio_countries&maxFeatures=50&outputFormat=application%2Fjson"
+        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3Aioc_islands&maxFeatures=50&outputFormat=application%2Fjson"
       );
 
       const countriesArray = data.features;
@@ -116,7 +116,7 @@ export const useVectorStore = defineStore({
 
     async fetchSubRegionNames() {
       const { data, error } = await axios.get(
-        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3AIO_Countries&maxFeatures=50&outputFormat=application%2Fjson"
+        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3Aioc_islands&maxFeatures=50&outputFormat=application%2Fjson"
       );
 
       this.subRegionNames = data.features;
@@ -140,7 +140,7 @@ export const useVectorStore = defineStore({
       this.selectedProtectedArea = val;
       console.log(this.selectedProtectedArea)
     },
-    
+
     setCountrySelected(val) {
       this.slectedCountry = val;
     },

@@ -7,15 +7,10 @@
     >
       <q-scroll-area
         ref="stackedCards"
-        class="stacked-cards q-ma-none q-pa-none"
+        class="stacked-cards q-ma-none q-pa-none chart-area"
         :thumb-style="thumbStyle"
         :bar-style="barStyle"
-        style="
-          position: relative;
-          height: 65vh;
-          width: 35vw;
-          border-radius: 20px;
-        "
+        style=""
       >
         <q-card
           flat
@@ -25,12 +20,19 @@
           style="border-radius: 20px"
         >
           <q-card-section class="" style="">
-            <div class="row items-center" style="font-weight: 400; font-size: 21px" @click="toggleCard(cards[1])">
-              <div >{{ store.selectedRegion }} Benthic Classes</div>
-              <q-space/>
+            <div
+              class="row items-center"
+              style="font-weight: 400; font-size: 21px"
+              @click="toggleCard(cards[1])"
+            >
+              <div>{{ store.selectedRegion }} Benthic Classes</div>
+              <q-space />
               <div @mousedown.stop>
                 <label class="switch">
-                  <input type="checkbox" v-model="tileStore.layers[1].layerVisibility"/>
+                  <input
+                    type="checkbox"
+                    v-model="tileStore.layers[1].layerVisibility"
+                  />
                   <span class="slider round"></span>
                 </label>
               </div>
@@ -56,7 +58,10 @@
               <q-space />
               <div>
                 <label @mousedown.stop="" class="switch">
-                  <input type="checkbox" v-model="tileStore.layers[0].layerVisibility"/>
+                  <input
+                    type="checkbox"
+                    v-model="tileStore.layers[0].layerVisibility"
+                  />
                   <span class="slider round"></span>
                 </label>
               </div>
@@ -70,11 +75,69 @@
           bordered
           class="card q-mx-md q-my-sm"
           :class="{ expanded: cards[2].expanded }"
-          @click="toggleCard(cards[2])"
           style="border-radius: 20px"
         >
           <q-card-section class="card-content q-pa-md q-ma-sm" style="">
-            <!-- <Analysis /> -->
+            <div
+              class="row items-center"
+              style="font-weight: 400; font-size: 21px"
+            >
+              <div>{{ store.selectedRegion }} Shoreline Change</div>
+              <q-space />
+              <q-btn
+                flat
+                round
+                padding="xs"
+                icon="mdi-cog"
+                style="color: #4ba8f3d0"
+              >
+                <q-menu flat class="q-pa-sm menu-card" :offset="[85, 0]">
+                  <div class="arrow-up q-ma-xs" style="left: 42%"></div>
+                  <div class="bg-white menu-content">
+                    <span class="q-ma-sm" style="font-size: 0.75em">{{
+                      $t("Select Analysis")
+                    }}</span>
+                    <div class="row my-font items-center q-mx-md q-my-md">
+                      <select id="dropdown" style="padding: 5px;width: 100%;">
+                        <option value="apple">Change rate</option>
+                        <option value="apple">Change area</option>
+                      </select>
+                    </div>
+
+                    <span class="q-ma-sm" style="font-size: 0.75em">{{
+                      $t("Select Period")
+                    }}</span>
+                    <div class="row q-pa-md">
+                      <div class="col">
+                        <div class="col my-font">
+                          <select id="dropdown" onchange="removeFocus()">
+                            <option value="apple">2017</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="column justify-center q-px-xs">
+                        <span>-</span>
+                      </div>
+                      <div class="col my-font">
+                        <select id="dropdown">
+                          <option value="apple">2019</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </q-menu>
+              </q-btn>
+              <div>
+                <label @mousedown.stop="" class="switch">
+                  <input
+                    type="checkbox"
+                    v-model="tileStore.layers[0].layerVisibility"
+                  />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <shorelineAnalysis />
           </q-card-section>
         </q-card>
       </q-scroll-area>
@@ -110,12 +173,15 @@ import {
 } from "vue";
 
 import { useVectorStore } from "../../stores/vector_store/index.js";
-import { useTileStore } from "../../stores/tile_store/index.js"
+import { useTileStore } from "../../stores/tile_store/index.js";
 
 export default {
   components: {
     benthicAnalysis: require("../Analysis/indicators/benthicStats.vue").default,
-    terrestrialAnalysis: require("../Analysis/indicators/terrestrialStats.vue").default,
+    terrestrialAnalysis: require("../Analysis/indicators/terrestrialStats.vue")
+      .default,
+    shorelineAnalysis: require("../Analysis/indicators/shorelineChange.vue")
+      .default,
   },
 
   setup() {
@@ -154,14 +220,12 @@ export default {
     };
 
     watch(store.selectedRegion, () => {
-      selectedArea.value = store.getselectedRegion
-    })
+      selectedArea.value = store.getselectedRegion;
+    });
 
-
-
-    onMounted(()=>{
-      selectedArea.value = store.getselectedRegion
-    })
+    onMounted(() => {
+      selectedArea.value = store.getselectedRegion;
+    });
 
     return {
       thumbStyle: {
@@ -179,6 +243,7 @@ export default {
         width: "9px",
         opacity: 0.2,
       },
+      options: ["Change Rate", "Change Area"],
       showAnalysismobile,
       hideAnalysismobile,
       matchMediaMobile,
@@ -189,7 +254,11 @@ export default {
       toggleCard,
       value: ref(true),
       store,
-      tileStore
+      tileStore,
+      removeFocus:()=>{
+            // Remove the focus from the dropdown
+            document.getElementById('dropdown').blur();
+        }
     };
   },
 };
@@ -216,6 +285,34 @@ export default {
 //   height: 300px; /* Adjust the height as needed */
 //   overflow: hidden;
 // }
+
+.arrow-up {
+  position: absolute;
+  z-index: 1;
+  left: 44%;
+  top: 6%;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-left-color: #ffffff;
+  border-right: none;
+  transform-origin: 0 0;
+  transform: rotate(45deg);
+  border-bottom-color: #ffffff;
+  box-shadow: 1px -2px 3px 0 rgb(85 85 85 / 15%);
+}
+
+.menu-content {
+  box-shadow: 2px 2px 3px 3px rgb(85 85 85 / 15%);
+  border-radius: 5%;
+  margin-top: 2.5%;
+  min-width: 180px;
+}
+
+.menu-card {
+  background: rgba(255, 255, 255, 0);
+  box-shadow: none;
+}
 
 .card {
   // background-color: lightgray;
@@ -313,6 +410,27 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.chart-area {
+  position: relative;
+  height: 65vh;
+  width: 35vw;
+  border-radius: 20px;
+}
+
+#dropdown {
+  background-color: #ffffff;
+  border: 1px solid #4ba8f3d0; /* Set the border color */
+  border-radius: 15px; /* Add rounded edges */
+  min-width: 50px; /* Set a fixed width (adjust as needed) */
+}
+
+#dropdown:focus {
+  background-color: #ffffff;
+  border: 1px solid #4ba8f3d0; /* Set the border color */
+  border-radius: 15px; /* Add rounded edges */
+  min-width: 50px; /* Set a fixed width (adjust as needed) */
+}
+
 @media screen and (max-width: 768px) {
   .web-veiw {
     display: none;
@@ -324,4 +442,24 @@ input:checked + .slider:before {
     display: none;
   }
 }
+
+@media screen and (max-width: 1366px) {
+  .chart-area {
+    position: relative;
+    height: 65vh;
+    min-width: 40vw;
+    max-width: 40vw;
+    border-radius: 20px;
+  }
+}
+
+// @media screen and (min-width: 780px) {
+//   .chart-area {
+//     position: relative;
+//     height: 65vh;
+//     min-width: 40vw;
+//     max-width: 40vw;
+//     border-radius: 20px;
+//   }
+// }
 </style>

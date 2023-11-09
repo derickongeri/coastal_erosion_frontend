@@ -22,9 +22,13 @@ export default function createLegend() {
   var store = useTileStore();
   var colorMap = store.getColorMap;
   var benthicColorMap = store.getBenthicColorMap;
+  var shorelineColorMap = store.getShorelineColorMap;
+  var shorelineAreaColorMap = store.getShorelineAreaColorMap;
 
   const burnedArea = createNewColorMap(colorMap);
   const benthicHabitat = createNewColorMap(benthicColorMap);
+  const shorelineChange = createNewColorMap(shorelineColorMap);
+  const shorelineAreaChange = createNewColorMap(shorelineAreaColorMap)
 
   const makeLegend = (layer) => {
     let LegendData = [];
@@ -43,6 +47,12 @@ export default function createLegend() {
       case "benthicHabitat":
         legendData = makeLegend(benthicHabitat);
         break;
+        case "shoreLine":
+          legendData = makeLegend(shorelineChange);
+          break;
+          case "shoreLineArea":
+          legendData = makeLegend(shorelineAreaChange);
+          break;
       default:
         legendData = makeLegend(burnedArea);
     }

@@ -142,8 +142,8 @@
               </div>
 
               <q-card-section class="q-px-none">
-                <div style="font-weight: 400; font-size: 30px; color: #25408f">
-                  Benthic Habitats
+                <div style="font-weight: 700; font-size: 30px; color: #25408f">
+                  Benthic Habitat
                 </div>
               </q-card-section>
 
@@ -268,10 +268,10 @@
     </div>
     <div
       class="column justify-around q-py-xl justify-around"
-      style="min-width: 100vw;"
+      style="min-width: 100vw"
       id="products-section"
     >
-      <div class="row justify-between q-my-xl q-mx-auto " style="min-width: 90%">
+      <div class="row justify-between q-my-xl q-mx-auto" style="min-width: 90%">
         <div class="col-4 q-pa-md">
           <div class="column justify-center">
             <div class="col justify-left">
@@ -283,7 +283,7 @@
                   line-height: 1.5;
                 "
               >
-              CoGeoS Dashboard for Interactive Maps & Statistics
+                CoGeoS Dashboard for Interactive Maps & Statistics
               </div>
             </div>
             <div class="row justify-left">
@@ -350,7 +350,7 @@
                   line-height: 1.5;
                 "
               >
-              QGIS Plugin for Automatic Shoreline Extraction
+                QGIS Plugin for Automatic Shoreline Extraction
               </div>
             </div>
             <div class="row justify-left">
@@ -365,7 +365,7 @@
           </div>
         </div>
       </div>
-      <div class="row justify-between q-my-xl q-mx-auto " style="min-width: 90%">
+      <div class="row justify-between q-my-xl q-mx-auto" style="min-width: 90%">
         <div class="col-4 q-pa-md">
           <div class="column justify-center">
             <div class="col justify-left">
@@ -488,8 +488,7 @@
       </div>
     </div>
 
-
-    <div
+    <!-- <div
       style="min-width: 10vw; min-height: 45vh"
       class="row justify-center q-pa-none q-ma-none page-tint"
       id="blog"
@@ -538,15 +537,51 @@
           <q-carousel-slide :name="2" img-src="~/src/assets/comoros.png" />
         </q-carousel>
       </div>
-    </div>
+    </div> -->
     <div
-      style="min-width: 100%; min-height: 30vh; background-color: #03406a"
+      style="min-width: 100%; min-height: 50vh; background-color: #ffffff"
       class="row justify-center q-pa-none q-ma-none"
     >
       <div
         class="column justify-center q-pa-none"
         style="max-width: 90vw; min-height: 100%"
       >
+        <div class="row q-pt-md">
+          <div
+            class="q-my-none text-justify text-grey-9"
+            style="max-width: 25vw"
+          >
+            <div class="q-px-md" style="font-weight: 700; font-size: 21px">
+              Follow Us
+            </div>
+            <div class="row justify-left items-left">
+              <q-btn
+                padding="md"
+                round
+                flat
+                color="grey-9"
+                size="md"
+                icon="mdi-facebook"
+              />
+              <q-btn
+                padding="md"
+                round
+                flat
+                color="grey-9"
+                size="md"
+                icon="mdi-linkedin"
+              />
+              <q-btn
+                padding="md"
+                round
+                flat
+                color="grey-9"
+                size="md"
+                icon="mdi-twitter"
+              />
+            </div>
+          </div>
+        </div>
         <div class="row q-my-lg">
           <div class="col q-ma-md" style="min-width: 25vw">
             <div class="column items-center">
@@ -614,7 +649,7 @@
           <div class="col q-ma-md" style="min-width: 25vw">
             <div class="column items-center">
               <div
-                class="q-my-none text-justify text-white"
+                class="q-my-none text-justify text-grey-9"
                 style="max-width: 25vw"
               >
                 <div class="q-pa-md" style="font-weight: 700; font-size: 21px">
@@ -627,28 +662,28 @@
                   <q-btn
                     round
                     flat
-                    color="grey-3"
+                    color="grey-9"
                     size="lg"
                     icon="mdi-facebook"
                   />
                   <q-btn
                     round
                     flat
-                    color="grey-3"
+                    color="grey-9"
                     size="lg"
                     icon="mdi-linkedin"
                   />
                   <q-btn
                     round
                     flat
-                    color="grey-3"
+                    color="grey-9"
                     size="lg"
                     icon="mdi-twitter"
                   />
                   <q-btn
                     round
                     flat
-                    color="grey-3"
+                    color="grey-9"
                     size="lg"
                     icon="mdi-content-copy"
                   />

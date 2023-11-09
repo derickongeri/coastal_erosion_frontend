@@ -36,6 +36,9 @@ export default function loadVectorLayers() {
           case "Landuse":
             colorMap = tileStore.getColorMap;
             break;
+          case "shorelineChangeRate":
+            colorMap = tileStore.getShorelineColorMap;
+            break;
           default:
             colorMap = tileStore.getColorMap;
         }
@@ -62,6 +65,7 @@ export default function loadVectorLayers() {
         interactive: true,
         maxNativeZoom: 17,
         minZoom: 4,
+        // filter: `INTERSECTS(the_geom, collectGeometries(queryCollection('rcmrd_coastal:Protected_areas_IOC', 'the_geom', 'WDPA_PID = ''9154''')))`,
         vectorTileLayerStyles: {
           [layerName]: (properties) => {
             return getStyle(properties.layer);
