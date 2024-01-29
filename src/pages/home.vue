@@ -41,16 +41,16 @@
         <div class="row justify-left">
           <!-- <div class="row justify-center text-white" style="font-weight:700; font-size:21px;width:100%">Choose an Application to Launch</div> -->
           <div
-            class="text-left q-py-md q-pl-md my-font-2"
+            class="text-left q-py-md my-font-2"
             style="min-width: 60%"
           >
             <q-btn
               class="my-font-2 text-bold"
-              rounded
+
               size="lg"
               icon-right="mdi-arrow-right"
               text-color="blue-9"
-              style="background-color: #ffffff"
+              style="background-color: #ffffff; border-radius: 12px;"
               :label="$t('forest')"
               to="apps/dashboard"
             />
@@ -167,7 +167,7 @@
                 <!-- <div class="absolute-bottom text-h6">Title</div> -->
               </q-img>
               <q-card-section class="q-px-none">
-                <div style="font-weight: 700; font-size: 30px; color: #25408f">
+                <div style="font-weight: 400; font-size: 30px; color: #25408f">
                   Coastal Landuse
                 </div>
               </q-card-section>
@@ -192,7 +192,7 @@
               </q-img>
 
               <q-card-section class="q-px-none">
-                <div style="font-weight: 700; font-size: 30px; color: #25408f">
+                <div style="font-weight: 400; font-size: 30px; color: #25408f">
                   Shoreline
                 </div>
               </q-card-section>

@@ -28,4 +28,4 @@ echo "Pushhing to github..."
 git push $REPO_URL main
 
 # deploying to dev server
-scp -r /home/derick/Desktop/rcmrd-coastal/Frontend/rcmrd_coastal_spa/dist/spa/* root@45.76.143.229:/usr/share/nginx/html/dashboard/
+# scp -r /home/derick/Desktop/rcmrd-coastal/Frontend/rcmrd_coastal_spa/dist/spa/* root@45.76.143.229:/usr/share/nginx/html/dashboard/
