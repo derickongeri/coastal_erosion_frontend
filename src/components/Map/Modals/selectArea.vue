@@ -5,7 +5,7 @@
       flat
       style="border-radius: 20px; background-color: #00000050"
     >
-      <q-tabs v-model="tab" dense align="justify" class="text-grey-1">
+      <q-tabs v-model="tab" dense align="justify" style="font-weight: 700;" class="text-grey-1">
         <q-tab no-caps label="Mapped Areas" name="one" />
         <q-tab no-caps label="Marine Proteted Areas" name="two" />
         <q-tab no-caps label="Custom Areas" name="three" />
@@ -51,7 +51,7 @@
             <template v-slot:selected>
               <template v-if="selectedRegion">
                 <div
-                  style="font-size: 1em"
+                  style="font-size: 1em;font-weight:700"
                   class="selection-content q-px-none text-grey-1"
                 >
                   {{ selectedRegion }}

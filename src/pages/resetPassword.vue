@@ -1,7 +1,7 @@
 <template>
   <q-page padding class="page-tint bg-white" id="hero">
     <div
-      class="q-pa-md login-card absolute-center"
+      class="q-pa-md login-card bg-white absolute-center"
       style="max-width: 100%; border-radius: 15px"
     >
       <q-form @submit.prevent="">

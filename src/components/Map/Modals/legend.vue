@@ -163,6 +163,130 @@
         </div>
       </div>
     </q-expansion-item>
+    <q-expansion-item
+      dense
+      dense-toggle
+      expand-separator
+      default-opened
+      icon=""
+      :label="layerNames[2]"
+      header-class="bg-grey-1 my-font text-grey-9 header-text"
+    >
+      <template v-slot:header>
+        <q-checkbox
+          class="q-ma-none q-pa-xs"
+          size="sm"
+          color="primary"
+          dense
+          v-model="store.layers[0].layerVisibility"
+        />
+
+        <q-item-section class="header-text">
+          {{ layerNames[2] }}
+        </q-item-section>
+        <q-btn
+          class="q-ma-none q-my-sm q-pa-sm"
+          round
+          dense
+          outline
+          size="8px"
+          color="primary"
+          icon="mdi-information-variant"
+          @click.stop="toolbarShoreline=true"
+        />
+        <q-dialog v-model="toolbarShoreline" flat>
+          <info summary-text="Shoreline" />
+        </q-dialog>
+      </template>
+      <div ref="draggableContainer" id="draggable-container" class="legend">
+        <div class="row q-px-md">Change Rate</div>
+        <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
+          <div
+            class="q-gutter-xs q-pa-xs"
+            v-for="(landcover, key) in legendDataShoreline"
+            :key="key"
+            style="min-width: 12vw"
+          >
+            <div
+              class="my-font row justify-between q-px-sm q-my-none"
+              style="font-size: 0.75rem; font-weight: normal"
+            >
+              <div class="col">
+                <i
+                  :style="
+                    `background:` + store.getShorelineColorMap[landcover.landcover][0]
+                  "
+                  class="q-px-sm q-my-xs q-mr-sm"
+                  style="
+                    font-size: 0.75em;
+                    border: 0px outset black;
+                    border-radius: 12px;
+                  "
+                >
+                  <q-popup-proxy>
+                    <colorpicker
+                      :parent-color="landcover.color[0]"
+                      :color-name="landcover.landcover"
+                      :layer-name="layerNames[1]"
+                    />
+                  </q-popup-proxy> </i
+                >{{ store.getShorelineColorMap[landcover.landcover][2] }}
+              </div>
+              <q-checkbox
+                class="q-ma-none q-pa-none"
+                size="24px"
+                color="grey-9"
+                dense
+                v-model="store.shorelineColorMap[landcover.landcover][3]"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row q-px-md">Change Area</div>
+        <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
+          <div
+            class="q-gutter-xs q-pa-xs"
+            v-for="(landcover, key) in legendDataShorelineArea"
+            :key="key"
+            style="min-width: 12vw"
+          >
+            <div
+              class="my-font row justify-between q-px-sm q-my-none"
+              style="font-size: 0.75rem; font-weight: normal"
+            >
+              <div class="col">
+                <i
+                  :style="
+                    `background:` + store.getShorelineAreaColorMap[landcover.landcover][0]
+                  "
+                  class="q-px-sm q-my-xs q-mr-sm"
+                  style="
+                    font-size: 0.75em;
+                    border: 0px outset black;
+                    border-radius: 12px;
+                  "
+                >
+                  <q-popup-proxy>
+                    <colorpicker
+                      :parent-color="landcover.color[0]"
+                      :color-name="landcover.landcover"
+                      :layer-name="layerNames[1]"
+                    />
+                  </q-popup-proxy> </i
+                >{{ store.getShorelineAreaColorMap[landcover.landcover][2] }}
+              </div>
+              <q-checkbox
+                class="q-ma-none q-pa-none"
+                size="24px"
+                color="grey-9"
+                dense
+                v-model="store.shorelineAreaColorMap[landcover.landcover][3]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </q-expansion-item>
   </q-scroll-area>
 </template>
 
@@ -170,7 +294,7 @@
 import { useTileStore } from "../../../stores/tile_store/index.js";
 import { defineComponent, ref, $refs, onMounted, computed, watch } from "vue";
 import createLegend from "./setLegend.js";
-import { store } from "quasar/wrappers";
+// import { store } from "quasar/wrappers";
 
 export default defineComponent({
   components: {
@@ -180,9 +304,11 @@ export default defineComponent({
   setup() {
     const store = useTileStore();
     const { setLegendColors } = createLegend();
-    const layerNames = ref(["Benthic Classes", "Terrestrial Classes"]);
+    const layerNames = ref(["Benthic Classes", "Terrestrial Classes", "Shoreline Changes"]);
     const legendData = ref([]);
     const legendDataBenthic = ref([]);
+    const legendDataShoreline = ref([]);
+    const legendDataShorelineArea = ref([]);
     const positions = ref({
       clientX: undefined,
       clientY: undefined,
@@ -211,6 +337,8 @@ export default defineComponent({
     const setLegendData = function () {
       legendData.value = setLegendColors("burnedArea");
       legendDataBenthic.value = setLegendColors("benthicHabitat");
+      legendDataShoreline.value = setLegendColors("shoreLine")
+      legendDataShorelineArea.value = setLegendColors("shoreLineArea")
     };
 
     onMounted(() => {
@@ -249,6 +377,8 @@ export default defineComponent({
       layerNames,
       legendData,
       legendDataBenthic,
+      legendDataShoreline,
+      legendDataShorelineArea,
       draggableContainer,
       dragMouseDown,
       store,
@@ -259,6 +389,7 @@ export default defineComponent({
       falseval: ref(0),
       toolbarBenthic: ref(false),
       toolbarTerrestrial: ref(false),
+      toolbarShoreline: ref(false),
       thumbStyle: {
         right: "4px",
         borderRadius: "5px",
@@ -277,6 +408,16 @@ export default defineComponent({
     };
   },
 });
+
+/*
+shorelineColorMap: {
+      minusTwo: ["#ED2024", 1, "< -2m/yr", true],
+      minusTwo_minusOne: ["#FCBF10", 1, "-2 to -1m/yr", true],
+      minusOne_One: ["#F6EB13", 1, "-1 to 1m/yr", true],
+      one_Two: ["#00B04F", 1, "1 to 2m/yr", true],
+      gt_Two: ["#29ADE3", 1, "> 2m/yr", true],
+    }
+*/
 </script>
 
 <style lang="scss">

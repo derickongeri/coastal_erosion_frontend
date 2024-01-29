@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="message absolute-center" style="">
+    <div class="message bg-white q-px-xl absolute-center" style="border-radius: 20px;">
       <h6 class="q-pb-none q-mb-md">
         <strong>Thank you for registering with us!</strong>
       </h6>

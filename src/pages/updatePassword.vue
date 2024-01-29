@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="page-tint bg-white">
     <div class="q-pa-md login-card absolute-center" style="max-width: 100%">
       <q-form @submit.prevent="">
         <!-- <div class="text-primary row">

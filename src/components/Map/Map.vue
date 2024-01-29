@@ -718,7 +718,8 @@ export default defineComponent({
       targetDiv = ref(null),
       opacityslider = ref(false),
       benthicLayer = ref(null),
-      terrestrialLayer = ref(null);
+      terrestrialLayer = ref(null),
+      shorelineChangeRateLayer = ref(null);
 
     let drawingTools = ref(false);
     let layerControl = ref(null);
@@ -1055,15 +1056,20 @@ export default defineComponent({
         if (terrestrialLayer.value) {
           map.value.removeLayer(terrestrialLayer.value);
         }
+        if (shorelineChangeRateLayer.value) {
+          map.value.removeLayer(shorelineChangeRateLayer.value);
+        }
 
         currentRasterLayer.value = getVectorTiles(tileStore.layers);
 
         terrestrialLayer.value = currentRasterLayer.value[0];
         benthicLayer.value = currentRasterLayer.value[1];
+        shorelineChangeRateLayer.value = currentRasterLayer.value[2];
 
         // currentRasterLayer.value = L.layerGroup([currentRasterLayer.value[0], currentRasterLayer.value[1]])
         // terrestrialLayer.value.addTo(map.value).bringToFront();
         benthicLayer.value.addTo(map.value).bringToFront();
+        shorelineChangeRateLayer.value.addTo(map.value).bringToFront();
 
         benthicLayer.value.on("load", () => {
           Loading.hide();
@@ -1076,6 +1082,32 @@ export default defineComponent({
         console.log(error);
       }
     };
+
+    // const getWMSLayer = async function () {
+    //   // Construct the WKT geometry string and encode it
+    //   const wktGeometry =
+    //     "POLYGON ((57.69397880183624 -20.072109214137228, 57.69397880183624 -20.09146761177516, 57.71166189757105 -20.09146761177516, 57.71166189757105 -20.072109214137228, 57.69397880183624 -20.072109214137228))";
+    //   const encodedWktGeometry = encodeURIComponent(wktGeometry);
+
+    //   // Construct the request URL with the encoded WKT geometry as the filter parameter
+    //   const geoserverUrl = "http://45.76.143.229/geoserver/rcmrd_coastal";
+    //   const layerName = "rcmrd_coastal%3AMauritius_Benthic_Grids";
+    //   const cql_filter = `<Filter><Intersects><PropertyName>the_geom</PropertyName><Literal>${encodedWktGeometry}</Literal></Intersects></Filter>`;
+    //   //const requestUrl = `${geoserverUrl}?service=WMS&version=1.1.0&request=GetMap&layers=${layerName}&outputFormat=application/json&cql_filter=${filter}`;
+
+    //   // Add a WMS layer with your filter
+    //   var wmsLayer = L.tileLayer.wms(
+    //     geoserverUrl,
+    //     {
+    //       layers: layerName,
+    //       format: "image/png",
+    //       tiled: true,
+    //       filter: cql_filter,
+    //     }
+    //   );
+
+    //   wmsLayer.addTo(map.value)
+    // };
 
     const addLabels = function (val) {
       if (val) {
@@ -1249,6 +1281,7 @@ export default defineComponent({
         toggleDrawingTools();
         setCurrentVector();
         setRasterLayer();
+        // getWMSLayer();
       });
     });
 

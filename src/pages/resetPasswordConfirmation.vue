@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="page-tint bg-white">
     <div class="message absolute-center" style="">
       <h6 class=" q-pb-none q-mb-md">
         <strong>Thank you for registering with us!</strong>

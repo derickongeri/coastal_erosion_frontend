@@ -153,6 +153,19 @@ export default {
                 "Underwater ecosystem in shallow coastal waters and in the brackish waters of estuaries characterized by flowering plants with stems and long green, grass-like leaves",
             },
           ];
+          case "Shoreline":
+          return [
+            {
+              titleText: "Shoreline Change Rate",
+              summaryText:
+                "Rate of change of shorline along transects in meters per year",
+            },
+            {
+              titleText: "Shoreline Change Area",
+              summaryText:
+                "Shoreline errosion and accression areas",
+            },
+          ];
 
         default:
           return [];
