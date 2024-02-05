@@ -40,17 +40,13 @@
 
         <div class="row justify-left">
           <!-- <div class="row justify-center text-white" style="font-weight:700; font-size:21px;width:100%">Choose an Application to Launch</div> -->
-          <div
-            class="text-left q-py-md my-font-2"
-            style="min-width: 60%"
-          >
+          <div class="text-left q-py-md my-font-2" style="min-width: 60%">
             <q-btn
               class="my-font-2 text-bold"
-
               size="lg"
               icon-right="mdi-arrow-right"
               text-color="blue-9"
-              style="background-color: #ffffff; border-radius: 12px;"
+              style="background-color: #ffffff; border-radius: 12px"
               :label="$t('forest')"
               to="apps/dashboard"
             />
@@ -78,32 +74,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div
-      style="min-width: 10vw; min-height: 85vh"
-      class="row justify-center q-pa-none q-ma-none page-tint"
-      id="about-section"
-    >
-      <div
-        class="col justify-around q-pa-none q-ma-none"
-        style="min-height: 50%; max-width: 66%"
-      >
-        <div
-          class="my-font-2 text-center q-px-md q-pt-xl"
-          style="font-weight: 700; font-size: 30px; color: #25408f"
-        >
-          About the Project
-        </div>
-        <div class="row q-py-lg q-mb-lg">
-          <div class="col q-ma-xl" style="border-radius: 20px">
-            <q-video
-              src="https://www.youtube.com/embed/g-gz1ZiPXkI?si=5grVleFNA5xb6gr9"
-              :ratio="16 / 9"
-            />
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <div
       style="min-width: 100%; min-height: 100vh; background-color: #ffffff"
@@ -167,7 +137,7 @@
                 <!-- <div class="absolute-bottom text-h6">Title</div> -->
               </q-img>
               <q-card-section class="q-px-none">
-                <div style="font-weight: 400; font-size: 30px; color: #25408f">
+                <div style="font-weight: 700; font-size: 30px; color: #25408f">
                   Coastal Landuse
                 </div>
               </q-card-section>
@@ -192,7 +162,7 @@
               </q-img>
 
               <q-card-section class="q-px-none">
-                <div style="font-weight: 400; font-size: 30px; color: #25408f">
+                <div style="font-weight: 700; font-size: 30px; color: #25408f">
                   Shoreline
                 </div>
               </q-card-section>
@@ -458,7 +428,7 @@
       </div>
     </div>
 
-    <div
+    <!-- <div
       style="min-width: 100%; min-height: 45vh; background-color: #032135"
       class="row justify-center q-pa-none q-ma-none"
     >
@@ -486,102 +456,15 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- <div
-      style="min-width: 10vw; min-height: 45vh"
-      class="row justify-center q-pa-none q-ma-none page-tint"
-      id="blog"
-    >
-      <div
-        class="column justify-center q-pa-none"
-        style="min-width: 100vw; min-height: 45vh"
-      >
-        <q-carousel
-          style="min-width: 100vw; min-height: 45vh"
-          animated
-          v-model="slide"
-          navigation
-          infinite
-          :autoplay="autoplay"
-          arrows
-          transition-prev="slide-right"
-          transition-next="slide-left"
-          @mouseenter="autoplay = false"
-          @mouseleave="autoplay = true"
-        >
-          <q-carousel-slide
-            :name="1"
-            img-src="~/src/assets/comoros.png"
-            class="column no-wrap flex-center q-pa-none q-ma-none"
-          >
-            <div
-              class="row justify-center"
-              style="min-width: 100vw; background-color: #036a6171"
-            >
-              <div
-                class="q-my-md text-justify text-white"
-                style="max-width: 25vw"
-              >
-                <div class="q-pa-md" style="font-weight: 700; font-size: 21px">
-                  Stay informed about coastal wonders
-                </div>
-                <div class="q-px-md q-pb-md">
-                  Stay informed about coastal wonders. Subscribe now for
-                  exclusive updates on geomorphology, shoreline change, and
-                  environmental conservation.
-                </div>
-              </div>
-            </div></q-carousel-slide
-          >
-          <q-carousel-slide :name="2" img-src="~/src/assets/comoros.png" />
-        </q-carousel>
-      </div>
     </div> -->
     <div
-      style="min-width: 100%; min-height: 50vh; background-color: #ffffff"
+      style="min-width: 100%; min-height: 50vh; background-color: #032135"
       class="row justify-center q-pa-none q-ma-none"
     >
       <div
         class="column justify-center q-pa-none"
         style="max-width: 90vw; min-height: 100%"
       >
-        <div class="row q-pt-md">
-          <div
-            class="q-my-none text-justify text-grey-9"
-            style="max-width: 25vw"
-          >
-            <div class="q-px-md" style="font-weight: 700; font-size: 21px">
-              Follow Us
-            </div>
-            <div class="row justify-left items-left">
-              <q-btn
-                padding="md"
-                round
-                flat
-                color="grey-9"
-                size="md"
-                icon="mdi-facebook"
-              />
-              <q-btn
-                padding="md"
-                round
-                flat
-                color="grey-9"
-                size="md"
-                icon="mdi-linkedin"
-              />
-              <q-btn
-                padding="md"
-                round
-                flat
-                color="grey-9"
-                size="md"
-                icon="mdi-twitter"
-              />
-            </div>
-          </div>
-        </div>
         <div class="row q-my-lg">
           <div class="col q-ma-md" style="min-width: 25vw">
             <div class="column items-center">
@@ -589,23 +472,88 @@
                 <q-list>
                   <q-item>
                     <q-item-section>
-                      <q-item-label class="text-white" style="font-size: 28px"
-                        >CoGeoS</q-item-label
+                      <q-item-label class="text-white" style="font-size: 21px"
+                        >Regional Center for Mapping of Resouces for
+                        Development</q-item-label
                       >
-                      <q-item-label
+                      <div
                         class="col q-my-none q-py-none text-blue-2"
                         style="font-size: 12px"
                         caption
                         lines="2"
-                        >Regional center for Mapping of Resources for
-                        Development Coastal Geomorphology<br />
-                        and Shoreline Erossion and Accression Rates Monitoring
-                        Platform</q-item-label
                       >
+                        P.O. Box 632-00618 Nairobi, Kenya<br />Roysambu,
+                        Kasarani Nairobi, Kenya<br />(+254) 723 786161
+                        <br />rcmrd@rcmrd.org
+                      </div>
                     </q-item-section>
                   </q-item>
                 </q-list>
               </div>
+            </div>
+          </div>
+          <q-separator vertical color="grey-7" />
+          <div class="col q-ma-md" style="min-width: 25vw">
+            <div class="column items-center">
+              <div
+                class="q-my-none text-justify text-grey-1"
+                style="max-width: 25vw"
+              >
+                <div class="q-pa-md" style="font-weight: 700; font-size: 21px">
+                  Make your contribution
+                </div>
+                <div class="q-px-md q-pb-md">
+                  Stay informed about coastal wonders. Follow us
+                </div>
+                <div class="row justify-left q-gutter-lg items-left">
+                  <q-btn
+                    round
+                    flat
+                    color="grey-1"
+                    size="lg"
+                    icon="mdi-facebook"
+                  />
+                  <q-btn
+                    round
+                    flat
+                    color="grey-1"
+                    size="lg"
+                    icon="mdi-linkedin"
+                  />
+                  <q-btn
+                    round
+                    flat
+                    color="grey-1"
+                    size="lg"
+                    icon="mdi-twitter"
+                  />
+                  <q-btn
+                    round
+                    flat
+                    color="grey-1"
+                    size="lg"
+                    icon="mdi-content-copy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <q-separator vertical color="grey-7" />
+          <div class="col items-center q-ma-md" style="min-width: 25vw">
+            <div class="column items-center">
+              <!-- <div
+                class="q-my-none text-justify text-white"
+                style="max-width: 15vw"
+              >
+                <div class="q-pa-md" style="font-weight: 700; font-size: 21px">
+                  Make your contribution
+                </div>
+                <div class="q-px-md q-pb-md">
+                  Stay informed about coastal wonders. Subscribe now for
+                  exclusive updates on geomorphology, shoreline change, and
+                  environmental conservation.
+                </div>
+              </div> -->
               <div class="row">
                 <div class="column q-pl-md">
                   <img
@@ -641,70 +589,6 @@
                     src="~/src/assets/EUlogo.png"
                     style="position: relative; width: 70%; left: -1%"
                   />
-                </div>
-              </div>
-            </div>
-          </div>
-          <q-separator vertical color="grey-7" />
-          <div class="col q-ma-md" style="min-width: 25vw">
-            <div class="column items-center">
-              <div
-                class="q-my-none text-justify text-grey-9"
-                style="max-width: 25vw"
-              >
-                <div class="q-pa-md" style="font-weight: 700; font-size: 21px">
-                  Make your contribution
-                </div>
-                <div class="q-px-md q-pb-md">
-                  Stay informed about coastal wonders. Subscribe now for
-                </div>
-                <div class="row justify-left q-gutter-lg items-left">
-                  <q-btn
-                    round
-                    flat
-                    color="grey-9"
-                    size="lg"
-                    icon="mdi-facebook"
-                  />
-                  <q-btn
-                    round
-                    flat
-                    color="grey-9"
-                    size="lg"
-                    icon="mdi-linkedin"
-                  />
-                  <q-btn
-                    round
-                    flat
-                    color="grey-9"
-                    size="lg"
-                    icon="mdi-twitter"
-                  />
-                  <q-btn
-                    round
-                    flat
-                    color="grey-9"
-                    size="lg"
-                    icon="mdi-content-copy"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <q-separator vertical color="grey-7" />
-          <div class="col items-center q-ma-md" style="min-width: 25vw">
-            <div class="column items-center">
-              <div
-                class="q-my-none text-justify text-white"
-                style="max-width: 15vw"
-              >
-                <div class="q-pa-md" style="font-weight: 700; font-size: 21px">
-                  Make your contribution
-                </div>
-                <div class="q-px-md q-pb-md">
-                  Stay informed about coastal wonders. Subscribe now for
-                  exclusive updates on geomorphology, shoreline change, and
-                  environmental conservation.
                 </div>
               </div>
             </div>
