@@ -37,7 +37,7 @@ export default function userAuthUser() {
       password: password,
       options: {
         data: meta,
-        emailRedirectTo: `http://217.21.122.249/dashboard/#/confirm-signup`,
+        emailRedirectTo: `http://217.21.122.249/#/confirm-signup`,
       },
     });
     if (error) throw error;
@@ -52,7 +52,7 @@ export default function userAuthUser() {
 
   const sendPasswordRestEmail = async (email) => {
     const { user, error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://217.21.122.249/dashboard/#/update-password",
+      redirectTo: "http://217.21.122.249/#/update-password",
     });
     if (error) throw error;
     return user;
