@@ -32,16 +32,14 @@ export default function userAuthUser() {
 
   const register = async ({ email, password, ...meta }) => {
     console.log(meta);
-    const { user, error } = await supabase.auth.signUp(
-      {
-        email: email,
-        password: password,
-        options: {
-          data: meta,
-          emailRedirectTo: `http://45.76.143.229/dashboard/#/confirm-signup`,
-        },
-      }
-    );
+    const { user, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: meta,
+        emailRedirectTo: `http://217.21.122.249/dashboard/#/confirm-signup`,
+      },
+    });
     if (error) throw error;
     return user;
   };
@@ -54,7 +52,7 @@ export default function userAuthUser() {
 
   const sendPasswordRestEmail = async (email) => {
     const { user, error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://45.76.143.229/dashboard/#/update-password",
+      redirectTo: "http://217.21.122.249/dashboard/#/update-password",
     });
     if (error) throw error;
     return user;

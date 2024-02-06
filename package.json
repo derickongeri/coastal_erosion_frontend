@@ -46,7 +46,8 @@
   },
   "devDependencies": {
     "@dreamonkey/quasar-app-extension-meta": "^2.1.0",
-    "@quasar/app-webpack": "^3.0.0"
+    "@quasar/app-webpack": "^3.0.0",
+    "dotenv": "^16.4.1"
   },
   "browserslist": [
     "last 10 Chrome versions",
