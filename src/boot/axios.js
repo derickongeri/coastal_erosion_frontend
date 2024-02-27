@@ -10,13 +10,9 @@ import axios from 'axios'
 
 let baseURL;
 if (process.env.DEV) {
-  // baseURL = 'http://41.227.30.139:1337/' //oss
-  baseURL = 'http://127.0.0.1:3000/' //oss
-  // baseURL = 'http://194.163.176.189:1337/' //contabo
+  baseURL = 'http://127.0.0.1:3000/' //localhost
 }
 else {
-  // baseURL = 'http://194.163.176.189:1337/' //contabo
-  // baseURL = 'http://41.227.30.139:1337/' //oss
   baseURL = 'http://78.141.234.158:3000/' //oss
 }
 

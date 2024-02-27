@@ -7,8 +7,8 @@ export default function loadVectorLayers() {
     const vectorTiles = [];
 
     layers.forEach(function (layer) {
-      const baseUrl = "http://45.76.143.229";
-      const workspace = "rcmrd_coastal";
+      const baseUrl = "http://217.21.122.249";
+      const workspace = "cogeos";
       const layerName = layer.layerName;
       const epsg = "900913";
       const format = "application/x-protobuf;type=mapbox-vector";
@@ -39,12 +39,12 @@ export default function loadVectorLayers() {
           case "shorelineChangeRate":
             colorMap = tileStore.getShorelineColorMap;
             break;
+          case "shorelineChangeArea":
+            colorMap = tileStore.getShorelineAreaColorMap;
+            break;
           default:
-            colorMap = tileStore.getColorMap;
+            colorMap = tileStore.getShorelineColorMap;
         }
-
-        //var colorMap = tileStore.getColorMap; // Map user inputs to colors
-
         // Check if the layerValue exists in the colorMap
 
         if (layerValue in colorMap) {
@@ -57,6 +57,7 @@ export default function loadVectorLayers() {
           fillColor: fillColor,
           fillOpacity: fillOpacity,
           fill: true,
+          radius: 2,
         };
       }
 
@@ -79,40 +80,35 @@ export default function loadVectorLayers() {
     return vectorTiles;
   };
 
-  const udateLayerStyles = function (layer) {
-    function getStyle(layerValue) {
-      var fillColor = "#cf02a3"; // Default fill color
-      var fillOpacity = 1;
+  const getShorelineData = async function (layerName, layerstyle) {
+    const baseUrl = "http://217.21.122.249";
+    const workspace = "cogeos";
+    const epsg = "900913";
+    const format = "application/x-protobuf;type=mapbox-vector";
 
-      let colorMap = {};
+    const vectorLayerUrl =
+      baseUrl +
+      "/geoserver/gwc/service/tms/1.0.0/" +
+      workspace +
+      ":" +
+      layerName +
+      "@EPSG%3A" +
+      epsg +
+      "@pbf/{z}/{x}/{-y}.pbf";
 
-      switch (layer.layerName) {
-        case "Mauritius_Benthic":
-          colorMap = tileStore.getBenthicColorMap;
-          break;
-        case "Mauritius_Landuse_reprojected":
-          colorMap = tileStore.getColorMap;
-          break;
-        default:
-          colorMap = tileStore.getColorMap;
-      }
+    const vectorTile = L.vectorGrid.protobuf(vectorLayerUrl, {
+      rendererFactory: L.svg.tile,
+      interactive: true,
+      maxNativeZoom: 17,
+      minZoom: 4,
+      vectorTileLayerStyles: {
+        [layerName]: (properties) => {
+          return getStyle(properties.layer);
+        },
+      },
+    });
 
-      //var colorMap = tileStore.getColorMap; // Map user inputs to colors
 
-      // Check if the layerValue exists in the colorMap
-
-      if (layerValue in colorMap) {
-        fillColor = colorMap[layerValue][0];
-        fillOpacity = colorMap[layerValue][1];
-      }
-
-      return {
-        weight: 0,
-        fillColor: fillColor,
-        fillOpacity: fillOpacity,
-        fill: true,
-      };
-    }
   };
 
   return {

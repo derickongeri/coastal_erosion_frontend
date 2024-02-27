@@ -326,52 +326,8 @@
           :label="$t('analysis')"
         />
       </q-tabs>
-      <!-- <div class="row" style="min-width: 100%">
-          <div class="col">
-            <q-item>
-              <q-item-section class="items-center">
-                <q-item-label>
-                  <q-btn
-                    id="show-stats-btn"
-                    @click="showLayerSelection = !showLayerSelection"
-                    flat
-                    round
-                    color="grey-10"
-                    icon="mdi-layers"
-                    size="sm"
-                  />
-                </q-item-label>
-                <q-item-label class="text-grey-10" style="font-size: 0.75em"
-                  >LAYERS</q-item-label
-                >
-              </q-item-section>
-            </q-item>
-          </div>
-          <div class="col">
-            <q-item>
-              <q-item-section class="items-center">
-                <q-item-label>
-                  <q-btn
-                    id="show-stats-btn"
-                    @click="showAnalysismobile = !showAnalysismobile"
-                    flat
-                    round
-                    color="grey-10"
-                    icon="mdi-poll"
-                    size="sm"
-                  />
-                </q-item-label>
-                <q-item-label class="text-grey-10" style="font-size: 0.75em"
-                  >ANALYSIS</q-item-label
-                >
-              </q-item-section>
-            </q-item>
-          </div>
-        </div> -->
     </q-toolbar>
   </q-footer>
-
-  <!-- </q-layout> -->
 </template>
 
 <script>

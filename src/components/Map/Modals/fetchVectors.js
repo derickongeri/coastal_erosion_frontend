@@ -9,7 +9,7 @@ export default function setSelectedVect() {
     let region = store.getselectedRegion;
 
     const regionsWfsURL =
-      "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3Aioc_islands&maxFeatures=50&outputFormat=application%2Fjson&";
+      "http://217.21.122.249/geoserver/cogeos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cogeos%3Aioc_countries&outputFormat=application%2Fjson&";
 
     region = region.replace(/'/g, "%27").replace(/ /g, "%20");
 

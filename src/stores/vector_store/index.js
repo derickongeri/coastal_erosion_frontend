@@ -55,7 +55,7 @@ export const useVectorStore = defineStore({
     getselectedRegion: (state) => state.selectedRegion,
     getselectedCountry: (state) => state.slectedCountry,
     getselectedSubRegion: (state) => state.selectedSubregion,
-    getselectedProtectedArea: (state) => state.selectedProtectedArea,
+    getselectedProtectedArea: (state) => state.slectedProtectedArea,
     getYearSelected: (state) => state.selectedYear,
     getDatesSelected: (state) => state.datesSelected,
     getStoredStats: (state) => state.statistics,
@@ -65,7 +65,7 @@ export const useVectorStore = defineStore({
   actions: {
     async fetchRegionNames() {
       const { data, error } = await axios.get(
-        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3Aioc_islands&maxFeatures=50&outputFormat=application%2Fjson"
+        "http://217.21.122.249/geoserver/cogeos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cogeos%3Aioc_countries&outputFormat=application%2Fjson"
       );
 
       const countriesArray = data.features;
@@ -95,13 +95,15 @@ export const useVectorStore = defineStore({
           break;
       }
       let url =
-        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3AProtected_areas_IOC&maxFeatures=50&outputFormat=application%2Fjson&" +
+        "http://217.21.122.249/geoserver/cogeos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cogeos%3Ampa&outputFormat=application%2Fjson&" +
         "CQL_FILTER=PARENT_ISO" +
         "='" +
         isoCode +
         "'";
 
       const { data, error } = await axios.get(url);
+
+      console.log(data);
 
       const protectedAreas = data.features;
 
@@ -111,12 +113,12 @@ export const useVectorStore = defineStore({
         }
       });
 
-      console.log(protectedAreas)
+      console.log(this.protectedAreaNames);
     },
 
     async fetchSubRegionNames() {
       const { data, error } = await axios.get(
-        "http://45.76.143.229/geoserver/rcmrd_coastal/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=rcmrd_coastal%3Aioc_islands&maxFeatures=50&outputFormat=application%2Fjson"
+        "http://217.21.122.249/geoserver/cogeos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cogeos%3Aioc_countries&outputFormat=application%2Fjson"
       );
 
       this.subRegionNames = data.features;
@@ -138,7 +140,7 @@ export const useVectorStore = defineStore({
 
     setSelectedProtectedArea(val) {
       this.selectedProtectedArea = val;
-      console.log(this.selectedProtectedArea)
+      console.log(this.selectedProtectedArea);
     },
 
     setCountrySelected(val) {

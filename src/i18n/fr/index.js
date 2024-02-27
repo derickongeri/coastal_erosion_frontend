@@ -35,10 +35,51 @@ export default {
 
   //home
   tagline:
-    "Débloquer des informations pour la durabilité grâce à l'observation de la Terre",
-  forest: "Surveillance côtière",
-  agro: "Earth Pulse Agriculture",
-  water: "Earth Pulse Eau",
+    "Surveillance de la géomorphologie côtière et de l'évolution du trait de côte",
+  subtag:
+    "Plate-forme de données géospatiales pour l'analyse et la visualisation de la géomorphologie côtière et des modifications du littoral",
+  webgis: "tableau de bord",
+
+  // Section des produits
+  productsheader:
+    "Découvrez les produits de données géomorphologiques et littorales",
+  productstext:
+    "Explorez une richesse de produits de données géomorphologiques et littorales inestimables, débloquant des informations pour une prise de décision éclairée et une gestion côtière.",
+  benthickheader: "Habitat Benthique",
+  benthicktext:
+    "La télédétection des cartes d'habitats benthiques révolutionne la gestion marine, offrant une vue concise des habitats sous-marins pour des décisions éclairées sur la conservation et la durabilité.",
+  landuseheader: "Utilisation côtière des terres",
+  landusetext:
+    "L'utilisation de cartes d'utilisation côtière télédétectées transforme la gestion de la zone côtière. En utilisant une imagerie satellite ou aérienne avancée, ces cartes offrent une vue d'ensemble, guidant les décisions pour une planification efficace et des pratiques durables dans les zones côtières.",
+  shorelineheader: "Changement du littoral",
+  shorelinetext:
+    "CoGEOS dérive des lignes de rivage à partir de diverses sources de données. Ces informations aident à identifier les zones sujettes à l'érosion ou à l'inondation côtière, permettant aux décideurs de prioriser les ressources et les interventions dans les régions vulnérables.",
+
+  // about
+  aboutTitle: "À propos du projet",
+  aboutText:
+    "Le programme Surveillance mondiale pour l'environnement et la sécurité (GMES) et l'Afrique est une initiative conjointe cofinancée par la Commission européenne et la Commission de l'Union africaine. L'objectif du programme GMES & Afrique est de répondre aux besoins croissants des pays africains en matière d'accès et d'utilisation des données d'observation de la Terre (OT) pour la mise en œuvre de politiques de développement durable sur le continent.",
+  moreAboutText:
+    "Dans le cadre des objectifs du projet GMES & Afrique, le Centre régional de cartographie des ressources et du développement (RCMRD) a développé des outils de surveillance environnementale pour la cartographie de l'érosion côtière aux Comores, à Maurice, à Madagascar et aux Seychelles en utilisant des données d'observation de la Terre, des techniques innovantes et les connaissances des utilisateurs finaux. Cela a impliqué le développement d'un tableau de bord interactif qui permet à l'utilisateur d'explorer de manière interactive les zones susceptibles de subir des changements côtiers, un plugin QGIS pour modéliser les changements du littoral, et Mapographics pour fournir des informations et informer les politiques.",
+
+  // plus de produits
+  dashboardHeader:
+    "Tableau de bord CoGeoS pour les cartes interactives et les statistiques",
+  dashboardText:
+    "Plate-forme de données géospatiales pour l'analyse et la visualisation de la géomorphologie côtière et des changements du littoral",
+  pluginHeader: "QGIS Plugin for Automatic Shoreline Extraction",
+  pluginText:
+    "Le plugin QGIS permet aux utilisateurs d'extraire automatiquement les lignes de rivage et de calculer les changements de ligne de rivage",
+  mapographicsHeader: "CoGeos Mapographics",
+  mapographicsText:
+    "Fournit des informations rapides et des aperçus sur les changements côtiers à partir de cartes et de statistiques compilées",
+
+  // collaboration
+  collaborationText: "Un partenariat de collaboration",
+
+  keepintouch : "Rester en contact",
+  keepintouchtext : "Obtenez les dernières nouvelles sur les activités du RCMRD GMES et de l'Afrique",
+
   //boutons de la carte
   layers: "Couches",
   analysis: "Analyse",

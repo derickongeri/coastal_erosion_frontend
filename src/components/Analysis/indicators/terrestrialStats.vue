@@ -131,7 +131,7 @@
         ></div>
       </div> -->
 
-      <div class="" style="min-width: 25vw">
+      <div class="" style="min-width: 28vw">
         <barChart
           :chartData="barchartData"
           id="chart-canvas"
@@ -201,7 +201,7 @@ export default {
   setup() {
     const store = useVectorStore();
     const { stackBarChart } = setChartMethods();
-    const { getRasterStats } = setLayerStats();
+    const { getRasterStats, getTerrestrialStats } = setLayerStats();
 
     const chartType = ref("bar");
     const totalArea = ref(0);
@@ -214,101 +214,13 @@ export default {
     const stackedOption = ref(false);
     const visible = ref(false);
     const showSimulatedReturnData = ref(false);
-    const barchartData = ref({
-      labels: [
-      "Coral Reef",
-      "Deepwaters",
-      "Dense Coral",
-      "Seagrass/Seaweed",
-      "Sediment",
-      "Sparse Coral",
-      ],
-      datasets: [
-        {
-          backgroundColor: [
-          "#fbd376",
-          "#06306E",
-          "#DA8488",
-          "#97E86E",
-          "#EDE732",
-          "#FFD282",
-          ],
-          data: [2263, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
-          barPercentage: 0.75,
-          categoryPercentage: 0.75,
-        },
-      ],
-    });
-    const piechartData = ref({
-      labels: [
-      "Coral Reef",
-      "Deepwaters",
-      "Dense Coral",
-      "Seagrass/Seaweed",
-      "Sediment",
-      "Sparse Coral",
-      ],
-      datasets: [
-        {
-          backgroundColor: [
-          "#fbd376",
-          "#06306E",
-          "#DA8488",
-          "#97E86E",
-          "#EDE732",
-          "#FFD282",
-          ],
-          borderColor: "rgba(0, 0, 0, 0)",
-          borderRadius: 0,
-          borderWidth: 0,
-          spacing: 0,
-          cutout: "75",
-          radius: "80%",
-          data: [2263, 87230.967381, 1758.564009, 5465.657205, 7271.940447, 6904.860894],
-        },
-      ],
-    });
+    const barchartData = ref(getTerrestrialStats().barStats);
+    const piechartData = ref(getTerrestrialStats().pieStats);
     const selectedVector = ref(null);
 
     const fetchChartData = async () => {
-      try {
-        let chartDataProps = await getRasterStats();
-
-        console.log(chartDataProps, "data");
-        barchartData.value = {
-          labels: chartDataProps.labels,
-          datasets: [
-            {
-              backgroundColor: chartDataProps.palette,
-              data: chartDataProps.data,
-              barPercentage: 0.75,
-              categoryPercentage: 0.75,
-            },
-          ],
-        };
-        piechartData.value = {
-          labels: chartDataProps.labels,
-          datasets: [
-            {
-              backgroundColor: chartDataProps.palette,
-              borderColor: "rgba(0, 0, 0, 0)",
-              borderRadius: 0,
-              borderWidth: 0,
-              spacing: 0,
-              cutout: "75",
-              radius: "80%",
-              data: chartDataProps.data,
-            },
-          ],
-        };
-        console.log(barchartData.value, "updated");
-
-        arealist.value = chartDataProps.data;
-
-        totalArea.value = chartDataProps.data.reduce((a, b) => a + b, 0);
-
-        return barchartData.value;
-      } catch (error) {}
+      barchartData.value = getTerrestrialStats().barStats;
+      piechartData.value = getTerrestrialStats().pieStats;
     };
 
     const showTextLoading = () => {
@@ -373,16 +285,16 @@ export default {
     };
 
     onMounted(() => {
-      //showTextLoading();
+      showTextLoading();
     });
 
     const vector = computed(() => {
-      selectedVector.value = store.getCustomGeojson;
+      selectedVector.value = store.getselectedRegion;
       return selectedVector.value;
     });
 
     watch(vector, () => {
-      //showTextLoading();
+      showTextLoading();
     });
 
     return {

@@ -58,7 +58,7 @@
             :label="$t('dashboard')"
             to="/apps/dashboard"
           />
-          <q-route-tab name="articles" label="blog" to="/blog/blog_posts" />
+          <!-- <q-route-tab name="articles" label="blog" to="/blog/blog_posts" /> -->
           <q-btn-dropdown
             class="dash-nav3"
             no-caps
@@ -68,12 +68,12 @@
             label="Products"
           >
             <q-list>
-              <q-item clickable @click="tab = 'movies'">
-                <q-item-section>Mapographics</q-item-section>
+              <q-item clickable>
+                <a class="text-grey-9" style="text-decoration: none;" href="https://cogeos000.readthedocs.io/en/latest/Introduction/plugin.html"><q-item-section>Mapographics</q-item-section></a>
               </q-item>
 
               <q-item clickable @click="tab = 'photos'">
-                <q-item-section>Qgis Plugin</q-item-section>
+                <a class="text-grey-9" style="text-decoration: none;" href="https://cogeos000.readthedocs.io/en/latest/Introduction/plugin.html"><q-item-section>Qgis Plugin</q-item-section></a>
               </q-item>
             </q-list>
           </q-btn-dropdown>

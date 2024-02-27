@@ -1,21 +1,7 @@
 <template>
   <div>
-    <div class="text-justify my-font q-my-md">
-      <!-- <div
-        style="font-size: 16px"
-        v-html="
-          $t('benthic_area_summary', {
-            totalBurnedArea: `<b>${totalArea}</b>`,
-            veryHighSeverity: `<b>${arealist[0]}</b>`,
-            highSeverity: `<b>${arealist[1]}</b>`,
-            moderateSeverity: `<b>${arealist[2]}</b>`,
-            lowSeverity: `<b>${arealist[3]}</b>`,
-          })
-        "
-      ></div> -->
-    </div>
     <div
-      class="row items-center q-gutter-sm q-px-none q-mb-md"
+      class="row items-center q-gutter-sm q-mt-md q-px-none q-mb-md"
       style="max-width: inherit; border-radius: 20px"
     >
       <div class="col text-grey-9 q-my-none">
@@ -116,24 +102,10 @@
     </div>
 
     <div class="sub-content" style="width: 100%">
-      <!-- <div class="text-justify my-font">
-        <div
-          style="font-size: 16px"
-          v-html="
-            $t('burnt_area_summary', {
-              totalBurnedArea: `<b>${totalArea}</b>`,
-              veryHighSeverity: `<b>${arealist[0]}</b>`,
-              highSeverity: `<b>${arealist[1]}</b>`,
-              moderateSeverity: `<b>${arealist[2]}</b>`,
-              lowSeverity: `<b>${arealist[3]}</b>`,
-            })
-          "
-        ></div>
-      </div> -->
-
       <div class="" style="min-width: 25vw">
         <barChart
           :chartData="barchartData"
+          :chartOptions="barchartOptions"
           id="chart-canvas"
           ref="chartRef"
           v-if="chartType === 'bar'"
@@ -202,7 +174,7 @@ export default {
   setup() {
     const store = useVectorStore();
     const { stackBarChart } = setChartMethods();
-    const { getRasterStats } = setLayerStats();
+    const { getRasterStats, getShorelineStats } = setLayerStats();
 
     const chartType = ref("bar");
     const totalArea = ref(0);
@@ -215,156 +187,150 @@ export default {
     const stackedOption = ref(false);
     const visible = ref(false);
     const showSimulatedReturnData = ref(false);
-    const barchartData = ref({
-      labels: [
-        "<-2",
-        // "Deepwaters",
-        "-2 to 1",
-        "-1 to 1",
-        "1 to 2",
-        "> 2",
-      ],
-      datasets: [
-        {
-          backgroundColor: [
-            "#ED2024",
-            // "#06306E",
-            "#FCBF10",
-            "#F6EB13",
-            "#00B04F",
-            "#29ADE3",
-          ],
-          data: [
-            2263, /* 87230.967381,*/ 1758.564009, 5465.657205, 7271.940447,
-            6904.860894,
-          ],
-          barPercentage: 0.75,
-          categoryPercentage: 0.75,
-        },
-      ],
-    });
-    const piechartData = ref({
-      labels: [
-        "<-2",
-        // "Deepwaters",
-        "-2 to 1",
-        "-1 to 1",
-        "1 to 2",
-        "> 2",
-      ],
-      datasets: [
-        {
-          backgroundColor: [
-          "#ED2024",
-            // "#06306E",
-            "#FCBF10",
-            "#F6EB13",
-            "#00B04F",
-            "#29ADE3",
-          ],
-          borderColor: "rgba(0, 0, 0, 0)",
+    const barchartData = ref(getShorelineStats().barStats);
+    const piechartData = ref(getShorelineStats().pieStats);
+    const barchartOptions = ref({
+      layout: {
+        padding: 0,
+      },
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        datalabels: {
+          display: "auto",
+          anchor: "end",
+          align: "end",
+          offset: 10,
+          opacity: 0.9,
+          formatter: (val, ctx) => {
+            // Grab the label for this value
+            const label = ctx.chart.data.labels[ctx.dataIndex];
+
+            // Format the number with 2 decimal places
+            const formattedVal = Intl.NumberFormat("en-US", {
+              minimumFractionDigits: 1,
+            }).format(val);
+
+            // Put them together
+            return `${formattedVal}`;
+          },
           borderRadius: 5,
-          borderWidth: 2,
-          spacing: 0,
-          cutout: "0",
-          radius: "80%",
-          data: [
-            2263, /*87230.967381,*/ 1758.564009, 5465.657205, 7271.940447,
-            6904.860894,
-          ],
+          leftborderWidth: 2,
+          borderColor: ["#b71c1c", "#2e7d32", "#fff9b4"],
+          color: "#404040",
+          size: "11",
+          backgroundColor: "#fff",
         },
-      ],
+        legend: {
+          display: false,
+          position: "bottom",
+          labels: {
+            font: {
+              fontColor: "#EEEEEE",
+            },
+          },
+        },
+        title: {
+          display: true,
+          text: "Shoreline Change rates (%)",
+          position: "bottom",
+          color: "#9e9d24",
+        },
+      },
+      indexAxis: "y",
+      elements: {
+        bar: {
+          borderWidth: 0,
+          inflateAmount: 0,
+          borderRadius: 20,
+          borderSkipped: false,
+        },
+      },
+      scales: {
+        x: {
+          min: 0,
+          // max: ,
+          ticks: {
+            callback: function (value) {
+              value = value.toFixed();
+              return `${value}%`;
+            },
+            color: "#424242",
+          },
+          grid: {
+            color: "",
+          },
+        },
+        y: {
+          ticks: {
+            color: "#424242",
+            tickLength: 0,
+          },
+          grid: {
+            color: "#9e9d24",
+            borderDash: [1, 10],
+            drawBorder: false,
+            tickLength: 0,
+            tickWidth: 0,
+          },
+        },
+      },
     });
 
     const piechartOptions = ref({
       responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          datalabels: {
-            display: 'auto',
-            anchor: 'center',
-            align: 'center',
-            offset: 4,
-            opacity: 0.7,
-            formatter: (val, ctx) => {
-              // Grab the label for this value
-              const label = ctx.chart.data.labels[ctx.dataIndex];
+      maintainAspectRatio: false,
+      plugins: {
+        datalabels: {
+          display: "auto",
+          anchor: "center",
+          align: "center",
+          offset: 4,
+          opacity: 0.7,
+          formatter: (val, ctx) => {
+            // Grab the label for this value
+            const label = ctx.chart.data.labels[ctx.dataIndex];
 
-              // Format the number with 2 decimal places
-              const formattedVal = Intl.NumberFormat('en-US', {
-                minimumFractionDigits: 1,
-              }).format(val);
+            // Format the number with 2 decimal places
+            const formattedVal = Intl.NumberFormat("en-US", {
+              minimumFractionDigits: 1,
+            }).format(val);
 
-              // Put them together
-              return `${formattedVal}`;
-            },
-            borderRadius: 5,
-            leftborderWidth: 2,
-            borderColor: ['#b71c1c', '#2e7d32', '#fff9b4'],
-            color: '#404040',
-            size: '8',
-            backgroundColor: '#fff',
+            // Put them together
+            return `${formattedVal}%`;
           },
-          legend: {
-            display: true,
-            position: "left",
-            labels: {
-              font: {
-                fontColor: "#EEEEEE",
-              },
-              usePointStyle: true,
-              padding: 25
+          borderRadius: 5,
+          leftborderWidth: 2,
+          borderColor: ["#b71c1c", "#2e7d32", "#fff9b4"],
+          color: "#404040",
+          size: "8",
+          backgroundColor: "#fff",
+        },
+        legend: {
+          display: true,
+          position: "left",
+          labels: {
+            font: {
+              fontColor: "#EEEEEE",
             },
+            usePointStyle: true,
+            padding: 25,
           },
-          title: {
-            display: false,
-            align: 'start',
-            text: "Crop Area in Ha",
-            position: "top",
-            color: "#404040",
-          },}
-    })
+        },
+        title: {
+          display: false,
+          align: "start",
+          text: "Crop Area in Ha",
+          position: "top",
+          color: "#404040",
+        },
+      },
+    });
     const selectedVector = ref(null);
 
     const fetchChartData = async () => {
-      try {
-        let chartDataProps = await getRasterStats();
-
-        console.log(chartDataProps, "data");
-        barchartData.value = {
-          labels: chartDataProps.labels,
-          datasets: [
-            {
-              backgroundColor: chartDataProps.palette,
-              data: chartDataProps.data,
-              barPercentage: 0.75,
-              categoryPercentage: 0.75,
-            },
-          ],
-        };
-        piechartData.value = {
-          labels: chartDataProps.labels,
-          datasets: [
-            {
-              backgroundColor: chartDataProps.palette,
-              borderColor: "rgba(0, 0, 0, 0)",
-              borderRadius: 0,
-              borderWidth: 0,
-              spacing: 0,
-              cutout: "75",
-              radius: "80%",
-              data: chartDataProps.data,
-            },
-          ],
-        };
-        console.log(barchartData.value, "updated");
-
-        arealist.value = chartDataProps.data;
-
-        totalArea.value = chartDataProps.data.reduce((a, b) => a + b, 0);
-
-        return barchartData.value;
-      } catch (error) {}
+      barchartData.value = getShorelineStats().barStats;
+      piechartData.value = getShorelineStats().pieStats;
     };
 
     const showTextLoading = () => {
@@ -429,16 +395,16 @@ export default {
     };
 
     onMounted(() => {
-      //showTextLoading();
+      showTextLoading();
     });
 
     const vector = computed(() => {
-      selectedVector.value = store.getCustomGeojson;
+      selectedVector.value = store.getselectedRegion;
       return selectedVector.value;
     });
 
     watch(vector, () => {
-      //showTextLoading();
+      showTextLoading();
     });
 
     return {
@@ -464,6 +430,7 @@ export default {
       stackChart,
       piechartData,
       piechartOptions,
+      barchartOptions,
       totalArea,
       arealist,
     };

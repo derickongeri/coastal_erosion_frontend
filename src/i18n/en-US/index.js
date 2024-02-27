@@ -17,12 +17,6 @@ export default {
   settings: "Settings",
   my_profile: "My Profile",
 
-  // burned area info
-  burnt_area_info:
-    "The burned area is calculated from pre and post-fire images to creates burn severity assessment maps. The classification of burn severity follows USGS proposed classification system for burn severity ranges.",
-  benthic_area_summary:
-    "The coastal geomorphological area mapped was <b>{totalBurnedArea}Ha</b>, which corresponds to the sum of all geomorphological classes i.e. Dense coral <b>{veryHighSeverity}Ha</b>, Reef/Back reef <b>{highSeverity}Ha</b>, Sea bed <b>{moderateSeverity}Ha</b> and Sand <b>{lowSeverity}Ha</b>.",
-
   //login and sign up translations
   firstName: "First Name",
   lastName: "Last Name",
@@ -43,9 +37,48 @@ export default {
   //home
   tagline:
     "Understanding coastal geomorphology and shoreline changes through Earth Observation",
-  forest: "CoastWatch WebGIS",
-  // agro: "Earth Pulse Agro",
-  // water: "Earth Pulse Water",
+  subtag:
+    "Geospatail data platform for the anlaysis and visualization of coastal geomorphology and shoreline changes",
+  webgis: "CoastWatch WebGIS",
+
+  // Products section
+  productsheader: "Discover Geomorphic and Shoreline Data Products",
+  productstext:
+    "Explore a wealth of invaluable geomorphic and shoreline data products, unlocking insights for informed decision-making and coastal management.",
+  benthickheader: "Benthic Habitat",
+  benthicktext:
+    "Remote sensing of benthic habitat maps revolutionizes marine management, offering a concise view of underwater habitats for informed decisions on conservation and sustainability.",
+  landuseheader: "Coastal Landuse",
+  landusetext:
+    "Employing remotely sensed coastal land use maps transforms coastal zone management. Utilizing advanced satellite or aerial imaging, these maps provide a comprehensive view, guiding decisions for effective planning and sustainable practices in coastal areas.",
+  shorelineheader: "Shoreline Change",
+  shorelinetext:
+    "CoGEOS derives shorelines from various data sources. This information helps identify areas prone to erosion or coastal inundation, allowing decision-makers to prioritize resources and interventions in vulnerable regions.",
+
+  // About the Project
+  aboutTitle: "About the Project",
+  aboutText:
+    "The Global Monitoring for Environment and Security (GMES) & Africa Programme is a joint initiative co-financed by the European Commission and the African Union Commission. The objective of the GMES & Africa Programme is to address the growing needs of African countries to access and use Earth Observation (EO) data for the implementation of sustainable development policies across the continent.",
+  moreAboutText:
+    "As part of the objectives of the GMES & Africa project, the Regional Centre for Mapping of Resource and Development (RCMRD), has developed environmental monitoring tools for Coastal Erosion mapping in Comoros, Mauritius, Madagascar, and Seychelles using EO data, innovative techniques, and end-user knowledge. This involved the development of an interactive dashboard that allows the user to interactively explore areas susceptible to coastal change, a QGIS plugin to model shoreline changes, and Mapographics to provide insights and inform policies.",
+
+  // more products
+  dashboardHeader: "CoGeoS Dashboard for Interactive Maps & Statistics",
+  dashboardText:
+    "Geospatail data platform for the anlaysis and visualization of coastal geomorphology and shoreline changes",
+  pluginHeader: "QGIS Plugin for Automatic Shoreline Extraction",
+  pluginText:
+    "The QGIS plugin allows users to automatically extract shorelines and compute shoreline changes",
+  mapographicsHeader: "CoGeos Mapographics",
+  mapographicsText:
+    "Provides quick information and insights on coastal changes from compiled maps and statistics",
+
+  // collaboration
+  collaborationText: "A Collaborative Partnership",
+
+  //
+  keepintouch: "Stay in touch",
+  keepintouchtext: "Get the latest news about RCMRD GMES & Africa activites",
 
   //map buttons
   layers: "Layers",
@@ -71,30 +104,6 @@ export default {
   switchtobar: "Switch to bar chart",
   downloadImage: "Download Chart Image",
   downloadCsv: "Download CSV data",
-
-  //Burned Ara Analysis Card
-  burnedAreaAnalysis: "Burned Area Analysis",
-  prefireSelect: "Select Period Before the Fire",
-  postfire: "Select period After the Fire",
-  from: "from",
-  to: "to",
-  submit: "Submit",
-  computing: "Computing Burned Area Statistics",
-  loadingMsg: "This may take a while",
-  wait: "Please wait",
-
-  // Burned area map print layout
-  note: "Note",
-  burnedAreaNotes:
-    "Burn severity map generated automatically using Normalized Burn Ratio (NBR),using near-infrared (NIR) and shortwave-infrared (SWIR) wavelengths. The post-fire image is subtracted from the pre-fire image to create the delta NBR (dNBR), which can be used to assess burn severity",
-  dataSource: "Data-Source",
-  pre_fire_date: "Pre-fire Date",
-  post_fire_date: "Post-fire Date",
-  severity: "Burned Area Severity",
-  disclaimer: "Disclaimer",
-  the_disclaimer:
-    "The developer of the application from which this map document was generated is not liable for the correctness of outputs or decisions derived as a consequence.",
-  createdby: "created by",
 
   // Legend
   "Dense Coral": "Dense Coral",

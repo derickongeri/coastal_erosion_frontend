@@ -4,7 +4,7 @@
       <div
         v-show="drawer"
         style="
-          background:transparent linear-gradient(207deg, #28537d 0%, #5088c6 25%, #46bbd4 100%) 0% 0% no-repeat padding-box;
+          background: transparent linear-gradient(207deg, #28537d 0%, #5088c6 25%, #46bbd4 100%) 0% 0% no-repeat padding-box;
           position: absolute;
           right: 0%;
           z-index: 6500;
@@ -34,7 +34,7 @@
               header-class="text-white my-font drawer-text-headers"
               expand-icon-class="text-white"
             >
-              <q-card style="background: #00000000;">
+              <q-card style="background: #00000000">
                 <q-card-section class="bg-none text-justify text-white">
                   <p>
                     The Global Monitoring for Environment and Security and
@@ -74,12 +74,14 @@
               header-class="text-white my-font drawer-text-headers"
               expand-icon-class="text-white"
             >
-              <q-card style="background: #00000000;">
+              <q-card style="background: #00000000">
                 <q-card-section class="bg-none text-justify text-white">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Quidem, eius reprehenderit eos corrupti commodi magni quaerat
-                  ex numquam, dolorum officiis modi facere maiores architecto
-                  suscipit iste eveniet doloribus ullam aliquid.
+                  The data presented on this site is derived from a thorough and
+                  documented process.
+
+                  To understand the sources of our data and
+                  the procedures followed in its production, please refer to our
+                  <a href="https://cogeos000.readthedocs.io/en/latest/index.html">Documentation</a>.
                 </q-card-section>
               </q-card>
             </q-expansion-item>
@@ -92,12 +94,9 @@
               header-class="text-white my-font drawer-text-headers"
               expand-icon-class="text-white"
             >
-              <q-card style="background: #00000000;">
+              <q-card style="background: #00000000">
                 <q-card-section class="bg-none text-justify text-white">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Quidem, eius reprehenderit eos corrupti commodi magni quaerat
-                  ex numquam, dolorum officiis modi facere maiores architecto
-                  suscipit iste eveniet doloribus ullam aliquid.
+
                 </q-card-section>
               </q-card>
             </q-expansion-item>
@@ -310,8 +309,6 @@ export default defineComponent({
   font-weight: 700;
   font-size: 21px;
 }
-
-
 
 @media screen and (max-width: 768px) {
   .web-view {

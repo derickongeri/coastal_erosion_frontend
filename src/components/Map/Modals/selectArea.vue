@@ -7,7 +7,7 @@
     >
       <q-tabs v-model="tab" dense align="justify" style="font-weight: 700;" class="text-grey-1">
         <q-tab no-caps label="Mapped Areas" name="one" />
-        <q-tab no-caps label="Marine Proteted Areas" name="two" />
+        <!-- <q-tab no-caps label="Marine Proteted Areas" name="two" /> -->
         <q-tab no-caps label="Custom Areas" name="three" />
       </q-tabs>
 
@@ -112,7 +112,7 @@
                   style="font-size: 1em"
                   class="selection-content text-grey-1"
                 >
-                  Select Region
+                  Select Mpa
                 </div>
               </template>
             </template>
@@ -120,7 +120,7 @@
         </q-tab-panel>
 
         <q-tab-panel class="items-center" name="three">
-          <div class="text-center q-mx-lg">
+          <!-- <div class="text-center q-mx-lg">
             <q-btn
               class=""
               no-caps
@@ -135,7 +135,7 @@
           </div>
           <div class="text-center q-mx-lg">
             or
-          </div>
+          </div> -->
           <div class="text-center q-mx-lg">
             Use the drawing tool
             <q-btn
@@ -201,6 +201,7 @@ export default defineComponent({
       protectedAreaName.map((d) => {
         protectedAreasList.push(d)
       })
+      return protectedAreasList
     })
 
     const filterFn1 = function (val, update) {
@@ -251,6 +252,7 @@ export default defineComponent({
 
     watch(fillSelection, () => {
       selectedRegion.value = store.getselectedRegion;
+      store.fetchProtectedAreas();
     });
 
     return {

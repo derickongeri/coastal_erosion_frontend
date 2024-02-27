@@ -10,7 +10,7 @@ export const useTileStore = defineStore({
       {
         layerName: "Mauritius_Landuse_reprojected",
         layerCategory: "Landuse",
-        layerVisibility: false,
+        layerVisibility: true,
       },
       {
         layerName: "Mauritius_Benthic",
@@ -18,9 +18,27 @@ export const useTileStore = defineStore({
         layerVisibility: true,
       },
       {
-        layerName: "Mauritius_shoreline_change_rate_2017_2019",
+        layerName: "Mauritius_shoreline_change_rates_2017_2022",
         layerCategory: "shorelineChangeRate",
         layerVisibility: true,
+      },
+      {
+        layerName: "Mauritius_growthandretreat_2017_2022",
+        layerCategory: "shorelineChangeArea",
+        layerVisibility: true,
+      },
+    ],
+
+    shorelineChangelayers: [
+      {
+        layerName: "Mauritius_shoreline_change_rates_2017_2022",
+        layerCategory: "shorelineChangeRate",
+        layerVisibility: false,
+      },
+      {
+        layerName: "Mauritius_growthandretreat_2017_2022",
+        layerCategory: "shorelineChangeArea",
+        layerVisibility: false,
       },
     ],
     colorMap: {
@@ -36,25 +54,33 @@ export const useTileStore = defineStore({
       Stony: ["#000000", 1, "Rocky Shore", true],
       Wetland: ["#43dac6", 1, "Wetland", true],
     },
+//     CoralReef","#fbd376"
+// DenseCoral","#da8488"
+// Sand","#c5c5c5"
+// SeagrassSeaweed","#499c00"
+// Sediment","#ede732"
+// Sparse Coral/Seagrass/Seaweed","#5bff66"
+// Seagrass","#2E8B57"
     benthicColorMap: {
-      CoralReefFinal: ["#fbd376", 1, "Reef and Back reef", true],
-      DeepwatersFinal: ["#06306E", 1, "Deep sea", true],
+      CoralReefFinal: ["#fbd376", 1, "Coral Reef", true],
       DenseCoralFinal: ["#DA8488", 1, "Dense Coral and Algae", true],
-      SeagrassSeaweedFinal: ["#97E86E", 1, "Seagrass bed", true],
+      Sand: ["#c5c5c5", 1, "Sand", true],
+      SeagrassSeaweedFinal: ["#499c00", 1, "Seagrass/Seaweed", true],
       SedimentFinal: ["#EDE732", 1, "Seabed sediment", true],
-      SparseCorSgSwFinal: ["#FFD282", 1, "Sparse Coral/Seagrass/seaweed", true],
+      SparseCorSgSwFinal: ["#5bff66", 1, "Sparse Coral/Seagrass/seaweed", true],
+      seagrass: ["#2E8B57", 1, "Seagrass", true],
     },
     shorelineColorMap: {
-      highRetreate: ["#ED2024", 1, "< -2m/yr", true],
-      moderateRetreate: ["#FCBF10", 1, "-2 to -1m/yr", true],
-      lowChange: ["#F6EB13", 1, "-1 to 1m/yr", true],
-      moderateErosion: ["#00B04F", 1, "1 to 2m/yr", true],
-      highErosion: ["#29ADE3", 1, "> 2m/yr", true],
+      HighErosion: ["#E14A24", 1, "High Erosion(< -2m/yr)", true],
+      ModerateErosion: ["#FCBF10", 1, "Moderate Erosion(-2 to -1m/yr)", true],
+      LowChange: ["#F6EB13", 1, "Low Change(-1 to 1m/yr)", true],
+      ModerateAccretion: ["#00B04F", 1, "Moderate Accretion(1 to 2m/yr)", true],
+      HighAccretion: ["#29ADE3", 1, "High Accretion(> 2m/yr)", true],
     },
     shorelineAreaColorMap: {
-      growth: ["#ED2024", 1, "Growth", true],
-      retreat: ["#00B04F", 1, "Retreat", true],
-    }
+      growth: ["#00B04F", 1, "Growth", true],
+      retreat: ["#E14A24", 1, "Retreat", true],
+    },
   }),
   getters: {
     getColorMap: (state) => state.colorMap,
@@ -62,6 +88,7 @@ export const useTileStore = defineStore({
     getShorelineColorMap: (state) => state.shorelineColorMap,
     getShorelineAreaColorMap: (state) => state.shorelineAreaColorMap,
     getLayers: (state) => state.layers,
+    getShorelineLayers: (state) => state.shorelineChangelayers,
   },
   actions: {
     updateSettlementColor(newColor, opacity, name, layer) {
@@ -91,15 +118,22 @@ export const useTileStore = defineStore({
     },
     updateLayerNames() {
       const array = this.layers;
+      const shoreline_array = this.shorelineChangelayers;
       const prefix = vectStore.getselectedRegion;
       const updatedArray = array.map((item) => {
         const newName = item.layerName.replace(/^[^_]+/, prefix);
         return { ...item, layerName: newName };
       });
 
-      console.log(updatedArray.length);
+      const updatedShorelineArray = shoreline_array.map((item) => {
+        const newName = item.layerName.replace(/^[^_]+/, prefix);
+        return { ...item, layerName: newName };
+      });
+
+      //console.log(updatedArray.length);
 
       this.layers = updatedArray;
+      this.shorelineChangelayers = updatedShorelineArray;
     },
   },
 });
@@ -263,3 +297,5 @@ export const useTileStore = defineStore({
       </FeatureTypeStyle>
 
 */
+
+

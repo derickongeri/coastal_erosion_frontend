@@ -1,82 +1,80 @@
 import { useVectorStore } from "../../../stores/vector_store/index.js";
 import { axios } from "src/boot/axios";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 export default function setSelectedRaster() {
   const store = useVectorStore();
+  //let country = store.getselectedRegion;
 
-  const getRasterLayer = async function () {
-    //await selectedVect()
-    let eeLayer = null;
-    let layerList = [];
-
-    //console.log(store.customGeojson, 'fetchRaster')
-    let params = {
-      geometry: store.customGeojson.toString(),
-      dates: store.datesSelected,
-    };
-
-    const response = await axios.post(
-      "http://78.141.234.158:3000/api/mapid",
-      params,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    //console.log(response.data)
-
-    const mapidList = response.data.tileList.reverse();
-
-    //const mapidList = ["projects/earthengine-legacy/maps/873c0b5937d2adb49736554cc966df9a-b1d87d2ce20709815373b413dfeb270a","projects/earthengine-legacy/maps/416c60ec75e3c993e5aeb5f460ffa9d8-3b236b8f4e3ad110962c77c4a41eca79"]
-    //console.log(response.data)
-
-    const createTileLayer = (mapidIndex, mapid) => {
-      eeLayer = L.tileLayer(
-        `https://earthengine.googleapis.com/v1alpha/${mapid}/tiles/{z}/{x}/{y}`,
-        {
-          //layers: `${mapid}`,
-          transparent: true,
-          crs: L.CRS.EPSG4326,
-          format: "image/png",
-          attribution: "google earth engine",
-          zIndex: mapidIndex + 2,
-        }
-      );
-
-      layerList.push(eeLayer);
-    };
-
-    for (let i = 0; i < mapidList.length; i++) {
-      createTileLayer(i, mapidList[i]);
-    }
-    return layerList;
+  const getRasterLayer = async function (layerName, styleName) {
+    return L.tileLayer.wms("http://217.21.122.249/geoserver/cogeos/wms", {
+      layers: `cogeos:${layerName}`,
+      format: "image/png",
+      transparent: true,
+      // opacity: 1,
+      // tilematrixSet: "EPSG:4326",
+      styles: `cogeos:${styleName}`,
+      crs: L.CRS.EPSG4326,
+    });
   };
 
-  const fetchWMSLayers = async function () {
-    // Construct the WKT geometry string and encode it
-    const wktGeometry = "POLYGON ((57.69397880183624 -20.072109214137228, 57.69397880183624 -20.09146761177516, 57.71166189757105 -20.09146761177516, 57.71166189757105 -20.072109214137228, 57.69397880183624 -20.072109214137228))";
-    const encodedWktGeometry = encodeURIComponent(wktGeometry);
+  const getTerrestrialCover = async function () {
+    const region = store.getselectedRegion;
+    return getRasterLayer(`${region}_Terrestrial`, `Terrestrial`);
+  };
 
-    // Construct the request URL with the encoded WKT geometry as the filter parameter
-    const geoserverUrl = "http://45.76.143.229/geoserver/rcmrd_coastal";
-    const layerName = "rcmrd_coastal%3AMauritius_Benthic_Grids";
-    const filter = `<Filter><Intersects><PropertyName>the_geom</PropertyName><Literal>${encodedWktGeometry}</Literal></Intersects></Filter>`;
-    const requestUrl = `${geoserverUrl}?service=WMS&version=1.1.0&request=GetMap&layers=${layerName}&outputFormat=application/json&cql_filter=${filter}`;
+  // Get Benthic cover maps with an exception for Madagascar Styling
+  const getBenthicCover = async function () {
+    const region = store.getselectedRegion;
+    const style = region === "Madagascar" ? `${region}_Benthic` : `Benthic`;
+    return getRasterLayer(`${region}_Benthic`, style);
+  };
 
-    // Use the request URL to fetch the data from GeoServer
-    fetch(requestUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        // Process the data as needed
-      })
-      .catch((error) => {
-        // Handle any errors
-      });
+  // Get shoreline change data
+  const getShorelineChange = async function () {
+    const region = store.getselectedRegion;
+    const wfsURL =
+      "http://217.21.122.249/geoserver/cogeos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cogeos%3AMauritius_shoreline_change_rates_2017_2022&outputFormat=application%2Fjson";
+
+    let response = await axios.get(wfsURL);
+
+    let vectLayer = response.data;
+
+    const layer = L.geoJSON([vectLayer], {
+      style: function (feature) {
+        const changerate = feature.properties.layer;
+        const latlng = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
+        let radius = 28;
+        if (changerate === 'lowChange') {
+          return L.circleMarker(latlng, {
+            radius: radius,
+            fillOpacity: 0,
+            color: "#FF0000", // Example color for < -2m/yr
+          });
+        } else if (changerate === 'moderateRe') {
+          return L.circleMarker(latlng, {
+            radius: radius,
+            fillOpacity: 0,
+            color: "#FFA500", // Example color for -2 to -1m/yr
+          });
+        } else {
+          return {
+            fillOpacity: 0,
+            weight: 0,
+            color: "#0000FF", // Example color for > 2m/yr
+          };
+        }
+      },
+    });
+
+    return layer;
   };
 
   return {
     getRasterLayer,
+    getTerrestrialCover,
+    getBenthicCover,
+    //getShorelineChange,
   };
 }

@@ -130,212 +130,6 @@
           style="width: fit-content"
           id="mapcontrols"
         >
-          <!-- <div class="q-pa-none q-gutter-sm desktop-control">
-          <q-btn
-            size="sm"
-            flat
-            rounded
-            no-caps
-            align="between"
-            class="bg-white btn-fixed-width q-px-md"
-            color="grey-7"
-            :label="$t('map')"
-            icon="mdi-tune-vertical"
-          >
-            <q-menu
-              flat
-              auto-close
-              class="q-pa-sm menu-card"
-              :offset="[10, 10]"
-            >
-              <div class="">
-                <div
-                  class="menu-content bg-grey-2 q-pa-sm q-ma-sm"
-                  style="border-radius: 5px"
-                >
-                  <div class="arrow-up q-ma-xs" style="left: 10%"></div>
-                  <span
-                    class="q-mx-sm"
-                    style="font-size: 0.75em; font-color: #838c48"
-                    >{{ $t("baseMap") }}</span
-                  >
-                  <q-separator />
-                  <div class="q-my-sm q-mx-sm" style="min-width: 150px">
-                    <div class="map-selection q-pa-xs" style="">
-                      <q-list class="row" style="min-width: 100px">
-                        <q-item
-                          class="col q-px-none"
-                          clickable
-                          v-ripple
-                          @click="change_base_map('OSM')"
-                        >
-                          <q-item-section class="row q-px-sm">
-                            <q-avatar rounded>
-                              <img
-                                src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png"
-                              />
-                            </q-avatar>
-                            <div
-                              class="row justify-center"
-                              style="font-size: 0.75em"
-                            >
-                              Mapbox
-                            </div>
-                          </q-item-section>
-                        </q-item>
-                        <q-item
-                          class="col q-px-none"
-                          clickable
-                          @click="change_base_map('satellite')"
-                        >
-                          <q-item-section class="q-px-sm">
-                            <q-avatar rounded>
-                              <img
-                                src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099830/Screenshot_from_2022-04-04_22-14-04_tnx5m7.png"
-                              />
-                            </q-avatar>
-                            <div
-                              class="row justify-center"
-                              style="font-size: 0.75em"
-                            >
-                              Satellite
-                            </div>
-                          </q-item-section>
-                        </q-item>
-                        <q-item
-                          class="col q-px-none"
-                          clickable
-                          @click="change_base_map('darkMap')"
-                        >
-                          <q-item-section class="q-px-sm">
-                            <q-avatar rounded>
-                              <img
-                                src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099827/Screenshot_from_2022-04-04_22-16-08_mu5dfk.png"
-                              />
-                            </q-avatar>
-                            <div
-                              class="row justify-center"
-                              style="font-size: 0.75em"
-                            >
-                              dark
-                            </div>
-                          </q-item-section>
-                        </q-item>
-                      </q-list>
-                    </div>
-                  </div>
-                  <q-separator />
-                  <span class="text-grey-9 q-mx-sm" style="font-size: 0.75em">{{
-                    $t("maplabels")
-                  }}</span>
-                  <div class="q-my-sm q-mx-sm" style="min-width: 150px">
-                    <q-toggle
-                      dense
-                      size="sm"
-                      v-model="setLabels"
-                      color="grey-7"
-                      :label="$t('maplabelsToggle')"
-                      left-label
-                    />
-                  </div>
-                </div>
-              </div>
-            </q-menu>
-          </q-btn>
-          <q-btn
-            size="sm"
-            flat
-            rounded
-            no-caps
-            align="between"
-            class="bg-white btn-fixed-width q-px-md desktop-control"
-            color="grey-7"
-            :label="$t('share')"
-            icon="mdi-share-variant"
-            @click="share = true"
-          >
-            <q-dialog v-model="share">
-              <socials />
-            </q-dialog>
-          </q-btn>
-          <q-btn
-            size="sm"
-            flat
-            rounded
-            no-caps
-            align="between"
-            class="bg-white btn-fixed-width q-px-md desktop-control"
-            color="grey-7"
-            :label="$t('Help')"
-            icon="mdi-help-circle-outline"
-          >
-            <q-menu
-              flat
-              auto-close
-              class="q-pa-sm menu-card"
-              :offset="[150, 0]"
-            >
-              <div class="">
-                <div
-                  class="menu-content bg-grey-2 q-pa-sm q-ma-sm"
-                  style="border-radius: 5px"
-                >
-                  <div class="arrow-up q-ma-xs" style="left: 60%"></div>
-                  <span
-                    class="text-primary q-mx-sm"
-                    style="font-size: 0.75em"
-                    >{{ $t("helpmessage") }}</span
-                  >
-                  <q-separator />
-                  <div class="q-my-none q-mx-none" style="min-width: 150px">
-                    <div class="map-selection q-pa-xs" style="">
-                      <div class="q-my-sm" style="max-width: 250px">
-                        <q-btn
-                          flat
-                          align="left"
-                          color="grey-7"
-                          no-caps
-                          class="q-py-xs full-width"
-                          :label="$t('documentation')"
-                        />
-                        <q-btn
-                          flat
-                          align="left"
-                          color="grey-7"
-                          no-caps
-                          class="q-py-xs full-width"
-                          :label="$t('tour')"
-                        />
-                        <q-btn
-                          flat
-                          align="left"
-                          color="grey-7"
-                          no-caps
-                          class="q-py-xs full-width"
-                          :label="$t('tour')"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </q-menu>
-          </q-btn>
-          <q-btn
-            size="sm"
-            flat
-            rounded
-            no-caps
-            align="between"
-            class="bg-white btn-fixed-width q-px-md desktop-control"
-            color="grey-7"
-            :label="$t('feedback')"
-            icon="mdi-comment-quote-outline"
-          >
-            <a href="malito:derickongeri@gmail.com" />
-          </q-btn>
-        </div> -->
-
           <div class="row q-mt-sm web-view">
             <q-space />
             <div
@@ -354,21 +148,6 @@
               @pointerout="map.dragging.enable(), map.smoothWheelZoom.enable()"
             >
               <div class="col q-pa-sm" style="border-radius: 15px">
-                <!-- <div class="row">
-                <span
-                  class="my-font q-px-xs q-ma-none"
-                  style="font-weight: bold"
-                  >{{ $t("Benthic Classes") }}</span
-                >
-                <q-space />
-                <q-icon
-                  clickable
-                  name="mdi-circle-opacity"
-                  size="16px"
-                  class="cursor-pointer"
-                  @click="opacityslider = !opacityslider"
-                />
-              </div> -->
                 <div class="row" v-show="opacityslider">
                   <div
                     class="row items-center bg-grey-2"
@@ -415,15 +194,13 @@
                   v-ripple
                   @click="change_base_map('OSM')"
                 >
-                  <q-item-section class="row q-px-sm">
+                  <q-item-section class="row items-center">
                     <q-avatar rounded>
                       <img
                         src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099828/Screenshot_from_2022-04-04_22-14-36_z8raar.png"
                       />
                     </q-avatar>
-                    <div class="row justify-center" style="font-size: 0.75em">
-                      Mapbox
-                    </div>
+                    <div class="row" style="font-size: 0.75em">Light</div>
                   </q-item-section>
                 </q-item>
                 <q-item
@@ -431,7 +208,7 @@
                   clickable
                   @click="change_base_map('satellite')"
                 >
-                  <q-item-section class="q-px-sm">
+                  <q-item-section class="q-px-sm items-center">
                     <q-avatar rounded>
                       <img
                         src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099830/Screenshot_from_2022-04-04_22-14-04_tnx5m7.png"
@@ -447,7 +224,7 @@
                   clickable
                   @click="change_base_map('darkMap')"
                 >
-                  <q-item-section class="q-px-sm">
+                  <q-item-section class="q-px-sm items-center">
                     <q-avatar rounded>
                       <img
                         src="https://res.cloudinary.com/dv3id0zrx/image/upload/v1649099827/Screenshot_from_2022-04-04_22-16-08_mu5dfk.png"
@@ -694,7 +471,8 @@ export default defineComponent({
     const store = useVectorStore();
     const tileStore = useTileStore();
     const { selectedVect } = setSelectedVect();
-    const { getRasterLayer } = setSelectedRaster();
+    const { getRasterLayer, getTerrestrialCover, getBenthicCover } =
+      setSelectedRaster();
     const { getVectorTiles } = loadVectorLayers();
 
     const rightDrawerOpen = ref(false);
@@ -706,7 +484,7 @@ export default defineComponent({
       showBaseMapList = ref(false), //show or hide base layers
       base_map_ctrl_cliked = ref(false),
       opacityValue = ref(10),
-      currentRasterLayer = ref(null),
+      vectorTileLayers = ref(null),
       currentBaseLayer = ref(null),
       currentVectLayer = ref(null),
       //editableLayer = ref(null),
@@ -719,6 +497,7 @@ export default defineComponent({
       opacityslider = ref(false),
       benthicLayer = ref(null),
       terrestrialLayer = ref(null),
+      shorelineChangeArea = ref(null),
       shorelineChangeRateLayer = ref(null);
 
     let drawingTools = ref(false);
@@ -777,13 +556,6 @@ export default defineComponent({
 
       L.control.layers(baseMaps.value).addTo(map.value);
 
-      // baseMaps.value[1].addTo(map.value)
-
-      // L.control
-      //   .attribution({
-      //     position: "bottomright",
-      //   })
-      //   .addTo(map.value);
       L.control
         .betterscale({
           position: "bottomright",
@@ -862,7 +634,7 @@ export default defineComponent({
           documentTitle: ``,
           closePopupsOnPrint: false,
           manualMode: false,
-          //printLayer: currentRasterLayer.value
+          //printLayer: vectorTileLayers.value
         };
         var browserPrint = L.browserPrint(map.value, scaleBar.value, options);
         browserPrint.print(L.BrowserPrint.Mode.Landscape());
@@ -889,8 +661,8 @@ export default defineComponent({
       current_top_base_layer.value = selected_base_map;
       map.value.addLayer(current_top_base_layer.value);
       //selected_base_map.bringToFront();
-      currentRasterLayer.value[0].bringToFront();
-      currentRasterLayer.value[1].bringToFront();
+      vectorTileLayers.value[0].bringToFront();
+      vectorTileLayers.value[1].bringToFront();
     };
 
     const setUpGeoman = function () {
@@ -944,17 +716,17 @@ export default defineComponent({
         editableLayer.addLayer(layer);
         map.value.addLayer(editableLayer);
         drawCustomPolygon(layer);
-        setRasterLayer();
+        getMapLayers();
       });
 
       map.value.on("draw:deleted", function (e) {
         map.value.removeLayer(currentBaseLayer.value);
-        map.value.removeLayer(currentRasterLayer.value);
+        map.value.removeLayer(vectorTileLayers.value);
         map.value.removeLayer(customGeometry.value);
         customGeometry.value = null;
         // store.setCustomGeometryData("");
         setCurrentVector();
-        //setRasterLayer();
+        //getMapLayers();
       });
     };
 
@@ -976,8 +748,7 @@ export default defineComponent({
       if (customGeometry.value) map.value.removeLayer(customGeometry.value);
       if (customGeometry.value) customGeometry.value = null;
       if (currentBaseLayer.value) map.value.removeLayer(currentBaseLayer.value);
-      if (currentRasterLayer.value)
-        map.value.removeLayer(currentRasterLayer.value);
+      if (vectorTileLayers.value) map.value.removeLayer(vectorTileLayers.value);
       const geojson = JSON.stringify(layer.toGeoJSON().geometry);
       console.log(geojson, "custom area");
       store.setCustomGeometryData(geojson);
@@ -996,8 +767,8 @@ export default defineComponent({
         if (currentBaseLayer.value) {
           map.value.removeLayer(currentBaseLayer.value);
         }
-        if (currentRasterLayer.value) {
-          map.value.removeLayer(currentRasterLayer.value);
+        if (vectorTileLayers.value) {
+          map.value.removeLayer(vectorTileLayers.value);
         }
 
         let vectLayer = await selectedVect();
@@ -1033,81 +804,94 @@ export default defineComponent({
     };
 
     const handle_opacity = function () {
-      if (currentRasterLayer.value)
-        currentRasterLayer.value.options.opacity = opacityValue.value / 10;
-      if (currentRasterLayer.value)
-        map.value.removeLayer(currentRasterLayer.value);
-      currentRasterLayer.value.addTo(map.value); //add layer to map
-      //currentRasterLayer.value.bringToFront();
+      if (vectorTileLayers.value)
+        vectorTileLayers.value.options.opacity = opacityValue.value / 10;
+      if (vectorTileLayers.value) map.value.removeLayer(vectorTileLayers.value);
+      vectorTileLayers.value.addTo(map.value); //add layer to map
+      //vectorTileLayers.value.bringToFront();
       currentVectLayer.value.bringToFront();
     };
 
-    const setRasterLayer = async function () {
+    const getMapLayers = async function () {
       try {
         Loading.show({
           spinner: QSpinnerGears,
           spinnerSize: "xl",
-          message: "Fetching map data...",
+          message: "Fetching Layers...",
         });
 
-        if (benthicLayer.value) {
-          map.value.removeLayer(benthicLayer.value);
-        }
-        if (terrestrialLayer.value) {
-          map.value.removeLayer(terrestrialLayer.value);
-        }
-        if (shorelineChangeRateLayer.value) {
-          map.value.removeLayer(shorelineChangeRateLayer.value);
-        }
+        let layersList = [
+          shorelineChangeRateLayer.value,
+          shorelineChangeArea.value,
+          terrestrialLayer.value,
+          benthicLayer.value,
+        ];
 
-        currentRasterLayer.value = getVectorTiles(tileStore.layers);
-
-        terrestrialLayer.value = currentRasterLayer.value[0];
-        benthicLayer.value = currentRasterLayer.value[1];
-        shorelineChangeRateLayer.value = currentRasterLayer.value[2];
-
-        // currentRasterLayer.value = L.layerGroup([currentRasterLayer.value[0], currentRasterLayer.value[1]])
-        // terrestrialLayer.value.addTo(map.value).bringToFront();
-        benthicLayer.value.addTo(map.value).bringToFront();
-        shorelineChangeRateLayer.value.addTo(map.value).bringToFront();
-
-        benthicLayer.value.on("load", () => {
-          Loading.hide();
+        layersList.forEach((layer) => {
+          if (layer) {
+            map.value.removeLayer(layer);
+          }
         });
-        // Loading.hide();
 
-        // getRasterStats();
+        vectorTileLayers.value = getVectorTiles(
+          tileStore.shorelineChangelayers
+        );
+
+        shorelineChangeRateLayer.value = vectorTileLayers.value[0];
+        shorelineChangeArea.value = vectorTileLayers.value[1];
+        terrestrialLayer.value = await getTerrestrialCover();
+        benthicLayer.value = await getBenthicCover();
+
+        Loading.hide();
       } catch (error) {
         Loading.hide();
         console.log(error);
       }
     };
 
-    // const getWMSLayer = async function () {
-    //   // Construct the WKT geometry string and encode it
-    //   const wktGeometry =
-    //     "POLYGON ((57.69397880183624 -20.072109214137228, 57.69397880183624 -20.09146761177516, 57.71166189757105 -20.09146761177516, 57.71166189757105 -20.072109214137228, 57.69397880183624 -20.072109214137228))";
-    //   const encodedWktGeometry = encodeURIComponent(wktGeometry);
+    const addLayersToMap = function () {
+      try {
+        Loading.show({
+          spinner: QSpinnerGears,
+          spinnerSize: "xl",
+          message: "Fetching map data...",
+        });
+        const visibleLayers = [];
 
-    //   // Construct the request URL with the encoded WKT geometry as the filter parameter
-    //   const geoserverUrl = "http://45.76.143.229/geoserver/rcmrd_coastal";
-    //   const layerName = "rcmrd_coastal%3AMauritius_Benthic_Grids";
-    //   const cql_filter = `<Filter><Intersects><PropertyName>the_geom</PropertyName><Literal>${encodedWktGeometry}</Literal></Intersects></Filter>`;
-    //   //const requestUrl = `${geoserverUrl}?service=WMS&version=1.1.0&request=GetMap&layers=${layerName}&outputFormat=application/json&cql_filter=${filter}`;
+        const layerList = [
+          {
+            layerName: benthicLayer.value,
+            visible: tileStore.layers[1].layerVisibility,
+          },
+          {
+            layerName: terrestrialLayer.value,
+            visible: tileStore.layers[0].layerVisibility,
+          },
+          {
+            layerName: shorelineChangeArea.value,
+            visible: tileStore.layers[3].layerVisibility,
+          },
+          {
+            layerName: shorelineChangeRateLayer.value,
+            visible: tileStore.layers[2].layerVisibility,
+          },
+        ];
 
-    //   // Add a WMS layer with your filter
-    //   var wmsLayer = L.tileLayer.wms(
-    //     geoserverUrl,
-    //     {
-    //       layers: layerName,
-    //       format: "image/png",
-    //       tiled: true,
-    //       filter: cql_filter,
-    //     }
-    //   );
+        layerList.forEach(function (layer) {
+          if (layer.visible) {
+            layer.layerName.addTo(map.value).bringToFront();
+            visibleLayers.push(layer.layerName);
+          }
+        });
 
-    //   wmsLayer.addTo(map.value)
-    // };
+        visibleLayers[0].on("load", () => {
+          Loading.hide();
+        });
+      } catch (error) {
+        Loading.hide();
+        console.log(error);
+      }
+    };
 
     const addLabels = function (val) {
       if (val) {
@@ -1129,15 +913,27 @@ export default defineComponent({
     watch(
       () => tileStore.layers,
       (val) => {
-        console.log("triger");
-        // val = tileStore.getLayers[0].layerVisibility;
-        !tileStore.getLayers[0].layerVisibility
-          ? map.value.removeLayer(terrestrialLayer.value)
-          : terrestrialLayer.value.addTo(map.value).bringToFront();
+        try {
+          console.log("triger");
+          // val = tileStore.getLayers[0].layerVisibility;
+          !tileStore.getLayers[0].layerVisibility
+            ? map.value.removeLayer(terrestrialLayer.value)
+            : terrestrialLayer.value.addTo(map.value).bringToFront();
 
-        !tileStore.getLayers[1].layerVisibility
-          ? map.value.removeLayer(benthicLayer.value)
-          : map.value.addLayer(benthicLayer.value);
+          !tileStore.getLayers[1].layerVisibility
+            ? map.value.removeLayer(benthicLayer.value)
+            : benthicLayer.value.addTo(map.value).bringToFront();
+
+          !tileStore.getLayers[2].layerVisibility
+            ? map.value.removeLayer(shorelineChangeRateLayer.value)
+            : shorelineChangeRateLayer.value.addTo(map.value).bringToFront();
+
+          !tileStore.getLayers[3].layerVisibility
+            ? map.value.removeLayer(shorelineChangeArea.value)
+            : shorelineChangeArea.value.addTo(map.value).bringToFront();
+        } catch (error) {
+          console.log(error);
+        }
       },
       { deep: true }
     );
@@ -1166,7 +962,7 @@ export default defineComponent({
     });
 
     watch(tileStore.getColorMap, () => {
-      if (currentRasterLayer.value === null) {
+      if (vectorTileLayers.value === null) {
         return;
       }
 
@@ -1205,7 +1001,7 @@ export default defineComponent({
     });
 
     watch(tileStore.getBenthicColorMap, () => {
-      if (currentRasterLayer.value === null) {
+      if (vectorTileLayers.value === null) {
         return;
       }
 
@@ -1244,9 +1040,11 @@ export default defineComponent({
     });
 
     watch(selecteVector, () => {
+      tileStore.updateLayerNames();
       setCurrentVector().then(() => {
-        tileStore.updateLayerNames();
-        setRasterLayer();
+        getMapLayers().then(() => {
+          addLayersToMap();
+        });
       });
     });
 
@@ -1256,14 +1054,16 @@ export default defineComponent({
 
     watch(selecteDates, () => {
       setCurrentVector();
-      setRasterLayer();
+      // getMapLayers();
     });
 
     watch(customGeometry.value, () => {
       () => {
         console.log(customGeometry.value);
         map.value.removeLayer(currentVectLayer.value);
-        setRasterLayer();
+        getMapLayers().then(() => {
+          addLayersToMap();
+        });
       };
     });
 
@@ -1273,14 +1073,16 @@ export default defineComponent({
 
     watch(setRasterYear, () => {
       console.log(`year changed to ${store.getYearSelected}`);
-      setRasterLayer();
+      // getMapLayers();
     });
 
     onMounted(() => {
       setLeafletMap().then(() => {
         toggleDrawingTools();
         setCurrentVector();
-        setRasterLayer();
+        // getMapLayers().then(() => {
+        //   addLayersToMap()
+        // });
         // getWMSLayer();
       });
     });

@@ -75,7 +75,7 @@
               :label="$t('dashboard')"
               to="/apps/dashboard"
             />
-            <q-route-tab name="articles" label="blog" to="/blog/blog_posts" />
+            <!-- <q-route-tab name="articles" label="blog" to="/blog/blog_posts" /> -->
             <q-btn-dropdown
               class="dash-nav3"
               no-caps

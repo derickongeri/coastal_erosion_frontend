@@ -3,7 +3,7 @@
     class="q-my-none q-mt-none"
     style="
       width: 100%;
-      heiht: 70%;
+      height: 80%;
       border: 0px solid rgb(160, 160, 160);
       position: relative;
     "
@@ -48,66 +48,9 @@ export default {
   name: "BarChart",
   components: { Bar },
   props: {
-    chartData: {
+    chartOptions: {
       type: Object,
-      default: {
-        labels: [
-          "Dense Coral",
-          "Reef/Back reef",
-          "Seabed sediments",
-          "Sparse coaral on sand",
-          "Deep water",
-          "Seagrass bed",
-        ],
-        datasets: [
-          {
-            backgroundColor: [
-              "#cf673b",
-              "#668438",
-              "#9bcc4f",
-              "#b19c3a",
-              "#ffffbe",
-              "#dadac7",
-            ],
-            data: [70, 60, 50, 30, 20, 10],
-            barPercentage: 0.75,
-            categoryPercentage: 0.75,
-          },
-        ],
-      },
-    },
-    chartId: {
-      type: String,
-      default: "bar-chart",
-    },
-    datasetIdKey: {
-      type: String,
-      default: "label",
-    },
-    width: {
-      type: Number,
-      default: 300,
-    },
-    height: {
-      type: Number,
-      default: 200,
-    },
-    cssClasses: {
-      default: "my-font text-grey-9",
-      type: String,
-    },
-    styles: {
-      type: Object,
-      default: () => {},
-    },
-    plugins: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      chartOptions: {
+      default:{
         layout: {
           padding: 0,
         },
@@ -193,7 +136,154 @@ export default {
             },
           },
         },
+      }
+    },
+    chartData: {
+      type: Object,
+      default: {
+        labels: [
+          "Dense Coral",
+          "Reef/Back reef",
+          "Seabed sediments",
+          "Sparse coaral on sand",
+          "Deep water",
+          "Seagrass bed",
+        ],
+        datasets: [
+          {
+            backgroundColor: [
+              "#cf673b",
+              "#668438",
+              "#9bcc4f",
+              "#b19c3a",
+              "#ffffbe",
+              "#dadac7",
+            ],
+            data: [70, 60, 50, 30, 20, 10],
+            barPercentage: 0.75,
+            categoryPercentage: 0.75,
+          },
+        ],
       },
+    },
+    chartId: {
+      type: String,
+      default: "bar-chart",
+    },
+    datasetIdKey: {
+      type: String,
+      default: "label",
+    },
+    width: {
+      type: Number,
+      default: 350,
+    },
+    height: {
+      type: Number,
+      default: 250,
+    },
+    cssClasses: {
+      default: "my-font text-grey-9",
+      type: String,
+    },
+    styles: {
+      type: Object,
+      default: () => {},
+    },
+    plugins: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      // chartOptions: {
+      //   layout: {
+      //     padding: 0,
+      //   },
+      //   responsive: true,
+      //   maintainAspectRatio: true,
+      //   plugins: {
+      //     datalabels: {
+      //       display: "auto",
+      //       anchor: "end",
+      //       align: "end",
+      //       offset: 10,
+      //       opacity: 0.9,
+      //       formatter: (val, ctx) => {
+      //         // Grab the label for this value
+      //         const label = ctx.chart.data.labels[ctx.dataIndex];
+
+      //         // Format the number with 2 decimal places
+      //         const formattedVal = Intl.NumberFormat("en-US", {
+      //           minimumFractionDigits: 1,
+      //         }).format(val);
+
+      //         // Put them together
+      //         return `${formattedVal}`;
+      //       },
+      //       borderRadius: 5,
+      //       leftborderWidth: 2,
+      //       borderColor: ["#b71c1c", "#2e7d32", "#fff9b4"],
+      //       color: "#404040",
+      //       size: "11",
+      //       backgroundColor: "#fff",
+      //     },
+      //     legend: {
+      //       display: false,
+      //       position: "bottom",
+      //       labels: {
+      //         font: {
+      //           fontColor: "#EEEEEE",
+      //         },
+      //       },
+      //     },
+      //     title: {
+      //       display: true,
+      //       text: "Area Ha",
+      //       position: "bottom",
+      //       color: "#9e9d24",
+      //     },
+      //   },
+      //   indexAxis: "y",
+      //   elements: {
+      //     bar: {
+      //       borderWidth: 0,
+      //       inflateAmount: 0,
+      //       borderRadius: 20,
+      //       borderSkipped: false,
+      //     },
+      //   },
+      //   scales: {
+      //     x: {
+      //       min: 0,
+      //       // max: ,
+      //       ticks: {
+      //         callback: function (value) {
+      //           value = value.toFixed() / 1000;
+      //           return `${value}K`;
+      //         },
+      //         color: "#424242",
+      //       },
+      //       grid: {
+      //         color: "",
+      //       },
+      //     },
+      //     y: {
+      //       ticks: {
+      //         color: "#424242",
+      //         tickLength: 0,
+      //       },
+      //       grid: {
+      //         color: "#9e9d24",
+      //         borderDash: [1, 10],
+      //         drawBorder: false,
+      //         tickLength: 0,
+      //         tickWidth: 0,
+      //       },
+      //     },
+      //   },
+      // },
     };
   },
 };

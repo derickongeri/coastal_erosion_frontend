@@ -37,7 +37,7 @@ export default function userAuthUser() {
       password: password,
       options: {
         data: meta,
-        emailRedirectTo: `http://217.21.122.249/#/confirm-signup`,
+        emailRedirectTo: `http://217.21.122.249`,
       },
     });
     if (error) throw error;

@@ -25,7 +25,7 @@
               style="font-weight: 400; font-size: 21px"
               @click="toggleCard(cards[1])"
             >
-              <div>{{ store.selectedRegion }} Benthic Classes</div>
+              <div>{{ store.selectedRegion }} Benthic Cover</div>
               <q-space />
               <div @mousedown.stop>
                 <label class="switch">
@@ -54,7 +54,7 @@
               style="font-weight: 400; font-size: 21px"
               @click="toggleCard(cards[2])"
             >
-              <div>{{ store.selectedRegion }} Terrestrial Classes</div>
+              <div>{{ store.selectedRegion }} Terrestrial Cover</div>
               <q-space />
               <div>
                 <label @mousedown.stop="" class="switch">
@@ -82,7 +82,7 @@
               class="row items-center"
               style="font-weight: 400; font-size: 21px"
             >
-              <div>{{ store.selectedRegion }} Shoreline Change</div>
+              <div>{{ store.selectedRegion }} Shoreline Change Rate 2017-2022</div>
               <q-space />
               <q-btn
                 flat
@@ -100,7 +100,7 @@
                     <div class="row my-font items-center q-mx-md q-my-md">
                       <select id="dropdown" style="padding: 5px;width: 100%;">
                         <option value="apple">Change rate</option>
-                        <option value="apple">Change area</option>
+                        <!-- <option value="apple">Change area</option> -->
                       </select>
                     </div>
 
@@ -120,7 +120,7 @@
                       </div>
                       <div class="col my-font">
                         <select id="dropdown">
-                          <option value="apple">2019</option>
+                          <option value="apple">2022</option>
                         </select>
                       </div>
                     </div>
@@ -131,7 +131,7 @@
                 <label @mousedown.stop="" class="switch">
                   <input
                     type="checkbox"
-                    v-model="tileStore.layers[0].layerVisibility"
+                    v-model="tileStore.layers[2].layerVisibility"
                   />
                   <span class="slider round"></span>
                 </label>

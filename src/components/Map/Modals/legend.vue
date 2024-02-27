@@ -61,23 +61,24 @@
                     border-radius: 12px;
                   "
                 >
-                  <q-popup-proxy>
+                  <!-- <q-popup-proxy>
                     <colorpicker
                       :parent-color="landcover.color[0]"
                       :color-name="landcover.landcover"
                       :layer-name="layerNames[0]"
                     />
-                  </q-popup-proxy> </i
+                  </q-popup-proxy> -->
+                  </i
                 >{{ store.getBenthicColorMap[landcover.landcover][2] }}
               </div>
 
-              <q-checkbox
+              <!-- <q-checkbox
                 class="q-ma-none q-pa-none"
                 size="24px"
                 color="grey-9"
                 dense
                 v-model="store.benthicColorMap[landcover.landcover][3]"
-              />
+              /> -->
             </div>
           </div>
         </div>
@@ -142,22 +143,23 @@
                     border-radius: 12px;
                   "
                 >
-                  <q-popup-proxy>
+                  <!-- <q-popup-proxy>
                     <colorpicker
                       :parent-color="landcover.color[0]"
                       :color-name="landcover.landcover"
                       :layer-name="layerNames[1]"
                     />
-                  </q-popup-proxy> </i
+                  </q-popup-proxy> -->
+                  </i
                 >{{ store.getColorMap[landcover.landcover][2] }}
               </div>
-              <q-checkbox
+              <!-- <q-checkbox
                 class="q-ma-none q-pa-none"
                 size="24px"
                 color="grey-9"
                 dense
                 v-model="store.colorMap[landcover.landcover][3]"
-              />
+              /> -->
             </div>
           </div>
         </div>
@@ -178,7 +180,7 @@
           size="sm"
           color="primary"
           dense
-          v-model="store.layers[0].layerVisibility"
+          v-model="store.layers[2].layerVisibility"
         />
 
         <q-item-section class="header-text">
@@ -199,7 +201,7 @@
         </q-dialog>
       </template>
       <div ref="draggableContainer" id="draggable-container" class="legend">
-        <div class="row q-px-md">Change Rate</div>
+        <!-- <div class="row q-px-md">Change Rate</div> -->
         <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
           <div
             class="q-gutter-xs q-pa-xs"
@@ -242,7 +244,45 @@
             </div>
           </div>
         </div>
-        <div class="row q-px-md">Change Area</div>
+      </div>
+    </q-expansion-item>
+
+    <q-expansion-item
+      dense
+      dense-toggle
+      expand-separator
+      default-opened
+      icon=""
+      :label="layerNames[3]"
+      header-class="bg-grey-1 my-font text-grey-9 header-text"
+    >
+      <template v-slot:header>
+        <q-checkbox
+          class="q-ma-none q-pa-xs"
+          size="sm"
+          color="primary"
+          dense
+          v-model="store.layers[3].layerVisibility"
+        />
+
+        <q-item-section class="header-text">
+          {{ layerNames[3] }}
+        </q-item-section>
+        <q-btn
+          class="q-ma-none q-my-sm q-pa-sm"
+          round
+          dense
+          outline
+          size="8px"
+          color="primary"
+          icon="mdi-information-variant"
+          @click.stop="toolbarShoreline=true"
+        />
+        <q-dialog v-model="toolbarShoreline" flat>
+          <info summary-text="Shoreline" />
+        </q-dialog>
+      </template>
+      <div ref="draggableContainer" id="draggable-container" class="legend">
         <div class="col q-pa-sm q-ma-none q-gutter-none" style="max-width: fit">
           <div
             class="q-gutter-xs q-pa-xs"
@@ -304,7 +344,7 @@ export default defineComponent({
   setup() {
     const store = useTileStore();
     const { setLegendColors } = createLegend();
-    const layerNames = ref(["Benthic Classes", "Terrestrial Classes", "Shoreline Changes"]);
+    const layerNames = ref(["Benthic Classes", "Terrestrial Classes", "Shoreline Change rate", "Shoreline Change Area", ]);
     const legendData = ref([]);
     const legendDataBenthic = ref([]);
     const legendDataShoreline = ref([]);
