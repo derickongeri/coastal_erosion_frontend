@@ -454,29 +454,25 @@
                     round
                     flat
                     color="grey-1"
-                    size="lg"
+                    size="md"
                     icon="mdi-facebook"
+                    href="https://web.facebook.com/rcmrd.org/?_rdc=1&_rdr"
                   />
                   <q-btn
                     round
                     flat
                     color="grey-1"
-                    size="lg"
+                    size="md"
                     icon="mdi-linkedin"
+                    href="https://www.linkedin.com/company/regional-centre-for-mapping-of-resources-for-development-rcmrd-/?originalSubdomain=ke"
                   />
                   <q-btn
                     round
                     flat
                     color="grey-1"
-                    size="lg"
+                    size="md"
                     icon="mdi-twitter"
-                  />
-                  <q-btn
-                    round
-                    flat
-                    color="grey-1"
-                    size="lg"
-                    icon="mdi-content-copy"
+                    href="https://twitter.com/RCMRD_GMES"
                   />
                 </div>
               </div>
@@ -485,19 +481,19 @@
           <q-separator vertical color="grey-7" />
           <div class="col items-center q-ma-md" style="min-width: 25vw">
             <div class="column items-center">
-              <div class="row">
-                <div class="column q-pl-md">
+              <div class="row items-center q-gutter-sm">
+                <div class="col">
                   <img
                     src="~/src/assets/RCMRD_Logo_White.svg"
                     style="
                       position: relative;
-                      width: 100%;
+                      width: 120%;
                       height: 50px;
                       left: -1%;
                     "
                   />
                 </div>
-                <div class="column q-pl-xs">
+                <div class="col q-pl-md">
                   <img
                     src="~/src/assets/rcmrd_gmes.png"
                     style="
@@ -509,16 +505,16 @@
                   />
                 </div>
 
-                <div class="column q-pl-md">
+                <div class="col q-pl-md">
                   <img
                     src="~/src/assets/AUlogo.png"
-                    style="position: relative; width: 70%; left: -1%"
+                    style="position: relative; width: 100%; left: -1%"
                   />
                 </div>
-                <div class="column q-pl-md">
+                <div class="col q-pl-md">
                   <img
                     src="~/src/assets/EUlogo.png"
-                    style="position: relative; width: 70%; left: -1%"
+                    style="position: relative; width: 50%; left: -1%"
                   />
                 </div>
               </div>
@@ -891,14 +887,13 @@
       </div>
     </div>
     <div
-      style="min-width: 100%;  background-color: #4c5a64"
+      style="min-width: 100%; background-color: #4c5a64"
       class="row justify-center q-pa-none q-ma-none"
     >
       <div
         class="column justify-center q-pa-none"
         style="max-width: 98vw; min-height: 100%"
       >
-
         <q-separator color="grey-7" />
         <div class="col q-ma-sm">
           <div class="column items-center text-center q-gutter-none" style="">
@@ -926,15 +921,29 @@
         <div class="column q-my-lg items-center">
           <div class="q-my-none text-justify text-grey-1">
             <div class="row justify-left q-gutter-lg items-left">
-              <q-btn round flat color="grey-1" size="md" icon="mdi-facebook" />
-              <q-btn round flat color="grey-1" size="md" icon="mdi-linkedin" />
-              <q-btn round flat color="grey-1" size="md" icon="mdi-twitter" />
               <q-btn
                 round
                 flat
                 color="grey-1"
                 size="md"
-                icon="mdi-content-copy"
+                icon="mdi-facebook"
+                href="https://web.facebook.com/rcmrd.org/?_rdc=1&_rdr"
+              />
+              <q-btn
+                round
+                flat
+                color="grey-1"
+                size="md"
+                icon="mdi-linkedin"
+                href="https://www.linkedin.com/company/regional-centre-for-mapping-of-resources-for-development-rcmrd-/?originalSubdomain=ke"
+              />
+              <q-btn
+                round
+                flat
+                color="grey-1"
+                size="md"
+                icon="mdi-twitter"
+                href="https://twitter.com/RCMRD_GMES"
               />
             </div>
           </div>
@@ -949,9 +958,9 @@ import { ref, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
-  components: {
-    sitenav: require("components/Website/navigation.vue").default,
-  },
+  // components: {
+  //   sitenav: require("components/Website/navigation.vue").default,
+  // },
   setup() {
     const router = { useRouter };
 

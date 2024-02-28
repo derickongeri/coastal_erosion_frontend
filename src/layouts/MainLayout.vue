@@ -332,6 +332,7 @@
       </q-header>
 
       <q-header
+        v-if="matchMediaMobile"
         class="text-white q-py-none navigation-background-color"
         height-hint="98"
       >
