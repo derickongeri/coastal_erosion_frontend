@@ -12,7 +12,7 @@
       >
         <q-btn
           color="grey-1"
-          text-color="primary"
+          text-color="indigo-10"
           round
           unelevated
           icon="mdi-chevron-right"
@@ -27,7 +27,7 @@
         <div class="row" style="width: 100%">
           <q-list
             padding
-            class="rounded-borders text-primary my-font"
+            class="rounded-borders text-indigo-10 my-font"
             style="width: 100%; font-size: 16px; font-weight: bold"
           >
             <q-item v-if="user" class="q-my-lg q-pt-lg">
@@ -44,7 +44,7 @@
               </q-item-section>
 
               <q-item-section avatar>
-                <q-avatar color="primary" text-color="grey-1"
+                <q-avatar color="indigo-10" text-color="grey-1"
                   >{{ user.user_metadata.firstName.charAt(0)
                   }}{{ user.user_metadata.lastName.charAt(0) }}</q-avatar
                 >
@@ -67,7 +67,7 @@
               </q-item-section>
 
               <!-- <q-item-section avatar>
-                <q-avatar color="primary" text-color="grey-1"
+                <q-avatar color="indigo-10" text-color="grey-1"
                   ></q-avatar
                 >
               </q-item-section> -->
@@ -75,15 +75,15 @@
 
             <q-separator spaced />
 
-            <q-item clickable v-ripple to="home">
+            <!-- <q-item clickable v-ripple to="home">
               <q-item-section avatar>
                 <q-icon size="xs" name="mdi-home" />
               </q-item-section>
 
               <q-item-section>{{ $t("home") }}</q-item-section>
-            </q-item>
+            </q-item> -->
 
-            <q-item clickable v-ripple to="apps/dashboard">
+            <q-item clickable v-ripple to="/apps/dashboard">
               <q-item-section avatar>
                 <q-icon size="xs" name="mdi-view-dashboard" />
               </q-item-section>
@@ -146,7 +146,7 @@
         <div class="row" v-if="user">
           <q-list
             padding
-            class="rounded-borders text-primary my-font"
+            class="rounded-borders text-indigo-10 my-font"
             style="width: 100%; font-size: 16px; font-weight: bold"
           >
             <q-separator spaced />
@@ -173,6 +173,7 @@
       id="hero"
     >
       <q-header
+        v-if="matchMediaDesktop"
         reveal
         class="text-white q-py-lg navigation-background-color"
         height-hint="98"
@@ -181,12 +182,11 @@
           <q-toolbar-title style="margin-left: 5%">
             <div class="row">
               <div class="column q-pr-xl">
-                <router-link to="/home"
-              >
-                <img
-                  src="~/src/assets/cogeos.svg"
-                  style="position: relative; width: 100%; height: 35px"
-                />
+                <router-link to="/home">
+                  <img
+                    src="~/src/assets/cogeos.svg"
+                    style="position: relative; width: 100%; height: 35px"
+                  />
                 </router-link>
               </div>
               <div class="column">
@@ -241,7 +241,7 @@
           >
             <!-- <q-route-tab name="images" :label="$t(`home`)" to="/home" /> -->
             <q-route-tab
-              ripple='false'
+              ripple="false"
               name="videos"
               :label="$t('dashboard')"
               to="/apps/dashboard"
@@ -330,14 +330,36 @@
           </div>
         </q-toolbar>
       </q-header>
-      <router-view />
 
+      <q-header
+        class="text-white q-py-none navigation-background-color"
+        height-hint="98"
+      >
+        <div class="row justify-between q-mx-sm">
+          <router-link to="/home">
+            <img
+              class="q-ml-none"
+              src="~/src/assets/cogeos.svg"
+              style="position: relative; width: 35%; height: 50px"
+            />
+          </router-link>
+          <q-btn
+            align="around"
+            class="q-pa-none text-grey-9"
+            flat
+            label="MORE"
+            icon-right="mdi-menu"
+            @click="toggleRightDrawer"
+          />
+        </div>
+      </q-header>
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, ref, onBeforeMount } from "vue";
 
 import userAuthUser from "src/composables/userAuthUser";
 import { useRouter } from "vue-router";
@@ -360,7 +382,17 @@ export default defineComponent({
 
     const { locale } = useI18n({ useScope: "global" });
 
+    //const locale = ref($q.lang.getLocale())
+
     const rightDrawerOpen = ref(false);
+
+    const matchMediaDesktop = ref(false),
+      matchMediaMobile = ref(false);
+
+    onBeforeMount(() => {
+      matchMediaMobile.value = window.matchMedia("(max-width: 768px)").matches;
+      matchMediaDesktop.value = window.matchMedia("(min-width: 768px)").matches;
+    });
 
     const handleLogout = async () => {
       $q.dialog({
@@ -393,6 +425,8 @@ export default defineComponent({
         // { value: "sw", label: "Swahili" },
       ],
       tab: ref("images"),
+      matchMediaDesktop,
+      matchMediaMobile,
     };
   },
 });

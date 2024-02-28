@@ -121,7 +121,7 @@ export default function setLayerStats() {
       datasets: [
         {
           backgroundColor: bgColors,
-          data: data.map((value) => value * 0.001),
+          data: data.map((value) => value * 0.0001),
           barPercentage: 0.75,
           categoryPercentage: 0.75,
         },
@@ -139,7 +139,7 @@ export default function setLayerStats() {
           spacing: 0,
           cutout: "75",
           radius: "80%",
-          data: data.map((value) => value * 0.001),
+          data: data.map((value) => value * 0.0001),
         },
       ],
     });
@@ -215,7 +215,7 @@ export default function setLayerStats() {
           spacing: 0,
           cutout: "0",
           radius: "80%",
-          data: data.map((value) => value * 0.001),
+          data: data.map((value) => value * 0.0001),
         },
       ],
     });

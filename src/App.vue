@@ -13,7 +13,7 @@ export default defineComponent({
     $q.lang.getLocale(); // returns a string
     onMounted(
       ()=>{
-        console.log($q.lang.getLocale())
+        console.log('locale',$q.lang.getLocale())
       }
     )
   },

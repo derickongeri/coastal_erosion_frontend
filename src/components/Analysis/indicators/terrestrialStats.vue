@@ -19,7 +19,7 @@
       style="max-width: inherit; border-radius: 20px"
     >
       <div class="col text-grey-9 q-my-none">
-        <strong> {{ $t("Benthic classes") }}</strong>
+        <strong> {{ $t("Terrestrial classes") }} Ha</strong>
       </div>
       <q-space />
       <div id="chart-btns">

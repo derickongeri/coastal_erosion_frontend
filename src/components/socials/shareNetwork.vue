@@ -143,7 +143,7 @@ export default {
     return {
       showDialog: false,
       message: `Interactive platform for Coastal Geomorphology and Shoreline erosion monitoring for island counrties of Comoros, Madagascar and Mauritius.`,
-      url: "http://45.76.143.229/dashboard/#/",
+      url: "http://coastalerosion.rcmrd.org/",
       resolve: null,
       reject: null,
     };

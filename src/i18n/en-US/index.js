@@ -35,8 +35,7 @@ export default {
   updatePassword: "Reset Password",
 
   //home
-  tagline:
-    "Understanding coastal geomorphology and shoreline changes through Earth Observation",
+  tagline: 'Understanding \ncoastal geomorphology and shoreline changes through Earth Observation',
   subtag:
     "Geospatail data platform for the anlaysis and visualization of coastal geomorphology and shoreline changes",
   webgis: "CoastWatch WebGIS",

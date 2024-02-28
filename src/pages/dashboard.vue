@@ -1,7 +1,11 @@
 <template>
   <!-- <q-layout view="hHh lpR fFf">
     <q-page-container style="padding-bottom: 0px"> -->
-  <q-page class="row bg-grey-2" style="overflow:hidden;">
+  <q-page
+    v-if="matchMediaDesktop"
+    class="row bg-grey-2"
+    style="overflow: hidden"
+  >
     <!-- <div
           class="col bg-grey-2 q-my-sm items-center web-view"
           style="
@@ -46,59 +50,59 @@
           </div>
     </div> -->
 
-    <div class="row items-start q-gutter-md bg-white q-mx-sm web-veiw" style="position:absolute;bottom:1%;left:1%;z-index:6000;max-width:33vw;border-radius:15px">
+    <div
+      class="row items-start q-gutter-md bg-white q-mx-sm web-veiw"
+      style="
+        position: absolute;
+        bottom: 1%;
+        left: 1%;
+        z-index: 6000;
+        max-width: 33vw;
+        border-radius: 15px;
+      "
+    >
       <div class="col items-center">
-        <img
-            src="~/src/assets/rcmrdlogo.png" style="width:100%"
-          />
+        <img src="~/src/assets/rcmrdlogo.png" style="width: 100%" />
       </div>
       <div class="col text-center">
-        <img
-            src="~/src/assets/GMESlogo.png" style="width:80%"
-          />
+        <img src="~/src/assets/GMESlogo.png" style="width: 80%" />
       </div>
       <div class="col text-center">
-        <img
-            src="~/src/assets/AUlogo.png" style="width:80%"
-          />
+        <img src="~/src/assets/AUlogo.png" style="width: 80%" />
       </div>
       <div class="col- text-center">
-        <img
-            src="~/src/assets/EUlogo.png" style="width:70%"
-          />
+        <img src="~/src/assets/EUlogo.png" style="width: 70%" />
       </div>
     </div>
 
-    <div class="row items-start q-gutter-xs bg-white q-mx-sm mobile-veiw" style="position:absolute;bottom:0%;left:0%;z-index:6000;max-width:60%;border-radius:5px">
+    <div
+      class="row items-start q-gutter-xs bg-white q-mx-sm mobile-veiw"
+      style="
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+        z-index: 6000;
+        max-width: 60%;
+        border-radius: 5px;
+      "
+    >
       <div class="col items-center">
-        <img
-            src="~/src/assets/rcmrdlogo.png" style="width:100%"
-          />
+        <img src="~/src/assets/rcmrdlogo.png" style="width: 100%" />
       </div>
       <div class="col text-center">
-        <img
-            src="~/src/assets/GMESlogo.png" style="width:90%"
-          />
+        <img src="~/src/assets/GMESlogo.png" style="width: 90%" />
       </div>
       <div class="col text-center">
-        <img
-            src="~/src/assets/AUlogo.png" style="width:90%"
-          />
+        <img src="~/src/assets/AUlogo.png" style="width: 90%" />
       </div>
       <div class="col text-center">
-        <img
-            src="~/src/assets/EUlogo.png" style="width:50%"
-          />
+        <img src="~/src/assets/EUlogo.png" style="width: 50%" />
       </div>
     </div>
-
-
 
     <!-- <div class="" style="position:absolute;bottom:7%;left:40vw;z-index:6000;width:40vw;height:7vh;border-radius:20px">
       <yearslider/>
     </div> -->
-
-
 
     <div
       v-if="matchMediaDesktop"
@@ -114,7 +118,7 @@
     >
       <div
         class="show-stats-btn-mobile q-pa-md"
-        style="position: absolute; right: 0%; top: 15%; z-index: 5000;"
+        style="position: absolute; right: 0%; top: 15%; z-index: 5000"
       >
         <q-btn
           class="nav-btn2"
@@ -125,7 +129,7 @@
           @click="showAnalysisPanel = !showAnalysisPanel"
         />
       </div>
-      <areaselection style="position:relative; top: 7%;"/>
+      <areaselection style="position: relative; top: 7%" />
       <analysisPanel
         class="col q-my-sm q-ml-md web-view"
         style="
@@ -136,7 +140,10 @@
           border-radius: 0 15px 0 0;
         "
       />
-      <div class="row" style="position:relative; bottom:1%; width:100%; height:15vh;"></div>
+      <div
+        class="row"
+        style="position: relative; bottom: 1%; width: 100%; height: 15vh"
+      ></div>
     </div>
 
     <div class="col">
@@ -300,9 +307,37 @@
       </q-card>
     </q-dialog>
   </q-page>
+
+  <q-page v-else="matchMediaMobile" class="bg-indigo text-white">
+    <div class="absolute-center">
+      <div class="col" style="width: 90vw">
+        <div class="row justify-center">
+          <q-avatar
+            class="text-center"
+            text-color="white"
+            font-size="52px"
+            icon="mdi-emoticon-sad-outline"
+          />
+        </div>
+        <div class="row justify-center">
+          <p class="text-bold" style="font-size: xx-large">We're sorry</p>
+          <p class="text-center">
+            This section of the tool is optimized for desktop and tablets in
+            landscape mode.
+          </p>
+        </div>
+        <div class="row justify-center">
+          <p class="text-center">
+            If your device is smaller than <strong>1024x768 pixels</strong>, please try exploring this section on your desktop or tablet in landscape mode.
+          </p>
+          <q-btn unelevated color="white" text-color="indigo" to="/home" label="Home" />
+        </div>
+      </div>
+    </div>
+  </q-page>
   <!-- </q-page-container> -->
 
-  <q-footer bordered class="mobile-veiw bg-white">
+  <!-- <q-footer bordered class="mobile-veiw bg-white">
     <q-toolbar>
       <q-tabs
         style="min-width: 100%"
@@ -327,7 +362,7 @@
         />
       </q-tabs>
     </q-toolbar>
-  </q-footer>
+  </q-footer> -->
 </template>
 
 <script>

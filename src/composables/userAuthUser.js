@@ -5,6 +5,7 @@ const user = ref(null);
 
 export default function userAuthUser() {
   const { supabase } = useSupabase();
+  const baseUrl = "http://coastalerosion.rcmrd.org/#/";
 
   const login = async ({ email, password }) => {
     const { user, error } = await supabase.auth.signInWithPassword({
@@ -37,7 +38,7 @@ export default function userAuthUser() {
       password: password,
       options: {
         data: meta,
-        emailRedirectTo: `http://217.21.122.249`,
+        emailRedirectTo: `${baseUrl}`,
       },
     });
     if (error) throw error;
@@ -52,7 +53,7 @@ export default function userAuthUser() {
 
   const sendPasswordRestEmail = async (email) => {
     const { user, error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://217.21.122.249/#/update-password",
+      redirectTo: `${baseUrl}update-password`,
     });
     if (error) throw error;
     return user;
