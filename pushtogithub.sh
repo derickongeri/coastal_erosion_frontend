@@ -33,8 +33,8 @@ git push $REPO_URL main
 # REMOTE_USER="cgsdadmin"
 # REMOTE_HOST="217.21.122.249"
 
-# # deploying to dev server
-# # scp -r /home/derick/Desktop/rcmrd-coastal/Frontend/rcmrd_coastal_spa/dist/spa/* cgsdadmin@217.21.122.249:
+# deploying to dev server
+scp -r /home/derick/Desktop/rcmrd-coastal/Frontend/rcmrd_coastal_spa/dist/spa/* cgsdadmin@217.21.122.249:/home/cgsdadmin/frontend
 
 # # sudo rm -rf /var/www/html/cogeos_app/
 # # sudo cp -r dist/spa /var/www/html/cogeos_app

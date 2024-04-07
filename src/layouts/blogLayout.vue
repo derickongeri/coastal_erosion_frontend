@@ -149,7 +149,7 @@
               style="
                 font-weight: 700;
                 font-size: 12px;
-                font-color: rgb(41, 41, 41);
+                color: rgb(41, 41, 41);
               "
             >
               <!-- <template v-slot:prepend

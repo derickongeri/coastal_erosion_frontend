@@ -194,7 +194,7 @@
             <q-card
               flat
               class="my-card text-grey-9 my-font-2 text-justify"
-              style="background-color: #0f1b24a00; border-radius: 15px"
+              style="background-color: #f1b24a00; border-radius: 15px"
             >
               <div
                 class="my-font-2 text-center q-px-md q-py-md"
