@@ -120,7 +120,7 @@
 
 <script>
 import { defineComponent, ref, onMounted } from "vue";
-import userAuthUser from "src/composables/userAuthUser";
+import userAuthUser from "src/composables/userAuthdjango";
 import useNotify from "src/composables/useNotify";
 import { useRouter } from "vue-router";
 
@@ -152,7 +152,7 @@ export default defineComponent({
           name: "dashboard",
         });
       } catch (error) {
-        notifyError(error.message);
+        notifyError(error);
       }
     };
 

@@ -76,7 +76,7 @@
 
 <script>
 import { defineComponent, onMounted } from "vue";
-import userAuthUser from "src/composables/userAuthUser";
+import userAuthUser from "src/composables/userAuthdjango";
 
 export default defineComponent({
   name: "mePage",

@@ -6,7 +6,7 @@ import {
   createWebHashHistory,
 } from "vue-router";
 import routes from "./routes";
-import userAuthUser from "src/composables/userAuthUser";
+import userAuthUser from "src/composables/userAuthdjango";
 
 /*
  * If not building with SSR mode, you can

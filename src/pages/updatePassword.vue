@@ -12,7 +12,7 @@
             class="q-px-md q-my-none q-pb-xs"
             style="font-weight: 700; font-size: 21px"
           >
-            {{$t('updatePassword')}}
+            {{ $t("updatePassword") }}
           </h6>
         </div>
 
@@ -98,8 +98,8 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import userAuthUser from "src/composables/userAuthUser";
+import { defineComponent, onMounted, ref } from "vue";
+import userAuthUser from "src/composables/userAuthdjango";
 import useNotify from "src/composables/useNotify";
 import { useRouter } from "vue-router";
 
@@ -116,15 +116,33 @@ export default defineComponent({
       // firstName: "",
       // lastName: "",
       // email: "",
+      token: "",
+      uid: "",
       password: "",
       // confirmedpassword: "",
+    });
+
+    onMounted(() => {
+      var urlString = window.location.href
+
+      // Find the start index of access token and uid
+      var accessTokenStartIndex =
+        urlString.indexOf("access_token=") + "access_token=".length;
+      var uidStartIndex = urlString.indexOf("uid=") + "uid=".length;
+
+      // Extract the access token and uid using substring
+      form.value.token = urlString.substring(
+        accessTokenStartIndex,
+        urlString.indexOf("&", accessTokenStartIndex)
+      );
+      form.value.uid = urlString.substring(uidStartIndex, urlString.length);
     });
 
     //method to handle login and redirect to dashboard
     const updatePassword = async () => {
       if (confirmedpassword.value === form.value.password) {
         try {
-          await updateUserPassword(form.value.password);
+          await updateUserPassword(form.value);
           notifySuccess("Success");
           router.push({
             name: "home",

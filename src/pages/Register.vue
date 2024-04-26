@@ -199,7 +199,7 @@
 
 <script>
 import { defineComponent, ref, onMounted, watch } from "vue";
-import userAuthUser from "src/composables/userAuthUser";
+import userAuthUser from "src/composables/userAuthdjango";
 import useNotify from "src/composables/useNotify";
 import { useRouter } from "vue-router";
 import rolesData from "src/composables/institutions.json";
@@ -222,7 +222,6 @@ export default defineComponent({
       otherRoles: "",
       organization: "",
       password: "",
-      // confirmedpassword: "",
     });
 
     const sectors = ref([]),
@@ -249,7 +248,7 @@ export default defineComponent({
             // path: "/dashboard"
           });
         } catch (error) {
-          notifyError(error.message);
+          notifyError(error);
         }
       } else {
         notifyError(`Your passwords do not match`);

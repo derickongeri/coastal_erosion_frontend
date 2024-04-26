@@ -362,7 +362,7 @@
 <script>
 import { computed, defineComponent, ref, onBeforeMount } from "vue";
 
-import userAuthUser from "src/composables/userAuthUser";
+import userAuthUser from "src/composables/userAuthdjango";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
